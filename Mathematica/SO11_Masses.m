@@ -4,12 +4,10 @@
 
 Subscript[sin2\[Theta], W] = 0.2312;
 
+(* Get Json data *)
 Print[$ScriptCommandLine[[2]]];
-
 JsonNb = $ScriptCommandLine[[2]];
 jsonName = "dataIn"  <> JsonNb <> ".json";
-
-
 dataRule = Import [jsonName];
 
 
@@ -30,7 +28,7 @@ c0Prime = "c0Prime" /.dataRule;
 \[Mu]1 = "Mu1" /. dataRule;
 
 \[Mu]11Prime = "Mu11Prime" /.dataRule;
-\[Mu]2Tilde = "Mu2Tilde" /.dataRule  ;
+  \[Mu]2Tilde = "Mu2Tilde" /.dataRule  ;
 
 M = -10^7;
 mB = 1.145 * 10^12;

@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    374012,       7038]
-NotebookOptionsPosition[    371719,       6962]
-NotebookOutlinePosition[    372079,       6978]
-CellTagsIndexPosition[    372036,       6975]
+NotebookDataLength[    381082,       7188]
+NotebookOptionsPosition[    378435,       7101]
+NotebookOutlinePosition[    378795,       7117]
+CellTagsIndexPosition[    378752,       7114]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1833,6 +1833,8 @@ Cell[BoxData[
    3.746523137931476*^9, 3.7465232405010643`*^9, 3.746523613306025*^9, 
    3.746523778092443*^9}],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
  RowBox[{"\[IndentingNewLine]", 
   RowBox[{
@@ -1901,59 +1903,81 @@ Cell[BoxData[
     RowBox[{"mB", " ", "=", " ", 
      RowBox[{"1.145", " ", "*", " ", 
       SuperscriptBox["10", "12"]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[Alpha]EM", "=", 
+     RowBox[{"1", "/", "127.96"}]}], ";"}], "\[IndentingNewLine]", 
    "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{
      RowBox[{"fH", "[", 
       RowBox[{
       "k_", ",", " ", "zL_", ",", " ", "sin2\[Theta]W_", ",", " ", 
-       "\[Alpha]EM_"}], "]"}], ":=", "\[IndentingNewLine]", 
-     "\[IndentingNewLine]", 
-     RowBox[{"\[Theta]HMinRule", " ", "=", " ", 
-      RowBox[{
-       RowBox[{"FindMinimum", "[", "  ", 
-        RowBox[{
-         RowBox[{"Quiet", " ", "[", 
-          RowBox[{"NIntegrate", " ", "[", 
+       "\[Alpha]EM_"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"Sqrt", "[", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"6", "*", " ", "sin2\[Theta]W"}], ")"}], " ", "/", 
+        RowBox[{"(", 
+         RowBox[{"4", " ", "*", " ", "Pi", " ", "*", " ", "\[Alpha]EM"}], 
+         ")"}]}], "]"}], " ", "*", " ", 
+      RowBox[{"(", 
+       RowBox[{"k", "/", 
+        RowBox[{"Sqrt", "[", " ", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"1", "-", 
+            RowBox[{"1", "/", "zL"}]}], ")"}], "*", 
+          RowBox[{"(", 
            RowBox[{
-            RowBox[{
-             SubscriptBox["V", "effFCT"], " ", "/.", 
-             RowBox[{"{", 
-              RowBox[{
-               SubscriptBox["\[Theta]", "H"], "\[Rule]", "\[Theta]HLocal"}], 
-              "}"}]}], ",", " ", 
+            RowBox[{"zL", "^", "3"}], " ", "-", " ", "1"}], ")"}]}], " ", 
+         "]"}]}], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fH", " ", "=", " ", 
+     RowBox[{"fH", "[", 
+      RowBox[{"k", ",", " ", "zL", ",", " ", 
+       SubscriptBox["sin2\[Theta]", "W"], ",", " ", "\[Alpha]EM"}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[Theta]HMinRule", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"FindMinimum", "[", "  ", 
+       RowBox[{
+        RowBox[{"Quiet", " ", "[", 
+         RowBox[{"NIntegrate", " ", "[", 
+          RowBox[{
+           RowBox[{
+            SubscriptBox["V", "effFCT"], " ", "/.", 
             RowBox[{"{", 
-             RowBox[{"q", ",", " ", "0", ",", " ", "\[Infinity]"}], "}"}]}], 
-           "]"}], "]"}], ",", " ", 
-         RowBox[{"{", 
-          RowBox[{"\[Theta]HLocal", ",", "0", ",", "2"}], " ", "}"}]}], "  ", 
-        "]"}], "[", 
-       RowBox[{"[", "2", "]"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+             RowBox[{
+              SubscriptBox["\[Theta]", "H"], "\[Rule]", "\[Theta]HLocal"}], 
+             "}"}]}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"q", ",", " ", "0", ",", " ", "\[Infinity]"}], "}"}]}], 
+          "]"}], "]"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"\[Theta]HLocal", ",", "0", ",", "2"}], " ", "}"}]}], "  ", 
+       "]"}], "[", 
+      RowBox[{"[", "2", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{
      SubscriptBox["m", "H"], " ", "=", " ", 
      RowBox[{"Sqrt", "[", 
       RowBox[{
-       RowBox[{
-        FractionBox["1", 
-         SuperscriptBox["fH", "2"]], " ", "*", " ", 
-        RowBox[{"NIntegrate", " ", "[", 
-         RowBox[{
-          RowBox[{"HiggsDeriv", " ", "/.", 
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{
-              SubscriptBox["\[Theta]", "H"], " ", "\[Rule]", 
-              "\[Theta]HLocal"}], "/.", " ", "\[Theta]HMinRule"}], "}"}]}], 
-          ",", " ", 
+       FractionBox["1", 
+        SuperscriptBox["fH", "2"]], " ", "*", " ", 
+       RowBox[{"NIntegrate", " ", "[", 
+        RowBox[{
+         RowBox[{"HiggsDeriv", " ", "/.", 
           RowBox[{"{", 
-           RowBox[{"q", ",", " ", "0", ",", " ", "\[Infinity]"}], "}"}]}], 
-         "]"}]}], "/.", 
-       RowBox[{"{", 
-        RowBox[{"fH", " ", "\[Rule]", " ", 
-         RowBox[{"1.462", "*", 
-          RowBox[{"10", "^", "3"}]}]}], "}"}]}], "]"}]}], ";"}], 
-   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{
+             SubscriptBox["\[Theta]", "H"], " ", "\[Rule]", 
+             "\[Theta]HLocal"}], "/.", " ", "\[Theta]HMinRule"}], "}"}]}], 
+         ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"q", ",", " ", "0", ",", " ", "\[Infinity]"}], "}"}]}], 
+        "]"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{
      SubscriptBox["m", "t"], " ", "=", "  ", 
@@ -2094,7 +2118,122 @@ Cell[BoxData[
    3.7464302588752003`*^9, 3.746430331842884*^9}, {3.7464379444765673`*^9, 
    3.7464379457720757`*^9}, {3.746438557022566*^9, 3.746438558981098*^9}, {
    3.746438604820819*^9, 3.7464386170535183`*^9}, {3.74652867423071*^9, 
-   3.746528733223394*^9}}],
+   3.746528733223394*^9}, {3.746528832633436*^9, 3.7465289067301483`*^9}, {
+   3.746528942755342*^9, 3.74652907270044*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "NIntegrate","inumr",
+   "\"The integrand \\!\\(\\*RowBox[{RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"13\\\", \\\"\[RightSkeleton]\\\"}], \\\"+\\\", \
+RowBox[{\\\"1.597919773717982`*^12\\\", \\\" \\\", SuperscriptBox[\\\"q\\\", \
+\\\"3\\\"], \\\" \\\", RowBox[{\\\"Log\\\", \\\"[\\\", RowBox[{\\\"1\\\", \
+\\\"+\\\", FractionBox[RowBox[{SuperscriptBox[\\\"\[ExponentialE]\\\", \
+RowBox[{\\\"2\\\", \\\" \\\", \\\"q\\\"}]], \\\" \\\", SuperscriptBox[\\\"q\\\
+\", \\\"2\\\"], \\\" \\\", SuperscriptBox[RowBox[{\\\"Csch\\\", \\\"[\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"]\\\"}], \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"Sin\\\", \\\"[\\\", \\\"\[Theta]HLocal\\\", \
+\\\"]\\\"}], \\\"2\\\"]}], RowBox[{\\\"2\\\", \\\" \\\", RowBox[{\\\"(\\\", \
+RowBox[{RowBox[{\\\"-\\\", \\\"35\\\"}], \\\"+\\\", RowBox[{\\\"Power\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\")\\\"}], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{RowBox[{\\\"Cosh\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}], \\\"+\\\", RowBox[{\\\"Sinh\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\
+\")\\\"}], \\\"2\\\"]}]]}], \\\"]\\\"}]}], \\\"+\\\", \
+RowBox[{\\\"7.98959886858991`*^11\\\", \\\" \\\", SuperscriptBox[\\\"q\\\", \
+\\\"3\\\"], \\\" \\\", RowBox[{\\\"Log\\\", \\\"[\\\", RowBox[{\\\"1\\\", \
+\\\"+\\\", FractionBox[RowBox[{\\\"0.6503642039542142`\\\", \\\" \\\", \
+SuperscriptBox[\\\"\[ExponentialE]\\\", RowBox[{\\\"2\\\", \\\" \\\", \\\"q\\\
+\"}]], \\\" \\\", SuperscriptBox[\\\"q\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"Sin\\\", \\\"[\\\", \\\"\[Theta]HLocal\\\", \
+\\\"]\\\"}], \\\"2\\\"]}], RowBox[{RowBox[{\\\"(\\\", \
+RowBox[{RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\
+\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\")\\\"}], \\\" \\\", RowBox[{\\\
+\"(\\\", RowBox[{RowBox[{\\\"70.`\\\", \\\"\[VeryThinSpace]\\\"}], \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\")\\\"}]}]]}], \
+\\\"]\\\"}]}]}]\\) has evaluated to non-numerical values for all sampling \
+points in the region with boundaries \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"\[Infinity]\\\", \\\",\\\", \\\"0.`\\\"}], \
+\\\"}\\\"}], \\\"}\\\"}]\\).\"",2,281,40,28760105761098018781,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.746528907805534*^9, 3.7465289369255953`*^9}, {
+   3.7465290075701857`*^9, 3.7465290402708263`*^9}, 3.746529073528496*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Higgs mass of :     \"\>", "\[InvisibleSpace]", 
+   "546.903849253874`", "\[InvisibleSpace]", "\<\" (GeV)\"\>"}],
+  SequenceForm["Higgs mass of :     ", 546.903849253874, " (GeV)"],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.746528907962324*^9, 3.7465289385165586`*^9, {3.746529007502033*^9, 
+   3.746529040233447*^9}, 3.746529075145631*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Top mass of : \"\>", "\[InvisibleSpace]", "985.1276689060013`",
+    "\[InvisibleSpace]", "\<\" GeV\"\>"}],
+  SequenceForm["Top mass of : ", 985.1276689060013, " GeV"],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.746528907962324*^9, 3.7465289385165586`*^9, {3.746529007502033*^9, 
+   3.746529040233447*^9}, 3.746529075146607*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Bottom mass of : \"\>", "\[InvisibleSpace]", 
+   "17.046449001731517`", "\[InvisibleSpace]", "\<\" GeV\"\>"}],
+  SequenceForm["Bottom mass of : ", 17.046449001731517`, " GeV"],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.746528907962324*^9, 3.7465289385165586`*^9, {3.746529007502033*^9, 
+   3.746529040233447*^9}, 3.746529075147159*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Tau lepton mass of : \"\>", "\[InvisibleSpace]", 
+   "11.920084874291407`", "\[InvisibleSpace]", "\<\" GeV\"\>"}],
+  SequenceForm["Tau lepton mass of : ", 11.920084874291407`, " GeV"],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.746528907962324*^9, 3.7465289385165586`*^9, {3.746529007502033*^9, 
+   3.746529040233447*^9}, 3.74652907514769*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Tau Neutrino mass of : \"\>", "\[InvisibleSpace]", 
+   "1.6626123794828929`", "\[InvisibleSpace]", "\<\" eV\"\>"}],
+  SequenceForm["Tau Neutrino mass of : ", 1.6626123794828929`, " eV"],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.746528907962324*^9, 3.7465289385165586`*^9, {3.746529007502033*^9, 
+   3.746529040233447*^9}, 3.746529075148251*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Dark fermion mass of : \"\>", "\[InvisibleSpace]", 
+   "643.2513721895415`", "\[InvisibleSpace]", "\<\" GeV\"\>"}],
+  SequenceForm["Dark fermion mass of : ", 643.2513721895415, " GeV"],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.746528907962324*^9, 3.7465289385165586`*^9, {3.746529007502033*^9, 
+   3.746529040233447*^9}, 3.7465290751488132`*^9}]
+}, Open  ]]
+}, Open  ]],
 
 Cell[BoxData[
  RowBox[{"\[IndentingNewLine]", "\[IndentingNewLine]", 
@@ -7018,25 +7157,36 @@ Cell[CellGroupData[{
 Cell[64957, 1703, 112, 1, 56, "Subsection"],
 Cell[65072, 1706, 6018, 111, 134, "Input"],
 Cell[71093, 1819, 502, 14, 69, "Input"],
-Cell[71598, 1835, 12091, 261, 1054, "Input"],
-Cell[83692, 2098, 6430, 123, 416, "Input"],
-Cell[90125, 2223, 5382, 125, 392, "Input"],
-Cell[95510, 2350, 626, 13, 97, "Input"],
-Cell[96139, 2365, 847, 18, 125, "Input"],
 Cell[CellGroupData[{
-Cell[97011, 2387, 6222, 161, 461, "Input"],
-Cell[103236, 2550, 265745, 4335, 594, "Output"]
+Cell[71620, 1837, 12981, 284, 1110, "Input"],
+Cell[84604, 2123, 3337, 48, 156, "Message"],
+Cell[CellGroupData[{
+Cell[87966, 2175, 401, 8, 29, "Print"],
+Cell[88370, 2185, 387, 8, 29, "Print"],
+Cell[88760, 2195, 396, 8, 29, "Print"],
+Cell[89159, 2205, 403, 8, 29, "Print"],
+Cell[89565, 2215, 406, 8, 29, "Print"],
+Cell[89974, 2225, 407, 8, 29, "Print"]
+}, Open  ]]
 }, Open  ]],
-Cell[368996, 6888, 92, 1, 40, "Input"],
-Cell[369091, 6891, 146, 2, 97, "Input"],
-Cell[369240, 6895, 166, 2, 40, "Input"],
+Cell[90408, 2237, 6430, 123, 416, "Input"],
+Cell[96841, 2362, 5382, 125, 392, "Input"],
+Cell[102226, 2489, 626, 13, 97, "Input"],
+Cell[102855, 2504, 847, 18, 125, "Input"],
 Cell[CellGroupData[{
-Cell[369431, 6901, 1473, 32, 377, "Input"],
-Cell[370907, 6935, 247, 6, 40, "Output"],
-Cell[371157, 6943, 124, 2, 40, "Output"],
-Cell[371284, 6947, 123, 2, 40, "Output"],
-Cell[371410, 6951, 140, 2, 40, "Output"],
-Cell[371553, 6955, 126, 2, 40, "Output"]
+Cell[103727, 2526, 6222, 161, 461, "Input"],
+Cell[109952, 2689, 265745, 4335, 594, "Output"]
+}, Open  ]],
+Cell[375712, 7027, 92, 1, 40, "Input"],
+Cell[375807, 7030, 146, 2, 97, "Input"],
+Cell[375956, 7034, 166, 2, 40, "Input"],
+Cell[CellGroupData[{
+Cell[376147, 7040, 1473, 32, 377, "Input"],
+Cell[377623, 7074, 247, 6, 40, "Output"],
+Cell[377873, 7082, 124, 2, 40, "Output"],
+Cell[378000, 7086, 123, 2, 40, "Output"],
+Cell[378126, 7090, 140, 2, 40, "Output"],
+Cell[378269, 7094, 126, 2, 40, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]

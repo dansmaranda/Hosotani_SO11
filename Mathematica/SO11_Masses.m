@@ -1,15 +1,16 @@
-#!/usr/bin/env wolframscript
+(* #!/usr/bin/env MathematicaScript *)
+(* ClearAll["Global`*"] *)
+Print[ "GETTIGN JSON        " ];
 
 
 
 Subscript[sin2\[Theta], W] = 0.2312;
 
 (* Get Json data *)
-Print[$ScriptCommandLine[[2]]];
 JsonNb = $ScriptCommandLine[[2]];
 jsonName = "dataIn"  <> JsonNb <> ".json";
 dataRule = Import [jsonName];
-
+Print[ "GOT JSON" ];
 
 
 (********************************************************************)
@@ -28,7 +29,7 @@ c0Prime = "c0Prime" /.dataRule;
 \[Mu]1 = "Mu1" /. dataRule;
 
 \[Mu]11Prime = "Mu11Prime" /.dataRule;
-  \[Mu]2Tilde = "Mu2Tilde" /.dataRule  ;
+\[Mu]2Tilde = "Mu2Tilde" /.dataRule  ;
 
 M = -10^7;
 mB = 1.145 * 10^12;
@@ -45,12 +46,15 @@ fH = fH[k, zL, Subscript[sin2\[Theta], W], \[Alpha]EM];
 
 
 muTypeQuark[c0_] := If[c0 < 0.5, (k/zL)*Sqrt[1 - 4*c0^2]*Sin[Subscript[\[Theta], H]/2],
-   k*zL^(-2^(-1) - Subscript[c, 0])*Sqrt[4*c0^2 - 1]*Sin[Subscript[\[Theta], H]/2]]
+   k*zL^(-2^(-1) - Subscript[c, 0])*Sqrt[4*c0^2 - 1]*Sin[Subscript[\[Theta], H]/2]];
+
 mdTypeQuark[c0_, c1_, \[Mu]11_, \[Mu]1_] := If[c0 < 0.5, k*zL^(c0 - c1 - 1)*(\[Mu]11/\[Mu]1)*Sqrt[(1 - 2*c0)*(1 + 2*c1)]*
-    Sin[Subscript[\[Theta], H]/2], k*zL^(-c1 - 1/2)*(\[Mu]11/\[Mu]1)*Sqrt[(2*c0 - 1)*(2*c1 + 1)*Sin[Subscript[\[Theta], H]/2]]]
+    Sin[Subscript[\[Theta], H]/2], k*zL^(-c1 - 1/2)*(\[Mu]11/\[Mu]1)*Sqrt[(2*c0 - 1)*(2*c1 + 1)*Sin[Subscript[\[Theta], H]/2]]];
+
 meTypeLepton[c2_, c0_, \[Mu]11Prime_, \[Mu]2Tilde_] := If[c2 < 0.5, k*zL^(-1 + c2 - c0)*(\[Mu]11Prime/\[Mu]2Tilde)*
     Sqrt[(2*c0 + 1)*(1 - 2*c2)]*Sin[Subscript[\[Theta], H]/2], k*zL^(-2^(-1) - c0)*(\[Mu]11Prime/\[Mu]2Tilde)*
-    Sqrt[(2*c0 + 1)*(2*c2 - 1)]*Sin[Subscript[\[Theta], H]/2]]
+    Sqrt[(2*c0 + 1)*(2*c2 - 1)]*Sin[Subscript[\[Theta], H]/2]];
+
 m\[Nu]Type[mu_, M_, mB_, c0_] := -((2*mu^2*M*zL^(2*c0 + 1))/((2*c0 + 1)*mB^2));
 mPsiDarkType[c0Prime_] := If[c0Prime < 0.5, (k/zL)*Sqrt[1 - 4*c0Prime^2]*Cos[Subscript[\[Theta], H]/2],
     k*zL^(-2^(-1) - c0Prime)*Sqrt[4*c0Prime^2 - 1]*Cos[Subscript[\[Theta], H]/2]];
@@ -656,21 +660,33 @@ HiggsDeriv = 0. - (1/zL^4)*(0.20264236728467555*k^4*q^3*
           ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))*(-1 + Subscript[sin2\[Theta], W])))*
        (-1 + Subscript[sin2\[Theta], W]))));
 
+Print["Staring to find the minimum"]
+
 \[Theta]HMinRule =
   Quiet[FindMinimum[
     Quiet [NIntegrate [
       VeffFct /. {Subscript[\[Theta], H] -> \[Theta]HLocal}, {q,
-       0, \[Infinity]}]], {\[Theta]HLocal, 0, 2 }  ][[2]]];
+       0, \[Infinity]}]
+       ], {\[Theta]HLocal, 0, 2 }  ][[2]]
+       ];
+
+Print["Found the minimum."]
+
+Print["Staring to find THE HIGGS MASSS"]
 
 Subscript[m, H] =
   Sqrt[1/fH^2 *
+     Quiet[
      NIntegrate [
       HiggsDeriv /. {Subscript[\[Theta],
           H] -> \[Theta]HLocal /. \[Theta]HMinRule}, {q,
-       0, \[Infinity]}] ];
-
+       0, \[Infinity]} ]
+       ]
+    ];
+Print["Found THE HIGGS MAss"]
 
 mHFinal = Abs[Subscript[m, H]];
+
 jsonNameOut = "massesOut"  <> JsonNb <> ".json";
 
 
@@ -697,7 +713,7 @@ mNeutrino = m\[Nu]Type[Subscript[m, t], M, mB, Subscript[c, 0]] *
     H] -> \[Theta]HLocal /. \[Theta]HMinRule} ;
 mPsiDark =  mPsiDarkType[
    c0Prime] /. {Subscript[\[Theta],
-     H] -> \[Theta]HLocal /. \[Theta]HMinRule}
+     H] -> \[Theta]HLocal /. \[Theta]HMinRule};
 
 Print ["Top mass of : ", mTop , " GeV"]
 Print ["Bottom mass of : ", mBottom , " GeV"]
@@ -709,3 +725,4 @@ Print ["Dark fermion mass of : ", mPsiDark  , " GeV"]
 
 Export[jsonNameOut, {"Higgs" -> mHFinal, "mTop" -> mTop , "mBottom" -> mBottom, "mTau"-> mTau, "mNeutrino" -> mNeutrino , "mPsiDark" -> mPsiDark}];
 Print["Higgs mass of :     ", mHFinal, " (GeV)"];
+Print["Done Exporting"]

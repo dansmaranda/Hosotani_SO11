@@ -13,46 +13,156 @@ from sympy.parsing import mathematica
 # mathParse = mathematica.mathematica()
 # print (type(mathParse))
 # print (mathParse)
-def genNumbers():
+# def genNumbers():
+# 	'''
+# 	'''
+# 	pass
+#
+# def workerFct(threadNb, debug):
+# 	# subprocess.ca
+# 	colorDict= {'0':Fore.RED, '1':Fore.GREEN, '2':Fore.BLUE, '3':Fore.YELLOW}
+# 	if debug:
+# 		print ("Debug On!!")
+#
+# 	FNULL = open(os.devnull, 'w')
+#
+# 	while True:
+# 		print (colorDict[str(threadNb % 4) ] + "Mathematica Out from Thread number: ", threadNb)
+# 		try:
+# 			subprocess.call('./SO11_Masses.m ThreadNb-' + str(threadNb), shell = True, stdout = FNULL,  stderr=subprocess.STDOUT)
+# 			time.sleep(0.1 + threadNb/10)
+#
+# 			#  Get fron out dict .
+# 		except:
+# 			break
+# 			print ('No Bueno!!!!!!!!!!!!!!!!!!!!!!!!')
+#
+# 		print (Style.RESET_ALL)
+
+# from sympy import *
+
+def VeffθH (q, ThetaH):
 	'''
 	'''
-	pass
+	from mpmath import coth as Coth
+	from mpmath import csc as  Csch
 
-def workerFct(threadNb, debug):
-	# subprocess.ca
-	colorDict= {'0':Fore.RED, '1':Fore.GREEN, '2':Fore.BLUE, '3':Fore.YELLOW}
-	if debug:
-		print ("Debug On!!")
+	from math import sin as Sin
+	from math import cos as Cos
+	from math import log as Log
+	from math import cosh as Cosh
+	# from math import
+	from math import sinh as Sinh
+	import scipy.special as sp
 
-	FNULL = open(os.devnull, 'w')
+	print (sp.iv(0.022399999999999975,q) +1)
+	# import scipy.special.kv as sp.kv
+	# import scipy.special.iv as sp.iv
 
-	while True:
-		print (colorDict[str(threadNb % 4) ] + "Mathematica Out from Thread number: ", threadNb)
-		try:
-			subprocess.call('./SO11_Masses.m ThreadNb-' + str(threadNb), shell = True, stdout = FNULL,  stderr=subprocess.STDOUT)
-			time.sleep(0.1 + threadNb/10)
 
-			#  Get fron out dict .
-		except:
-			break
-			print ('No Bueno!!!!!!!!!!!!!!!!!!!!!!!!')
 
-		print (Style.RESET_ALL)
+	VeffFct = 0. - 8.52223879316257e12*q**3*Log(1 + (35*Cos(ThetaH/2.)**2)/	\
+	       (q**2*(-1.*sp.iv(0.022399999999999975,q)*sp.kv(0.022399999999999975,q/35.) +	\
+	           sp.iv(0.022399999999999975,q/35.)*sp.kv(0.022399999999999975,q))*	\
+	         (-1.*sp.iv(1.0224,q)*sp.kv(1.0224,q/35.) + sp.iv(1.0224,q/35.)*sp.kv(1.0224,q)))) - \
+	   3.195839547435964e12*q**3*Log(1 + (35*Sin(ThetaH/2.)**2)/
+	       (q**2*(-1.*sp.iv(-0.285925,q)*sp.kv(-0.285925,q/35.) + sp.iv(-0.285925,q/35.)*sp.kv(-0.285925,q))*
+	         (-1.*sp.iv(0.714075,q)*sp.kv(0.714075,q/35.) + sp.iv(0.714075,q/35.)*sp.kv(0.714075,q)))) - \
+	   1.0652798491453213e12*q**3*Log(1 + (35*Sin(ThetaH/2.)**2)/
+	       (q**2*(-1.*sp.iv(-0.285925,q)*sp.kv(-0.285925,q/35.) + sp.iv(-0.285925,q/35.)*sp.kv(-0.285925,q) +
+	           (0.50282281*(-1.*sp.iv(-1.2,q)*sp.kv(-1.2,q/35.) + sp.iv(-1.2,q/35.)*sp.kv(-1.2,q))*
+	              (sp.iv(-0.19999999999999996,q/35.)*sp.kv(-1.2,q) +
+	                (1.,1.2246467991473532e-16)*sp.iv(-1.2,q)*sp.kv(-0.19999999999999996,q/35.))*
+	              (sp.iv(0.714075,q/35.)*sp.kv(-0.285925,q) +
+	                (1.,1.2246467991473532e-16)*sp.iv(-0.285925,q)*sp.kv(0.714075,q/35.)))/
+	            ((-1.*sp.iv(-1.2,q)*sp.kv(-1.2,q/35.) + sp.iv(-1.2,q/35.)*sp.kv(-1.2,q))**2 +
+	              0.011663999999999999*(sp.iv(-0.19999999999999996,q/35.)*sp.kv(-1.2,q) +
+	                  (1.,1.2246467991473532e-16)*sp.iv(-1.2,q)*sp.kv(-0.19999999999999996,q/35.))**2))*
+	         (-1.*sp.iv(0.714075,q)*sp.kv(0.714075,q/35.) + sp.iv(0.714075,q/35.)*sp.kv(0.714075,q)))) - \
+	   3.195839547435964e12*q**3*Log(1 + (35*(1. - 1.9538819212703034*e**((68*q)/35.) + 1.*e**((136*q)/35.))*
+	         Sin(ThetaH/2.)**2)/
+	       (q**2*(-1.*sp.iv(-0.285925,q)*sp.kv(-0.285925,q/35.) + sp.iv(-0.285925,q/35.)*sp.kv(-0.285925,q))*
+	         (sp.iv(0.714075,q)*(((123.55129766404659,-1.5130670121477647e-14) -
+	                 (123.55129766404659,-1.5130670121477647e-14)*e**((136*q)/35.))*sp.kv(-0.285925,q/35.) +
+	              ((-1.,-2.465190328815662e-32) + 1.9538819212703031*e**((68*q)/35.) -
+	                 (1.,2.465190328815662e-32)*e**((136*q)/35.))*sp.kv(0.714075,q/35.)) +
+	           (((123.55129766404659,-3.1554436208840472e-30) -
+	                 (123.55129766404659,-3.1554436208840472e-30)*e**((136*q)/35.))*sp.iv(-0.285925,q/35.) +
+	              ((1.,2.465190328815662e-32) - 1.9538819212703031*e**((68*q)/35.) +
+	                 (1.,2.465190328815662e-32)*e**((136*q)/35.))*sp.iv(0.714075,q/35.))*sp.kv(0.714075,q)))) - \
+	   5.3263992457266064e11*q**3*Log(1 + (35*(((0.,3.5e7) + 8913.*q)/
+	            ((-1.*sp.iv(-0.285925,q)*sp.kv(-0.285925,q/35.) + sp.iv(-0.285925,q/35.)*sp.kv(-0.285925,q))*
+	              (sp.iv(0.714075,q)*((-2.574098227308426e19,3152.36115476414)*sp.kv(-0.285925,q/35.) +
+	                   ((0.,-3.5e7) - 8913.*q)*sp.kv(0.714075,q/35.)) +
+	                (-2.574098227308426e19*sp.iv(-0.285925,q/35.) + ((0.,3.5e7) + 8913.*q)*sp.iv(0.714075,q/35.))*
+	                 sp.kv(0.714075,q))) + ((0.,-3.5e7) + 8913.*q)/
+	            Conjugate((-1.*sp.iv(-0.285925,q)*sp.kv(-0.285925,q/35.) +
+	                sp.iv(-0.285925,q/35.)*sp.kv(-0.285925,q))*
+	              (sp.iv(0.714075,q)*((-2.574098227308426e19,3152.36115476414)*sp.kv(-0.285925,q/35.) +
+	                   ((0.,-3.5e7) - 8913.*q)*sp.kv(0.714075,q/35.)) +
+	                (-2.574098227308426e19*sp.iv(-0.285925,q/35.) + ((0.,3.5e7) + 8913.*q)*sp.iv(0.714075,q/35.))*
+	                 sp.kv(0.714075,q))))*Sin(ThetaH/2.)**2)/q**2 +
+	      (1.0918425e7*((0.,-3926.848423650847) + 1.*q)*((0.,3926.848423650847) + 1.*q)*Sin(ThetaH/2.)**4)/
+	       (q**4*(sp.iv(-0.285925,q)*sp.kv(-0.285925,q/35.)*
+	            (sp.iv(0.714075,q)*((2.888026733208152e15,-0.35368126946753503)*sp.kv(-0.285925,q/35.) +
+	                 ((0.,3926.848423650847) + 1.*q)*sp.kv(0.714075,q/35.)) +
+	              (2.888026733208152e15*sp.iv(-0.285925,q/35.) +
+	                 ((0.,-3926.848423650847) - 1.*q)*sp.iv(0.714075,q/35.))*sp.kv(0.714075,q)) +
+	           sp.iv(-0.285925,q/35.)*sp.kv(-0.285925,q)*
+	            (sp.iv(0.714075,q)*((-2.888026733208152e15,0.35368126946753503)*sp.kv(-0.285925,q/35.) +
+	                 ((0.,-3926.848423650847) - 1.*q)*sp.kv(0.714075,q/35.)) +
+	              (-2.888026733208152e15*sp.iv(-0.285925,q/35.) +
+	                 ((0.,3926.848423650847) + 1.*q)*sp.iv(0.714075,q/35.))*sp.kv(0.714075,q)))*
+	         Conjugate((-1.*sp.iv(-0.285925,q)*sp.kv(-0.285925,q/35.) +
+	             sp.iv(-0.285925,q/35.)*sp.kv(-0.285925,q))*
+	           (sp.iv(0.714075,q)*((-2.574098227308426e19,3152.36115476414)*sp.kv(-0.285925,q/35.) +
+	                ((0.,-3.5e7) - 8913.*q)*sp.kv(0.714075,q/35.)) +
+	             (-2.574098227308426e19*sp.iv(-0.285925,q/35.) + ((0.,3.5e7) + 8913.*q)*sp.iv(0.714075,q/35.))*
+	              sp.kv(0.714075,q))))) - 1.0652798491453213e12*q**3*	\
+	    Log(1 + (1210.7116*Sin(ThetaH)**2*
+	         (0.023327999999999998 + 0.05780937142857142*q**2*
+	            (-1.*sp.iv(-1.2,q)*sp.kv(-1.2,q/35.) + sp.iv(-1.2,q/35.)*sp.kv(-1.2,q))*
+	            (-1.*sp.iv(-0.19999999999999996,q)*sp.kv(-0.19999999999999996,q/35.) +
+	              sp.iv(-0.19999999999999996,q/35.)*sp.kv(-0.19999999999999996,q)) + 0.988336*Sin(ThetaH)**2)
+	         )/(q**4*(0.16665989759999997/q**4 +
+	           (0.009523422719999997*(-1.*sp.iv(-1.2,q)*sp.kv(-1.2,q/35.) + sp.iv(-1.2,q/35.)*sp.kv(-1.2,q))*
+	              (-1.*sp.iv(-0.19999999999999996,q)*sp.kv(-0.19999999999999996,q/35.) +
+	                sp.iv(-0.19999999999999996,q/35.)*sp.kv(-0.19999999999999996,q)))/q**2 +
+	           1.000136048896*(-1.*sp.iv(-1.2,q)*sp.kv(-1.2,q/35.) + sp.iv(-1.2,q/35.)*sp.kv(-1.2,q))**2*
+	            (-1.*sp.iv(-0.19999999999999996,q)*sp.kv(-0.19999999999999996,q/35.) +
+	               sp.iv(-0.19999999999999996,q/35.)*sp.kv(-0.19999999999999996,q))**2 +
+	           0.011663999999999999*((-1.*sp.iv(-1.2,q)*sp.kv(-1.2,q/35.) + sp.iv(-1.2,q/35.)*sp.kv(-1.2,q))**2*
+	               ((1.,-1.2246467991473532e-16)*sp.iv(-0.19999999999999996,q)*sp.kv(-1.2,q/35.) +
+	                  sp.iv(-1.2,q/35.)*sp.kv(-0.19999999999999996,q))**2 +
+	              (sp.iv(-0.19999999999999996,q/35.)*sp.kv(-1.2,q) +
+	                  (1.,1.2246467991473532e-16)*sp.iv(-1.2,q)*sp.kv(-0.19999999999999996,q/35.))**2*
+	               (-1.*sp.iv(-0.19999999999999996,q)*sp.kv(-0.19999999999999996,q/35.) +
+	                  sp.iv(-0.19999999999999996,q/35.)*sp.kv(-0.19999999999999996,q))**2)))) + \
+	   1.597919773717982e12*q**3*Log(1 + (e**(2*q)*q**2*Csch((34*q)/35.)**2*Sin(ThetaH)**2)/
+	       (2.*(-35 + q**2 + 34*q*Coth((34*q)/35.))*(Cosh(q) + Sinh(q))**2)) + \
+	   7.98959886858991e11*q**3*Log(1 + (0.6503642039542142*e**(2*q)*q**2*Sin(ThetaH)**2)/
+	       ((0.25*Cosh(2*q) + 0.5*Cosh(q)*Sinh(q))*
+	         (70. - 2.*q**2 + (-70. + 2.*q**2)*Cosh((68*q)/35.) + 68.*q*Sinh((68*q)/35.))))
+
+	return VeffFct
 
 if __name__=='__main__':
 
-	processes = [Process(target=workerFct, args=(int(threadNb), False) ) for threadNb in range(16) ]
+	print (VeffθH(0.5, 0.5	) )
 
 
-	dataDictOut = {'k':89000, 'zL':35}
-	with open("dataIn.json", 'w') as outFile:
-	    json.dump(dataDictOut, outFile)
-
-
-	for proc in processes:
-		proc.start()
-
-	time.sleep(15)
-
-	for proc in processes:
-		proc.terminate()
+	# processes = [Process(target=workerFct, args=(int(threadNb), False) ) for threadNb in range(16) ]
+	#
+	#
+	# dataDictOut = {'k':89000, 'zL':35}
+	# with open("dataIn.json", 'w') as outFile:
+	#     json.dump(dataDictOut, outFile)
+	#
+	#
+	# for proc in processes:
+	# 	proc.start()
+	#
+	# time.sleep(15)
+	#
+	# for proc in processes:
+	# 	proc.terminate()

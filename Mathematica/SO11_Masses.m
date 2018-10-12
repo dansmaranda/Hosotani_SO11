@@ -1,6 +1,6 @@
 (* #!/usr/bin/env MathematicaScript *)
 (* ClearAll["Global`*"] *)
-Print[ "GETTIGN JSON        " ];
+(* Print[ "GETTIGN JSON        " ]; *)
 
 
 
@@ -10,7 +10,8 @@ Subscript[sin2\[Theta], W] = 0.2312;
 JsonNb = $ScriptCommandLine[[2]];
 jsonName = "dataIn"  <> JsonNb <> ".json";
 dataRule = Import [jsonName];
-Print[ "GOT JSON" ];
+
+(* Print[ "GOT JSON" ]; *)
 
 
 (********************************************************************)
@@ -660,7 +661,7 @@ HiggsDeriv = 0. - (1/zL^4)*(0.20264236728467555*k^4*q^3*
           ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))*(-1 + Subscript[sin2\[Theta], W])))*
        (-1 + Subscript[sin2\[Theta], W]))));
 
-Print["Staring to find the minimum"]
+(* Print["Staring to find the minimum"] *)
 
 \[Theta]HMinRule =
   Quiet[FindMinimum[
@@ -670,9 +671,9 @@ Print["Staring to find the minimum"]
        ], {\[Theta]HLocal, 0, 2 }  ][[2]]
        ];
 
-Print["Found the minimum."]
+(* Print["Found the minimum."]
 
-Print["Staring to find THE HIGGS MASSS"]
+Print["Staring to find THE HIGGS MASSS"] *)
 
 Subscript[m, H] =
   Sqrt[1/fH^2 *
@@ -683,7 +684,7 @@ Subscript[m, H] =
        0, \[Infinity]} ]
        ]
     ];
-Print["Found THE HIGGS MAss"]
+(* Print["Found THE HIGGS MAss"] *)
 
 mHFinal = Abs[Subscript[m, H]];
 
@@ -715,14 +716,19 @@ mPsiDark =  mPsiDarkType[
    c0Prime] /. {Subscript[\[Theta],
      H] -> \[Theta]HLocal /. \[Theta]HMinRule};
 
-Print ["Top mass of : ", mTop , " GeV"]
+ThetaHiggs = \[Theta]HLocal/.\[Theta]HMinRule;
+(* Print ["Top mass of : ", mTop , " GeV"]
 Print ["Bottom mass of : ", mBottom , " GeV"]
 Print ["Tau lepton mass of : ", mTau , " GeV"]
 Print ["Tau Neutrino mass of : ", mNeutrino , " eV"]
-Print ["Dark fermion mass of : ", mPsiDark  , " GeV"]
+Print ["Dark fermion mass of : ", mPsiDark  , " GeV"] *)
 
 
 
-Export[jsonNameOut, {"Higgs" -> mHFinal, "mTop" -> mTop , "mBottom" -> mBottom, "mTau"-> mTau, "mNeutrino" -> mNeutrino , "mPsiDark" -> mPsiDark}];
-Print["Higgs mass of :     ", mHFinal, " (GeV)"];
-Print["Done Exporting"]
+Quiet[
+Export[jsonNameOut, {"Higgs" -> mHFinal, "mTop" -> mTop , "mBottom" -> mBottom, "mTau"-> mTau, "mNeutrino" -> mNeutrino , "mPsiDark" -> mPsiDark, "ThetaHiggs" -> ThetaHiggs}]
+];
+
+
+(* Print["Higgs mass of :     ", mHFinal, " (GeV)"];
+Print["Done Exporting"] *)

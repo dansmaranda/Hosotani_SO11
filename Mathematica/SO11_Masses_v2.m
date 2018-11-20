@@ -24,6 +24,21 @@ M = -10^7;
 mB = 1.145 * 10^12;
 \[Alpha]EM = 1/127.96;
 
+
+\[Mu]11Fct[\[Mu]1_, zL_, c0_,
+   c1_] := (4.18/172.44) * \[Mu]1 * (1/(zL^(c0 - c1))) *
+   Sqrt[(1 + 2 c0)/(1 + 2 c1)];
+\[Mu]11PrimeFct[\[Mu]2Tilde_, zL_, c0_, c2_ ] := Which[
+   c0 < 0.5 && c2 < 0.5,
+   \[Mu]2Tilde * (1/(zL^(c2 - c0))) * Sqrt[(1 - 2 c0)/(1 - 2 c2)];,
+   c0 < 0.5 && c2 > 0.5,
+   \[Mu]2Tilde * (1/(zL^(0.5 - c0))) * Sqrt[(1 - 2 c0)/(2 c2 - 1)];,
+   c0 > 0.5 && c2 < 0.5,
+   \[Mu]2Tilde * (1/(zL^(c2 - 0.5))) * Sqrt[(2 c0 - 1)/(1 - 2 c2)];,
+   c0 > 0.5 && c2 > 0.5,
+   \[Mu]2Tilde *  Sqrt[(2 c0 - 1)/(2 c2 - 1)];
+   ];
+
 (* k = 89130;
 zL = 35; *)
 
@@ -50,11 +65,15 @@ c1 = "c1" /.dataRule;
 c2 = "c2" /.dataRule;
 c0Prime = "c0Prime" /.dataRule;
 
-\[Mu]11 = "Mu11" /. dataRule;
 \[Mu]1 = "Mu1" /. dataRule;
-
-\[Mu]11Prime = "Mu11Prime" /.dataRule;
 \[Mu]2Tilde = "Mu2Tilde" /.dataRule  ;
+
+
+(* \[Mu]11 = "Mu11" /. dataRule; *)
+(* \[Mu]11Prime = "Mu11Prime" /.dataRule; *)
+
+\[Mu]11 = \[Mu]11Fct[\[Mu]1, zL, c0, c1];
+\[Mu]11Prime = \[Mu]11PrimeFct[\[Mu]2Tilde, zL, c0, c2];
 
 (********************** Potential declaration *************************)
 VeffFCT = -((1/zL^4)*(0.20264236728467555*k^4*q^3*
@@ -515,7 +534,11 @@ mPsiDarkType[c0Prime_, k_, zL_, \[Theta]H_] := If[c0Prime < 0.5,
    ];
 m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
    2 (mu)^2 *M* ((zL)^(2 c0 + 1)))/((2 c0 + 1) *(mB^2)));
-
+mWboson[k_, zL_, \[Theta]H_] :=
+ Sqrt[3/2] * k *((zL)^(-3/2)) * Sin[\[Theta]H];
+mZboson[mWboson_, sin2\[Theta]W_] :=
+ mWboson / Sqrt[1 - sin2\[Theta]W];
+ (******************************************************************)
 
 
 
@@ -529,8 +552,13 @@ mTau = meTypeLepton[c2, c0, \[Mu]11Prime, \[Mu]2Tilde, k,
 mTauNeutrino = m\[Nu]Type[mTop, M, mB, c0, zL] * 10^9;
 mPsiDark =  mPsiDarkType[c0Prime, k, zL, \[Theta]Hmin];
 
+mW = mWboson[k, zL, \[Theta]Hmin];
+mZ = mZboson[mW, sin2\[Theta]W];
 
-Print["Higgs mass of :           ", Abs[mH], " (GeV)"];
+
+
+
+(* Print["Higgs mass of :           ", Abs[mH], " (GeV)"];
 Print["Higgs minimum <\[Theta]H> is \
 located at :     ", \[Theta]Hmin, " (GeV)"];
 Print ["Top mass of :            ", mTop, " (GeV)"];
@@ -538,7 +566,8 @@ Print ["Bottom mass of :         ", mBottom, " GeV"];
 Print ["Tau lepton mass of :     ", mTau, " GeV"];
 Print ["Tau Neutrino mass of :   ",     mTauNeutrino, " eV"];
 Print ["Dark fermion mass of :   ", mPsiDark, " GeV"];
-
+Print["W mass of  :   ", mW,  " GeV"];
+Print["Z mass of  :   ",   mZ,  " GeV"]; *)
 
 
 
@@ -555,4 +584,9 @@ Export[jsonNameOut, {"Higgs" -> Abs[mH],
                       "mTau"-> mTau,
                       "mNeutrino" -> mTauNeutrino ,
                       "mPsiDark" -> mPsiDark,
-                      "ThetaHiggs" -> \[Theta]Hmin} ];
+                      "ThetaHiggs" -> \[Theta]Hmin,
+                      "mWpm" -> mW,
+                      "mZ0" -> mZ,
+                      "Mu11" -> \[Mu]11,
+                      "Mu11Prime" -> \[Mu]11Prime
+                      } ];

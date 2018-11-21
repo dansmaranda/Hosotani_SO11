@@ -579,7 +579,7 @@ If[ TrueQ[Head @ \[Theta]HRule == Symbol],
 
 
 
-Print["Higgs mass of :           ", Abs[mH], " (GeV)"];
+(* Print["Higgs mass of :           ", Abs[mH], " (GeV)"];
 Print["Higgs minimum <\[Theta]H> is \
 located at :     ", \[Theta]Hmin, " (GeV)"];
 Print ["Top mass of :            ", mTop, " (GeV)"];
@@ -588,7 +588,7 @@ Print ["Tau lepton mass of :     ", mTau, " GeV"];
 Print ["Tau Neutrino mass of :   ",     mTauNeutrino, " eV"];
 Print ["Dark fermion mass of :   ", mPsiDark, " GeV"];
 Print["W mass of  :   ", mW,  " GeV"];
-Print["Z mass of  :   ",   mZ,  " GeV"];
+Print["Z mass of  :   ",   mZ,  " GeV"]; *)
 
 
 

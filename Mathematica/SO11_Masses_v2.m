@@ -3,7 +3,7 @@
 (* Subscript[sin2\[Theta], W] = 0.2312;
 \[Alpha]EM = 1/127.96; *)
 
-
+timeOut = 5;
 
 (**** Get Json data *****)
 JsonNb = $ScriptCommandLine[[2]];
@@ -481,6 +481,36 @@ HiggsDeriv = 0. - (1/zL^4)*(0.20264236728467555*k^4*q^3*
       (E^((4*q)/zL)*(1 + q)*(q - zL) + 2*E^((2*q*(1 + zL))/zL)*zL + E^(4*q)*(-1 + q)*(q + zL) -
         2*E^((2*q*(1 + zL))/zL)*q^2*Cos[2*\[Theta]H])^2))/zL^4;
 
+(******************  Matter masses  *********************************)
+muTypeQuark[c0_, k_, zL_, \[Theta]H_ ] := If[c0 < 0.5,
+(k/zL )*Sqrt[1 - 4 (c0)^2] Sin[\[Theta]H/2],
+k *((zL)^-1/2 - c0)*Sqrt[4 (c0)^2 - 1] Sin[\[Theta]H/2]
+];
+mdTypeQuark[c0_, c1_, \[Mu]11_, \[Mu]1_, k_, zL_, \[Theta]H_] :=
+If[c0 < 0.5,
+k * ((zL)^(c0 - c1 - 1)) * \[Mu]11/\[Mu]1*
+Sqrt[(1 - 2 c0) (1 + 2 c1)]*Sin[\[Theta]H/2],
+k * ((zL)^(-c1 - 1/2)) * \[Mu]11/\[Mu]1*
+Sqrt[(2 c0 - 1) (2 c1 + 1)]*Sin[\[Theta]H/2]
+];
+meTypeLepton[c2_, c0_, \[Mu]11Prime_, \[Mu]2Tilde_, k_,
+zL_, \[Theta]H_] := If[ c2 < 0.5,
+k * ((zL)^(-1 + c2 - c0)) * \[Mu]11Prime/\[Mu]2Tilde Sqrt[(2 c0 +
+  1) (1 - 2 c2)] Sin[\[Theta]H/2],
+  k *  ((zL)^(-1/2 - c0)) * \[Mu]11Prime/\[Mu]2Tilde Sqrt[(2 c0 +
+    1) (2 c2 - 1)] Sin[\[Theta]H/2]
+    ];
+mPsiDarkType[c0Prime_, k_, zL_, \[Theta]H_] := If[c0Prime < 0.5,
+k *(zL^(-1)) Sqrt[1 - 4 (c0Prime)^2] Cos[\[Theta]H/2],
+k *(zL^(-1/2 - c0Prime)) Sqrt[4 (c0Prime)^2 - 1] Cos[\[Theta]H/2]
+];
+m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
+  2 (mu)^2 *M* ((zL)^(2 c0 + 1)))/((2 c0 + 1) *(mB^2)));
+  mWboson[k_, zL_, \[Theta]H_] :=
+  Sqrt[3/2] * k *((zL)^(-3/2)) * Sin[\[Theta]H];
+  mZboson[mWboson_, sin2\[Theta]W_] :=
+  mWboson / Sqrt[1 - sin2\[Theta]W];
+(******************************************************************)
 
 
 (******************  Higgs auxiliary functions  *********************************)
@@ -499,66 +529,57 @@ find\[Theta]HMinRule[VeffFCT_, q_, \[Theta]H_] :=
 fH = fHfunc[k, zL, sin2\[Theta]W, \[Alpha]EM];
 
 
-\[Theta]HRule = find\[Theta]HMinRule[VeffFCT, q, \[Theta]H][[1]];
-\[Theta]Hmin = \[Theta]HLocal /. \[Theta]HRule;
-mH = Sqrt[
-  1/fH^2 *
-   NIntegrate [
-    HiggsDeriv /. {\[Theta]H -> \[Theta]HLocal /. \[Theta]HRule}, \
-{q, 0, \[Infinity]}]];
+\[Theta]HRule =
+  TimeConstrained [find\[Theta]HMinRule[VeffFCT, q, \[Theta]H][[1]] ,
+   timeOut];
+
+(*Plot[NIntegrate[VeffFCT, {q, 0, \[Infinity]}], {\[Theta]H, -0.25, \
+0.25}, PerformanceGoal\[Rule]"Speed"]
+*)
+If[ TrueQ[Head @ \[Theta]HRule == Symbol],
+ Print["Timeout Reached. Aborting."];
+ mH = 0.0;
+ \[Theta]Hmin = 0.0;
+ mTop =  0.0;
+ mBottom = 0.0;
+ mTau = 0.0;
+
+ (*****  The 10^9 is here to give us the neutrino in eV *)
+
+ mTauNeutrino = 0.0;
+ mPsiDark =  0.0;
+
+ mW = 0.0;
+ mZ = 0.0;
+ ,
 
 
+ \[Theta]Hmin = \[Theta]HLocal /. \[Theta]HRule;
+ mH = Sqrt[
+   1/fH^2 *
+    Quiet[NIntegrate [
+      HiggsDeriv /. {\[Theta]H -> \[Theta]HLocal /. \[Theta]HRule}, \
+{q, 0, \[Infinity]}]]];
 
-(******************  Matter masses  *********************************)
-muTypeQuark[c0_, k_, zL_, \[Theta]H_ ] := If[c0 < 0.5,
-    (k/zL )*Sqrt[1 - 4 (c0)^2] Sin[\[Theta]H/2],
-    k *((zL)^-1/2 - c0)*Sqrt[4 (c0)^2 - 1] Sin[\[Theta]H/2]
-   ];
-mdTypeQuark[c0_, c1_, \[Mu]11_, \[Mu]1_, k_, zL_, \[Theta]H_] :=
-  If[c0 < 0.5,
-   k * ((zL)^(c0 - c1 - 1)) * \[Mu]11/\[Mu]1*
-    Sqrt[(1 - 2 c0) (1 + 2 c1)]*Sin[\[Theta]H/2],
-   k * ((zL)^(-c1 - 1/2)) * \[Mu]11/\[Mu]1*
-    Sqrt[(2 c0 - 1) (2 c1 + 1)]*Sin[\[Theta]H/2]
-   ];
-meTypeLepton[c2_, c0_, \[Mu]11Prime_, \[Mu]2Tilde_, k_,
-   zL_, \[Theta]H_] := If[ c2 < 0.5,
-   k * ((zL)^(-1 + c2 - c0)) * \[Mu]11Prime/\[Mu]2Tilde Sqrt[(2 c0 +
-        1) (1 - 2 c2)] Sin[\[Theta]H/2],
-   k *  ((zL)^(-1/2 - c0)) * \[Mu]11Prime/\[Mu]2Tilde Sqrt[(2 c0 +
-        1) (2 c2 - 1)] Sin[\[Theta]H/2]
-   ];
-mPsiDarkType[c0Prime_, k_, zL_, \[Theta]H_] := If[c0Prime < 0.5,
-    k *(zL^(-1)) Sqrt[1 - 4 (c0Prime)^2] Cos[\[Theta]H/2],
-    k *(zL^(-1/2 - c0Prime)) Sqrt[4 (c0Prime)^2 - 1] Cos[\[Theta]H/2]
-   ];
-m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
-   2 (mu)^2 *M* ((zL)^(2 c0 + 1)))/((2 c0 + 1) *(mB^2)));
-mWboson[k_, zL_, \[Theta]H_] :=
- Sqrt[3/2] * k *((zL)^(-3/2)) * Sin[\[Theta]H];
-mZboson[mWboson_, sin2\[Theta]W_] :=
- mWboson / Sqrt[1 - sin2\[Theta]W];
- (******************************************************************)
+ mTop =  muTypeQuark[c0, k, zL, \[Theta]Hmin];
+ mBottom = mdTypeQuark[c0, c1, \[Mu]11, \[Mu]1, k, zL, \[Theta]Hmin];
+ mTau = meTypeLepton[c2, c0, \[Mu]11Prime, \[Mu]2Tilde, k,
+   zL, \[Theta]Hmin];
 
+ (*****  The 10^9 is here to give us the neutrino in eV *)
 
+ mTauNeutrino = m\[Nu]Type[mTop, M, mB, c0, zL] * 10^9;
+ mPsiDark =  mPsiDarkType[c0Prime, k, zL, \[Theta]Hmin];
 
+ mW = mWboson[k, zL, \[Theta]Hmin];
+ mZ = mZboson[mW, sin2\[Theta]W];
 
-mTop =  muTypeQuark[c0, k, zL, \[Theta]Hmin];
-mBottom = mdTypeQuark[c0, c1, \[Mu]11, \[Mu]1, k, zL, \[Theta]Hmin];
-mTau = meTypeLepton[c2, c0, \[Mu]11Prime, \[Mu]2Tilde, k,
-  zL, \[Theta]Hmin];
-
-(*****  The 10^9 is here to give us the neutrino in eV *)
-mTauNeutrino = m\[Nu]Type[mTop, M, mB, c0, zL] * 10^9;
-mPsiDark =  mPsiDarkType[c0Prime, k, zL, \[Theta]Hmin];
-
-mW = mWboson[k, zL, \[Theta]Hmin];
-mZ = mZboson[mW, sin2\[Theta]W];
+ ]
 
 
 
 
-(* Print["Higgs mass of :           ", Abs[mH], " (GeV)"];
+Print["Higgs mass of :           ", Abs[mH], " (GeV)"];
 Print["Higgs minimum <\[Theta]H> is \
 located at :     ", \[Theta]Hmin, " (GeV)"];
 Print ["Top mass of :            ", mTop, " (GeV)"];
@@ -567,7 +588,7 @@ Print ["Tau lepton mass of :     ", mTau, " GeV"];
 Print ["Tau Neutrino mass of :   ",     mTauNeutrino, " eV"];
 Print ["Dark fermion mass of :   ", mPsiDark, " GeV"];
 Print["W mass of  :   ", mW,  " GeV"];
-Print["Z mass of  :   ",   mZ,  " GeV"]; *)
+Print["Z mass of  :   ",   mZ,  " GeV"];
 
 
 

@@ -3,7 +3,7 @@
 (* Subscript[sin2\[Theta], W] = 0.2312;
 \[Alpha]EM = 1/127.96; *)
 
-timeOut = 5;
+timeOut = 15;
 
 (**** Get Json data *****)
 JsonNb = $ScriptCommandLine[[2]];
@@ -30,13 +30,13 @@ mB = 1.145 * 10^12;
    Sqrt[(1 + 2 c0)/(1 + 2 c1)];
 \[Mu]11PrimeFct[\[Mu]2Tilde_, zL_, c0_, c2_ ] := Which[
    c0 < 0.5 && c2 < 0.5,
-   \[Mu]2Tilde * (1/(zL^(c2 - c0))) * Sqrt[(1 - 2 c0)/(1 - 2 c2)],
+   (1.776/172.44) * \[Mu]2Tilde * (1/(zL^(c2 - c0))) * Sqrt[(1 - 2 c0)/(1 - 2 c2)],
    c0 < 0.5 && c2 > 0.5,
-   \[Mu]2Tilde * (1/(zL^(0.5 - c0))) * Sqrt[(1 - 2 c0)/(2 c2 - 1)],
+   (1.776/172.44) *\[Mu]2Tilde * (1/(zL^(0.5 - c0))) * Sqrt[(1 - 2 c0)/(2 c2 - 1)],
    c0 > 0.5 && c2 < 0.5,
-   \[Mu]2Tilde * (1/(zL^(c2 - 0.5))) * Sqrt[(2 c0 - 1)/(1 - 2 c2)],
+   (1.776/172.44) * \[Mu]2Tilde * (1/(zL^(c2 - 0.5))) * Sqrt[(2 c0 - 1)/(1 - 2 c2)],
    c0 > 0.5 && c2 > 0.5,
-   \[Mu]2Tilde *  Sqrt[(2 c0 - 1)/(2 c2 - 1)]
+   (1.776/172.44) * \[Mu]2Tilde *  Sqrt[(2 c0 - 1)/(2 c2 - 1)]
    ];
 
 (* k = 89130;
@@ -537,7 +537,7 @@ fH = fHfunc[k, zL, sin2\[Theta]W, \[Alpha]EM];
 0.25}, PerformanceGoal\[Rule]"Speed"]
 *)
 If[ TrueQ[Head @ \[Theta]HRule == Symbol],
- Print["Timeout Reached. Aborting."];
+ (* Print["Timeout Reached. Aborting."]; *)
  mH = 0.0;
  \[Theta]Hmin = 0.0;
  mTop =  0.0;

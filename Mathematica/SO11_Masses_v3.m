@@ -60,7 +60,7 @@ c0Prime = 0.5224;
 
 
 (********************** Get stuff from JSON *************************)
-(* k = "k" /. dataRule;
+k = "k" /. dataRule;
 zL = "zL" /. dataRule;
 
 
@@ -75,7 +75,7 @@ c0Prime = "c0Prime" /.dataRule;
 
 
 \[Mu]11 = \[Mu]11Fct[\[Mu]1, zL, c0, c1];
-\[Mu]11Prime = \[Mu]11PrimeFct[\[Mu]2Tilde, zL, c0, c2]; *)
+\[Mu]11Prime = \[Mu]11PrimeFct[\[Mu]2Tilde, zL, c0, c2];
 
 (********************** Potential declaration *************************)
 VeffFCT = -((1/zL^4)*(0.20264236728467555*k^4*q^3*
@@ -983,7 +983,7 @@ If[\[Theta]Hmin == 0,
 
 (*Uncomment to debug*)
 
-Print["Higgs mass of :           ", Abs[mH], " (GeV)"];
+(* Print["Higgs mass of :           ", Abs[mH], " (GeV)"];
 Print["Higgs minimum <\[Theta]H> is \
 located at :     ", Abs[\[Theta]Hmin], " (GeV)"];
 Print ["Top mass of :            ", mTop, " (GeV)"];
@@ -994,7 +994,7 @@ Print ["Dark fermion mass of :   ", mPsiDark, " GeV"];
 Print["W mass of  :   ", mW,  " GeV"];
 Print["Z mass of  :   ",   mZ,  " GeV"];
 Print["The 2nd KK mode for the \!\(\*SuperscriptBox[\(Z\), \(0\)]\) \
-bosons: ", mZprime];
+bosons: ", mZprime]; *)
 
 
 

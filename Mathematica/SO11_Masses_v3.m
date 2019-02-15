@@ -44,23 +44,23 @@ mB = 1.145 * 10^12;
    (1.776/172.44) * \[Mu]2Tilde *  Sqrt[(2 c0 - 1)/(2 c2 - 1)]
    ];
 
-(* k = 89130;
+k = 89130;
 zL = 35;
 
 c0 = 0.3325;
 c1 = 0.0;
 c2 = -0.7;
-c0Prime = 0.5224;
+c0Prime = 0.5524;
 
 \[Mu]11 = 0.108;
 \[Mu]1 = 11.18;
 
 \[Mu]11Prime = 0.108;
-\[Mu]2Tilde = 0.7091; *)
+\[Mu]2Tilde = 0.7091;
 
 
 (********************** Get stuff from JSON *************************)
-k = "k" /. dataRule;
+(* k = "k" /. dataRule;
 zL = "zL" /. dataRule;
 
 
@@ -75,7 +75,7 @@ c0Prime = "c0Prime" /.dataRule;
 
 
 \[Mu]11 = \[Mu]11Fct[\[Mu]1, zL, c0, c1];
-\[Mu]11Prime = \[Mu]11PrimeFct[\[Mu]2Tilde, zL, c0, c2];
+\[Mu]11Prime = \[Mu]11PrimeFct[\[Mu]2Tilde, zL, c0, c2]; *)
 
 (********************** Potential declaration *************************)
 VeffFCT = -((1/zL^4)*(0.20264236728467555*k^4*q^3*
@@ -908,7 +908,7 @@ If[ TrueQ[Head @ \[Theta]HRule == Symbol],
 Print["Timeout Reached. Aborting."];
 mH = 0.0; \[Theta]Hmin = 0.0; mTop =  0.0; mBottom = 0.0;
 mTau = 0.0;
-mTauNeutrino = 0.0; mPsiDark =  0.0; mW = 0.0; mZ = 0.0;
+mTauNeutrino = 0.0; mPsiDark =  0.0; mW = 0.0; mZ = 0.0;mZprime = 0.0;
 ,
 
 
@@ -917,7 +917,7 @@ mTauNeutrino = 0.0; mPsiDark =  0.0; mW = 0.0; mZ = 0.0;
 If[\[Theta]Hmin == 0,
  Print["Trivial potential. Aborting"];
  mH = 0.0; \[Theta]Hmin = 0.0; mTop =  0.0; mBottom = 0.0; mTau = 0.0;
- mTauNeutrino = 0.0; mPsiDark =  0.0; mW = 0.0; mZ = 0.0;
+ mTauNeutrino = 0.0; mPsiDark =  0.0; mW = 0.0; mZ = 0.0; mZprime = 0.0;
  ,
 
  mH = Sqrt[
@@ -971,8 +971,7 @@ If[\[Theta]Hmin == 0,
  mPsiDark =  Extract[Extract[\[Lambda]ListPsiDark , {1}], {2}]*k;
  mW      =  Extract[Extract[\[Lambda]ListWpm , {1}], {2}]*k;
  mZ   =  mW/ Sqrt[1 - sin2\[Theta]W];
- mZprime =
-  Extract[Extract[\[Lambda]ListWpm , {2}], {2}]*
+ mZprime =  Extract[Extract[\[Lambda]ListWpm , {2}], {2}]*
    k /Sqrt[1 - sin2\[Theta]W];
  (*****  The 10^9 is here to give us the neutrino in eV *)
 
@@ -982,10 +981,9 @@ If[\[Theta]Hmin == 0,
 ]
 
 
-
 (*Uncomment to debug*)
 
-(* Print["Higgs mass of :           ", Abs[mH], " (GeV)"];
+Print["Higgs mass of :           ", Abs[mH], " (GeV)"];
 Print["Higgs minimum <\[Theta]H> is \
 located at :     ", Abs[\[Theta]Hmin], " (GeV)"];
 Print ["Top mass of :            ", mTop, " (GeV)"];
@@ -996,7 +994,7 @@ Print ["Dark fermion mass of :   ", mPsiDark, " GeV"];
 Print["W mass of  :   ", mW,  " GeV"];
 Print["Z mass of  :   ",   mZ,  " GeV"];
 Print["The 2nd KK mode for the \!\(\*SuperscriptBox[\(Z\), \(0\)]\) \
-bosons: ", mZprime]; *)
+bosons: ", mZprime];
 
 
 

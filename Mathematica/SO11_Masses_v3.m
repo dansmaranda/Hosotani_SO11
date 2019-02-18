@@ -1,6 +1,8 @@
 (****  Constants   **)
 (*********** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! *****************)
-(*  This version has 1/2 instead of 1 in Q0 for Wpm and Z0 effective potential contributions, as it should be? *)
+(*  This version has 1/2 instead of 1 in Q0 for Wpm and Z0 effective potential contributions, as it should be.
+
+NOPE 1/2 IS THE BADNESS *)
 
 
 
@@ -50,13 +52,13 @@ zL = 35;
 c0 = 0.3325;
 c1 = 0.0;
 c2 = -0.7;
-c0Prime = 0.5224;
+c0Prime = 0.5224; *)
 
 \[Mu]11 = 0.108;
-\[Mu]1 = 11.18;
+(* \[Mu]1 = 11.18; *)
 
 \[Mu]11Prime = 0.108;
-\[Mu]2Tilde = 0.7091; *)
+(* \[Mu]2Tilde = 0.7091; *)
 
 
 (********************** Get stuff from JSON *************************)
@@ -74,8 +76,8 @@ c0Prime = "c0Prime" /.dataRule;
 \[Mu]2Tilde = "Mu2Tilde" /.dataRule  ;
 
 
-\[Mu]11 = \[Mu]11Fct[\[Mu]1, zL, c0, c1];
-\[Mu]11Prime = \[Mu]11PrimeFct[\[Mu]2Tilde, zL, c0, c2];
+(* \[Mu]11 = \[Mu]11Fct[\[Mu]1, zL, c0, c1];
+\[Mu]11Prime = \[Mu]11PrimeFct[\[Mu]2Tilde, zL, c0, c2]; *)
 
 (********************** Potential declaration *************************)
 VeffFCT = -((1/zL^4)*(0.20264236728467555*k^4*q^3*

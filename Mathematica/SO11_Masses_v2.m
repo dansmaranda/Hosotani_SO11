@@ -1,8 +1,14 @@
 (****  Constants   **)
 
+(*Export via Machine Precision *)
+SetSystemOptions["MachineRealPrintPrecision"->Round[$MachinePrecision]]
+
+
 (* Subscript[sin2\[Theta], W] = 0.2312;
 \[Alpha]EM = 1/127.96; *)
-
+Clear[zL, k, \[Mu]11, \[Mu]1, \[Mu]11Prime, \[Mu]2Tilde, c0Prime, c0,
+  c1, c2, \[Theta]HRule, \[Theta]Hmin, sin2\[Theta]W, \[Xi]Gauge, M,
+  mB, \[Alpha]EM, fH, \[Lambda]ListTop];
 timeOut = 25;
 
 (**** Get Json data *****)
@@ -33,7 +39,7 @@ mB = 1.145 * 10^12;
    c0 < 0.5 && c2 < 0.5,
    (1.776/172.44) * \[Mu]2Tilde * (1/(zL^(c2 - c0))) * Sqrt[(1 - 2 c0)/(1 - 2 c2)],
    c0 < 0.5 && c2 > 0.5,
-   (1.776/172.44) *\[Mu]2Tilde * (1/(zL^(0.5 - c0))) * Sqrt[(1 - 2 c0)/(2 c2 - 1)],
+   (1.776/172.44) *\[Mu]2Tilde * (1/(zL^(0.5  - c0))) * Sqrt[(1 - 2 c0)/(2 c2 - 1)],
    c0 > 0.5 && c2 < 0.5,
    (1.776/172.44) * \[Mu]2Tilde * (1/(zL^(c2 - 0.5))) * Sqrt[(2 c0 - 1)/(1 - 2 c2)],
    c0 > 0.5 && c2 > 0.5,
@@ -69,11 +75,19 @@ c0Prime = "c0Prime" /.dataRule;
 \[Mu]1 = "Mu1" /. dataRule;
 \[Mu]2Tilde = "Mu2Tilde" /.dataRule  ;
 
+(* \[Mu]11 = "Mu11Prime" /. dataRule;
+\[Mu]11Prime = "Mu11" /. dataRule;
+
+Print[\[Mu]11];
+Print[ \[Mu]11Prime ]; *)
 
 \[Mu]11 = \[Mu]11Fct[\[Mu]1, zL, c0, c1];
 \[Mu]11Prime = \[Mu]11PrimeFct[\[Mu]2Tilde, zL, c0, c2];
 
 
+(*
+Print[\[Mu]11];
+Print[ \[Mu]11Prime ]; *)
 
 (********************** Potential declaration *************************)
 VeffFCT = -((1/zL^4)*(0.20264236728467555*k^4*q^3*
@@ -619,10 +633,11 @@ bQuarkSol =
   SL0 * SR0  + (Sin[\[Theta]Hmin/2])^2 + ((\[Mu]1var^2) SR0* CR0 *
        SL1 *CR1)/(\[Mu]11var^2 (CR1)^2 - (SL1)^2) /.
    replacementRules;
-tauLeptonSol =
-  SL0 * SR0  + (Sin[\[Theta]Hmin/
-        2])^2 + (\[Mu]2TildeVar^2 SL0 CL0 SR2 CL2) / \
-(\[Mu]11PrimeVar^2 (CL2)^2  - (SR2)^2) /. replacementRules;
+
+   tauLeptonSol =
+     SL0 * SR0  + (Sin[\[Theta]Hmin/
+           2])^2 + (\[Mu]2TildeVar^2 SL0 CL0 SR2 CL2) / \
+   (\[Mu]11PrimeVar^2 (CL2)^2  - (SR2)^2) /. replacementRules;
 psiDarkQuarkSol =
   SL0prime * SR0prime + (Cos[\[Theta]Hmin/2])^2 /. replacementRules;
 
@@ -637,41 +652,39 @@ WbosonSol = (2* Cprime[\[Lambda], z, zLvar]*
        WGuess = mWboson[k, zL, \[Theta]Hmin]/k*guessFact;
        psiDarkGuess =
          mPsiDarkType[c0Prime, k, zL, \[Theta]Hmin] /k * guessFact;
-       tauGuess =
-         meTypeLepton[c2, c0, \[Mu]11Prime, \[Mu]2Tilde, k,
-            zL, \[Theta]Hmin] / k * guessFact;
+         tauGuess =
+    meTypeLepton[c2, c0, \[Mu]11Prime, \[Mu]2Tilde, k,
+       zL, \[Theta]Hmin] / k * guessFact;
        bottomGuess =
          mdTypeQuark[c0, c1, \[Mu]11, \[Mu]1, k, zL, \[Theta]Hmin]/k*
           guessFact;
 
 
-       mTop = \[Lambda] * k /.
-          Quiet[FindRoot[uQuarkSol, {\[Lambda], uGuess}]];
-       mBottom =  \[Lambda] * k /.
-          Quiet[FindRoot[bQuarkSol , {\[Lambda], bottomGuess}]];
+       mTop = Abs[\[Lambda] * k /.
+          Quiet[FindRoot[uQuarkSol, {\[Lambda], uGuess}]]];
+       mBottom =  Abs[\[Lambda] * k /.
+          Quiet[FindRoot[bQuarkSol , {\[Lambda], bottomGuess}]]];
+       (* mTau =  Abs[\[Lambda] * k /.Quiet[FindRoot[tauLeptonSol , {\[Lambda], tauGuess}]]]; *)
        mTau =  \[Lambda] * k /.
-          Quiet[FindRoot[tauLeptonSol , {\[Lambda], tauGuess}]];
-       mPsiDark = \[Lambda] * k /.
-          Quiet[FindRoot[psiDarkQuarkSol, {\[Lambda], psiDarkGuess}]];
+   Quiet[FindRoot[tauLeptonSol , {\[Lambda], 0.01}]];
+       mPsiDark = Abs[\[Lambda] * k /.
+          Quiet[FindRoot[psiDarkQuarkSol, {\[Lambda], psiDarkGuess}]]];
 
 
 
-       mW = \[Lambda]*k /. Quiet[FindRoot[WbosonSol, {\[Lambda], WGuess}]];
-       mZ   =  mW/ Sqrt[1 - sin2\[Theta]W];
-       mZprime = \[Lambda] * k /Sqrt[1 - sin2\[Theta]W] /.
-          Quiet[FindRoot[WbosonSol, {\[Lambda], WGuess + \[Pi]/zL} ]];
-
-
+       mW = Abs[\[Lambda]*k /. Quiet[FindRoot[WbosonSol, {\[Lambda], WGuess}]]];
+       mZ   =  Abs[mW/ Sqrt[1 - sin2\[Theta]W]];
+       mZprime = Abs[\[Lambda] * k /Sqrt[1 - sin2\[Theta]W] /.
+          Quiet[FindRoot[WbosonSol, {\[Lambda], WGuess + \[Pi]/zL} ]]];
 
 
  (*****  The 10^9 is here to give us the neutrino in eV *)
 
- mTauNeutrino = m\[Nu]Type[mTop, M, mB, c0, zL] * 10^9;
+       mTauNeutrino = m\[Nu]Type[mTop, M, mB, c0, zL] * (10^9);
 
  ]
 ]
-
-
+Print[mTau]
 (*Uncomment to debug*)
 
 Print["Higgs mass of :           ", Abs[mH], " (GeV)"];
@@ -701,7 +714,7 @@ Export[jsonNameOut, {"Higgs" -> Abs[mH],
                       "ThetaHiggs" -> Abs[\[Theta]Hmin],
                       "mWpm" -> mW,
                       "mZ0" -> mZ,
-                      "Mu11" -> \[Mu]11,
-                      "Mu11Prime" -> \[Mu]11Prime,
+                      (* "Mu11" -> \[Mu]11,
+                      "Mu11Prime" -> \[Mu]11Prime, *)
                       "mZprime" -> mZprime
                       } ];

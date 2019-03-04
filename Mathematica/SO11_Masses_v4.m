@@ -3,6 +3,20 @@ SetSystemOptions[ "MachineRealPrintPrecision" -> Round[$MachinePrecision]];
 
 (*--------------------------------------Fermion masses-------------------------------------------*)
 (* Fermion Masses (just the neutrino )*)
+mdTypeQuark[c0_, c1_, \[Mu]11_, \[Mu]1_, k_, zL_, \[Theta]H_] :=
+  If[c0 < 0.5,
+   k * ((zL)^(c0 - c1 - 1)) * \[Mu]11/\[Mu]1*
+    Sqrt[(1 - 2 c0) (1 + 2 c1)]*Sin[\[Theta]H/2],
+   k * ((zL)^(-c1 - 1/2)) * \[Mu]11/\[Mu]1*
+    Sqrt[(2 c0 - 1) (2 c1 + 1)]*Sin[\[Theta]H/2]
+   ];
+meTypeLepton[c2_, c0_, \[Mu]11Prime_, \[Mu]2Tilde_, k_,
+   zL_, \[Theta]H_] := If[ c2 < 0.5,
+   k * ((zL)^(-1 + c2 - c0)) * \[Mu]11Prime/\[Mu]2Tilde Sqrt[(2 c0 +
+        1) (1 - 2 c2)] Sin[\[Theta]H/2],
+   k *  ((zL)^(-1/2 - c0)) * \[Mu]11Prime/\[Mu]2Tilde Sqrt[(2 c0 +
+        1) (2 c2 - 1)] Sin[\[Theta]H/2]
+   ];
 m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
    2 (mu)^2 *M* ((zL)^(2 c0 + 1)))/((2 c0 + 1) *(mB^2)));
 
@@ -845,6 +859,24 @@ If[ TrueQ[Head @ \[Theta]HRule == Symbol],
 
   (*WRSol = Cbasis[\[Lambda], z, zLvar] /.replacementRules;
   \[Gamma]Tower = Cprime[\[Lambda], z, zLvar]/.replacementRules;*)
+    tauGuess =
+    meTypeLepton[c2, c0, \[Mu]11Prime, \[Mu]2Tilde, k,
+      zL, \[Theta]Hmin] / k;
+  \[Lambda]ListTauGuess =
+    NSolve[tauLeptonSol == 0 &&
+      tauGuess >= \[Lambda] >= 0.0, \[Lambda] \[Element] Reals];
+  \[Lambda]ListTauFullRange  =
+    NSolve[tauLeptonSol == 0 &&
+      mKK5/k >= \[Lambda] >= tauGuess, \[Lambda] \[Element] Reals];
+
+  bottomGuess =
+    mdTypeQuark[c0, c1, \[Mu]11, \[Mu]1, k, zL, \[Theta]Hmin]/k;
+  \[Lambda]ListBottomGuess =
+    NSolve[bQuarkSol == 0 &&
+      bottomGuess >= \[Lambda] >= 0.0, \[Lambda] \[Element] Reals];
+  \[Lambda]ListBottomFullRange  =
+    NSolve[bQuarkSol == 0 &&
+      mKK5/k >= \[Lambda] >= bottomGuess, \[Lambda] \[Element] Reals];
 
 
 
@@ -864,20 +896,20 @@ If[ TrueQ[Head @ \[Theta]HRule == Symbol],
       2*mKK5/k >= \[Lambda] > 0, \[Lambda] \[Element] Reals];
   mTop = mTopKKTower[[1]];
   (*mTop2 = mTopKKTower[[2]];*)
-
-  mBottom =
-   k*\[Lambda] /.
-    NSolve[bQuarkSol == 0 &&
-       mKK5/k >= \[Lambda] > 0, \[Lambda] \[Element] Reals][[1]];
-  mTau =
-   k*\[Lambda] /.
-    NSolve[tauLeptonSol == 0 &&
-       mKK5/k >= \[Lambda] > 0, \[Lambda] \[Element] Reals][[1]];
   mPsiDark =
    k*\[Lambda] /.
     NSolve[
       psiDarkQuarkSol == 0 &&
        mKK5/k >= \[Lambda] > 0, \[Lambda] \[Element] Reals][[1]];
+
+
+    mTau = k*\[Lambda] /.
+       DeleteDuplicates[
+         Join[\[Lambda]ListTauGuess, \[Lambda]ListTauFullRange]][[1]];
+    mBottom = \[Lambda] * k /.
+       DeleteDuplicates[
+         Join[\[Lambda]ListBottomGuess, \
+    \[Lambda]ListBottomFullRange]][[1]];
 
 
 
@@ -900,9 +932,10 @@ If[ TrueQ[Head @ \[Theta]HRule == Symbol],
 
  (*---------------------------------------------------------------------------------------------------*)
  (*---------------Checking and Exporting ------------------------------------*)
+ Print["---------------------------------------------------------------------------------------------------"];
 Print["Higgs mass of :           ", Abs[mH], " (GeV)"];
 Print["Higgs minimum <\[Theta]H> is located at :     ", Abs[\[Theta]Hmin], " (rads)"];
-Print["---------------------------------------------------------------------------------------------------"]
+Print["---------------------------------------------------------------------------------------------------"];
 Print["The 1st KK mode for the top quark: ", mTop, " (GeV)"];
 (* Print["The 2nd KK mode for the top quark: ", mTop2]; *)
 Print["The 1st KK mode for the bottom quark: ", mBottom, " (GeV)"];
@@ -912,7 +945,7 @@ Print["The 1st KK mode for the W⁺⁻  bosons: ", mW, " (GeV)"];
 Print["The 1st KK mode for the Z⁰ bosons: ", mZ, " (GeV)"];
 Print["The 2nd KK mode for the Z⁰ bosons: ", mZprime, " (GeV)"];
 Print["The 1st KK mode for ν_τ neutrinos: ", mTauNeutrino, " (GeV)"];
-
+Print["---------------------------------------------------------------------------------------------------"];
 (******************  Export To JSON  *********************************)
 Export[jsonNameOut, {"Higgs" -> Abs[mH],
                       "mTop" -> mTop ,

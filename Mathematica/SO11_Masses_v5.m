@@ -797,7 +797,7 @@ c0Prime = "c0Prime" /. dataRule;
 \[Mu]11 = "Mu11" /. dataRule;
 \[Mu]11Prime = "Mu11Prime" /. dataRule;
 
-(*
+
 k = 89130;
 zL = 35;
 c0 = 0.3325;
@@ -809,7 +809,7 @@ c0Prime = 0.5224;
 \[Mu]2Tilde = 0.7091;
 
 \[Mu]11 = 0.108;
-\[Mu]11Prime = 0.108; *)
+\[Mu]11Prime = 0.108;
 
 
 (*\[Mu]11=\[Mu]11Fct[\[Mu]1,zL,c0,c1];
@@ -836,290 +836,305 @@ evalConstr[strParticle_, particleMass_] := If[
    Return[False];
    ];
 
-   Print["---------------------------------------------------------------------------------------------------\
-   "];
-   Print["Started: Finding Higgs Minimum"];
-   Print["---------------------------------------------------------------------------------------------------\
-   "];
-   \[Theta]HRule =
-     TimeConstrained [find\[Theta]HMinRule[VeffFCT, q, \[Theta]H][[1]] ,
-      timeOut];
+esc = Association["reset" -> "\033[1;0m", "black" -> "\033[1;30m",
+   "red" -> "\033[1;31m", "green" -> "\033[1;32m",
+   "yellow" -> "\033[1;33m", "blue" -> "\033[1;34m",
+   "magenta" -> "\033[1;35m"];
 
-   (*Plot[NIntegrate[VeffFCT, {q, 0, \[Infinity]}], {\[Theta]H, -0.25, \
-   0.25}, PerformanceGoal\[Rule]"Speed"]*)
+printMessage[startStopBool_, particleStr_] := Module[{},
+  If[startStopBool, colorANSI = esc["blue"];
+   startStopStr = "Started";, colorANSI = esc["green"];
+   startStopStr = "Finished"];
 
-   If[ TrueQ[Head @ \[Theta]HRule == Symbol],
-    Print["Timeout Reached trying to find the Higgs potential minimum. \
-   Aborting."];
+  Print["\n---------------------------------------------------------------------------------------------------\
+"];
+  Print[colorANSI, startStopStr, esc["reset"], ": Finding ",
+   esc["yellow"], particleStr, esc["reset"], " Solutions"];
+  Print["---------------------------------------------------------------------------------------------------\
+\n"];
+  ]
+
+
+
+ printMessage[True, "Higgs Minimum"];
+ \[Theta]HRule =
+   TimeConstrained [find\[Theta]HMinRule[VeffFCT, q, \[Theta]H][[1]] ,
+    timeOut];
+
+ (*Plot[NIntegrate[VeffFCT, {q, 0, \[Infinity]}], {\[Theta]H, -0.25, \
+ 0.25}, PerformanceGoal\[Rule]"Speed"]*)
+
+ If[ TrueQ[Head @ \[Theta]HRule == Symbol],
+ Print[esc["red"],
+ "Timeout Reached trying to find the Higgs potential minimum. \
+Aborting.", esc["reset"]];
+  Export[jsonNameOut, return0Masses[]];
+  Quit[];
+  ,
+
+  printMessage[False, "Higgs Minimum"];
+  \[Theta]Hmin = Mod[\[Theta]HLocal /. \[Theta]HRule, \[Pi]];
+
+
+  If[\[Theta]Hmin == 0 ||
+    Not[overWrite || evalConstr["ThetaHiggs", \[Theta]Hmin]],
+   Print[esc["red"],
+    "Trivial \[Theta]H. Aborting and Returning 0 Masses.",
+    esc["reset"]];
+   Export[jsonNameOut, return0Masses[]];
+   Quit[];
+   ,
+
+   (*Higgs Mass Solution*)
+   printMessage[True, "Higgs Mass"];
+   mH = Sqrt[
+     1/fH^2 *
+      Quiet[NIntegrate [
+        HiggsDeriv /. {\[Theta]H -> \[Theta]HLocal /. \[Theta]HRule}, \
+ {q, 0, \[Infinity]}]]];
+
+
+   If [Not[overWrite || evalConstr["Higgs", mH]] ,
+    Print[esc["red"],
+     "Higgs mass doesn't satisfy lax constraints. Aborting",
+     esc["reset"]];
     Export[jsonNameOut, return0Masses[]];
     Quit[];
     ,
 
-    Print["Finished: Finding Higgs Minimum"];
-    Print["---------------------------------------------------------------------------------------------------\
-   "];
-    \[Theta]Hmin = Mod[\[Theta]HLocal /. \[Theta]HRule, \[Pi]];
+    printMessage[False, "Higgs Mass"];
 
-    If[\[Theta]Hmin == 0 ||
-      Not[overWrite || evalConstr["ThetaHiggs", \[Theta]Hmin]],
-     Print["Trivial \[Theta]H. Aborting and Returning 0 Masses."];
+    SL0 = SL[\[Lambda], z, zLvar, c0var];
+    SR0 = SR[\[Lambda], z, zLvar, c0var];
+    CR0 = CR[\[Lambda], z, zLvar, c0var];
+    CL0 =  CL[\[Lambda], z, zLvar, c0var];
+    SL1 = SL[\[Lambda], z, zLvar, c1var];
+    CR1 = CR[\[Lambda], z, zLvar, c1var];
+    SR2 = SR[\[Lambda], z, zLvar, c2var];
+    CL2 = CL[\[Lambda], z, zLvar, c2var];
+    SL0prime = SL[\[Lambda], z, zLvar, c0PrimeVar];
+    SR0prime = SR[\[Lambda], z, zLvar, c0PrimeVar];
+
+
+    uQuarkSol =
+     SL0 * SR0  + (Sin[\[Theta]Hmin/2])^2 /. replacementRules;
+    bQuarkSol =
+     SL0 * SR0  + (Sin[\[Theta]Hmin/2])^2 + ((\[Mu]1var^2) SR0* CR0 *
+          SL1 *CR1)/(\[Mu]11var^2 (CR1)^2 - (SL1)^2) /.
+      replacementRules;
+    tauLeptonSol =
+     SL0 * SR0  + (Sin[\[Theta]Hmin/
+           2])^2 + (\[Mu]2TildeVar^2 SL0 CL0 SR2 CL2) / \
+ (\[Mu]11PrimeVar^2 (CL2)^2  - (SR2)^2) /. replacementRules;
+    psiDarkQuarkSol =
+     SL0prime * SR0prime + (Cos[\[Theta]Hmin/2])^2 /.
+      replacementRules;
+    WbosonSol = (2* Cprime[\[Lambda], z, zLvar]*
+         Sbasis[\[Lambda], z,
+          zLvar] + \[Lambda] (Sin[\[Theta]Hmin])^2) /. replacementRules;
+    WRSol = Cbasis[\[Lambda], z, zLvar] /. replacementRules;
+    \[Gamma]Tower = Cprime[\[Lambda], z, zLvar] /. replacementRules;
+
+
+    (*Tau Solution*)
+    printMessage[True, "Tau"];
+    tauGuess =
+     meTypeLepton[c2, c0, \[Mu]11Prime, \[Mu]2Tilde, k,
+       zL, \[Theta]Hmin] / k;
+    \[Lambda]ListTauGuess =
+     TimeConstrained[
+      NSolve[tauLeptonSol == 0 &&
+        tauGuess >= \[Lambda] >= 0.0, \[Lambda] \[Element] Reals],
+      timeOutSolve];
+    \[Lambda]ListTauFullRange  =
+     TimeConstrained[
+      NSolve[tauLeptonSol == 0 &&
+        mKK5/k >= \[Lambda] >= tauGuess, \[Lambda] \[Element] Reals],
+      timeOutSolve];
+    \[Lambda]ListTau =
+     DeleteDuplicates[
+      Join[\[Lambda]ListTauGuess, \[Lambda]ListTauFullRange]];
+
+
+    If[TrueQ[Head @ \[Lambda]ListTauGuess == Symbol] ||
+      TrueQ[Head @ \[Lambda]ListTauFullRange == Symbol]  ||
+      Length[\[Lambda]ListTau] == 0,
+     Print[esc["red"],
+      "Timeout reached in finding the \[Tau] solution. Aborting.",
+      esc["reset"]];
      Export[jsonNameOut, return0Masses[]];
      Quit[];
      ,
 
-     (*Higgs Mass Solution*)
-     Print["Started: Finding Higgs Mass"];
-     Print["---------------------------------------------------------------------------------------------------\
-   "];
-     mH = Sqrt[
-       1/fH^2 *
-        Quiet[NIntegrate [
-          HiggsDeriv /. {\[Theta]H -> \[Theta]HLocal /. \[Theta]HRule}, \
-   {q, 0, \[Infinity]}]]];
+     (*Tau Mass*)
+     mTau = k*\[Lambda] /. \[Lambda]ListTau[[1]];
 
-     If [Not[overWrite || evalConstr["Higgs", mH]] ,
-      Print["Higgs mass doesn't satisfy lax constraints. Aborting."];
+     If[Not[overWrite || evalConstr["mTau", mTau] ],
+      Print[esc["red"],
+       "\[Tau] mass doesn't obey lax constraints. Aborting.",
+       esc["reset"]];
       Export[jsonNameOut, return0Masses[]];
-      Quit[];
       ,
-      Print["Finished: Finding Higgs Mass"];
-      Print["---------------------------------------------------------------------------------------------------\
-   "];
-      SL0 = SL[\[Lambda], z, zLvar, c0var];
-      SR0 = SR[\[Lambda], z, zLvar, c0var];
 
-      CR0 = CR[\[Lambda], z, zLvar, c0var];
-      CL0 =  CL[\[Lambda], z, zLvar, c0var];
+      printMessage[False, "Tau"];
 
-      SL1 = SL[\[Lambda], z, zLvar, c1var];
-      CR1 = CR[\[Lambda], z, zLvar, c1var];
-
-      SR2 = SR[\[Lambda], z, zLvar, c2var];
-      CL2 = CL[\[Lambda], z, zLvar, c2var];
-
-      SL0prime = SL[\[Lambda], z, zLvar, c0PrimeVar];
-      SR0prime = SR[\[Lambda], z, zLvar, c0PrimeVar];
-
-
-      uQuarkSol =
-       SL0 * SR0  + (Sin[\[Theta]Hmin/2])^2 /. replacementRules;
-      bQuarkSol =
-       SL0 * SR0  + (Sin[\[Theta]Hmin/2])^2 + ((\[Mu]1var^2) SR0* CR0 *
-            SL1 *CR1)/(\[Mu]11var^2 (CR1)^2 - (SL1)^2) /.
-        replacementRules;
-      tauLeptonSol =
-       SL0 * SR0  + (Sin[\[Theta]Hmin/
-             2])^2 + (\[Mu]2TildeVar^2 SL0 CL0 SR2 CL2) / \
-   (\[Mu]11PrimeVar^2 (CL2)^2  - (SR2)^2) /. replacementRules;
-      psiDarkQuarkSol =
-       SL0prime * SR0prime + (Cos[\[Theta]Hmin/2])^2 /.
-        replacementRules;
-      WbosonSol = (2* Cprime[\[Lambda], z, zLvar]*
-           Sbasis[\[Lambda], z,
-            zLvar] + \[Lambda] (Sin[\[Theta]Hmin])^2) /. replacementRules;
-      WRSol = Cbasis[\[Lambda], z, zLvar] /. replacementRules;
-      \[Gamma]Tower = Cprime[\[Lambda], z, zLvar] /. replacementRules;
-
-
-      (*Tau Solution*)
-      Print["Started: Finding Tau Solutions"];
-      Print["---------------------------------------------------------------------------------------------------\
-   "];
-      tauGuess =
-       meTypeLepton[c2, c0, \[Mu]11Prime, \[Mu]2Tilde, k,
-         zL, \[Theta]Hmin] / k;
-      \[Lambda]ListTauGuess =
+      (*Bottom Solution*)
+      printMessage[True, "Bottom"];
+      bottomGuess =
+       mdTypeQuark[c0, c1, \[Mu]11, \[Mu]1, k, zL, \[Theta]Hmin]/k;
+      \[Lambda]ListBottomGuess =
        TimeConstrained[
-        NSolve[tauLeptonSol == 0 &&
-          tauGuess >= \[Lambda] >= 0.0, \[Lambda] \[Element] Reals],
-        timeOutSolve];
-      \[Lambda]ListTauFullRange  =
+        NSolve[bQuarkSol == 0 &&
+          bottomGuess >= \[Lambda] >= 0.0, \[Lambda] \[Element] Reals],
+         timeOutSolve];
+      \[Lambda]ListBottomFullRange  =
        TimeConstrained[
-        NSolve[tauLeptonSol == 0 &&
-          mKK5/k >= \[Lambda] >= tauGuess, \[Lambda] \[Element] Reals],
-        timeOutSolve];
+        NSolve[bQuarkSol == 0 &&
+          mKK5/k >= \[Lambda] >= bottomGuess, \[Lambda] \[Element]
+          Reals], timeOutSolve];
+      \[Lambda]ListBottom =
+       DeleteDuplicates[
+        Join[\[Lambda]ListBottomGuess, \[Lambda]ListBottomFullRange]];
 
 
-      If[TrueQ[Head @ \[Lambda]ListTauGuess == Symbol] ||
-        TrueQ[Head @ \[Lambda]ListTauFullRange == Symbol] ,
-       Print["Timeout reached in finding the \[Tau] solution. Aborting."];
+      If[TrueQ[Head @ \[Lambda]ListBottomGuess == Symbol] ||
+        TrueQ[Head @ \[Lambda]ListBottomFullRange == Symbol] ||
+        Length[\[Lambda]ListBottom] == 0,
+       Print[esc["red"],
+        "Timeout reached in finding the Bottom Quark solution. \
+ Aborting.", esc["reset"]];
        Export[jsonNameOut, return0Masses[]];
-       Quit[];,
+       Quit[];
+       ,
 
+       (*Bottom Mass*)
 
-       mTau =
-        k*\[Lambda] /.
-         DeleteDuplicates[
-           Join[\[Lambda]ListTauGuess, \[Lambda]ListTauFullRange]][[1]];
+       mBottom = \[Lambda] * k /. \[Lambda]ListBottom[[1]];
 
-       If[Not[overWrite || evalConstr["mTau", mTau] ],
-        Print["\[Tau] mass doesn't obey lax constraints. Aborting."];
+       If[Not[overWrite || evalConstr["mBottom", mBottom] ],
+        Print[esc["red"],
+         "Bottom quark mass doesn't obey lax constraints. Aborting.",
+         esc["reset"]];
         Export[jsonNameOut, return0Masses[]];
+        Quit[];
         ,
-        Print["\!\(\*
-   StyleBox[\"Finished\",\nFontWeight->\"Plain\"]\): Finding Tau \
-   Solutions"];
-        Print[
-         "---------------------------------------------------------------------------------------------------\
-   "];
-        Print["Started: Finding Bottom Solutions"];
-        Print[
-         "---------------------------------------------------------------------------------------------------\
-   "];
-        (*Bottom Solution*)
+        printMessage[False, "Bottom"];
 
-        bottomGuess =
-         mdTypeQuark[c0, c1, \[Mu]11, \[Mu]1, k, zL, \[Theta]Hmin]/k;
-        \[Lambda]ListBottomGuess =
+
+
+        (*Top Solution*)
+        (*Note that the solution range for the  Top KK tower is from 0 to 2* Mkk5/k .
+        This is for the future RGE codes.*)
+
+        printMessage[True, "Top"];
+        \[Lambda]ListTop =
          TimeConstrained[
-          NSolve[bQuarkSol == 0 &&
-            bottomGuess >= \[Lambda] >= 0.0, \[Lambda] \[Element] Reals],
-           timeOutSolve];
-        \[Lambda]ListBottomFullRange  =
-         TimeConstrained[
-          NSolve[bQuarkSol == 0 &&
-            mKK5/k >= \[Lambda] >= bottomGuess, \[Lambda] \[Element]
-            Reals], timeOutSolve];
+          NSolve[uQuarkSol == 0 &&
+            2*mKK5/k >= \[Lambda] > 0, \[Lambda] \[Element] Reals],
+          timeOutSolve];
 
-
-
-        If[TrueQ[Head @ \[Lambda]ListBottomGuess == Symbol] ||
-          TrueQ[Head @ \[Lambda]ListBottomFullRange == Symbol] ,
-         Print[
-          "Timeout reached in finding the Bottom Quark solution. \
-   Aborting."];
+        If[
+         TrueQ[Head @ \[Lambda]ListTop == Symbol] ||
+          Length[\[Lambda]ListTop] == 0 ,
+         Print[esc["red"],
+          "Timeout reached in finding either the TopQuark solution. \
+ Aborting.", esc["reset"]];
          Export[jsonNameOut, return0Masses[]];
-         Quit[];,
+         Quit[];
+         ,
 
 
-         mBottom = \[Lambda] * k /.
-           DeleteDuplicates[
-             Join[\[Lambda]ListBottomGuess, \
-   \[Lambda]ListBottomFullRange]][[1]];
+         mTopKKTower = k*\[Lambda] /. \[Lambda]ListTop;
+         mTop = mTopKKTower[[1]];
 
-         If[Not[overWrite || evalConstr["mBottom", mBottom] ],
-          Print[
-           "Bottom quark mass doesn't obey lax constraints. Aborting."];
+
+         If [Not[overWrite || evalConstr["mTop", mTop]  ],
+          Print[esc["red"],
+           "Top quark mass solution doesn't obey lax constraints. \
+ Aborting.", esc["reset"]];
           Export[jsonNameOut, return0Masses[]];
+          Quit[];
           ,
-          Print["Finished: Finding Bottom Solutions"];
-          Print[
-           "---------------------------------------------------------------------------------------------------\
-   "];
-          Print["Started: Finding Top Solutions"];
-          Print[
-           "---------------------------------------------------------------------------------------------------\
-   "];
-          (*Top Solution*)
-          \[Lambda]ListTop =
+
+          printMessage[False, "Top"];
+          printMessage[True, "\[CapitalPsi]Dark & W+-"];
+
+          (*Psi Dark and W boson solutions. Note the 2 mKK5/
+          k range*)
+          \[Lambda]ListPsiDark =
            TimeConstrained[
-            NSolve[uQuarkSol == 0 &&
+            NSolve[psiDarkQuarkSol == 0 &&
+              2*mKK5/k >= \[Lambda] > 0, \[Lambda] \[Element] Reals],
+            timeOutSolve];
+          \[Lambda]ListW =
+           TimeConstrained[
+            NSolve[WbosonSol == 0 &&
               2*mKK5/k >= \[Lambda] > 0, \[Lambda] \[Element] Reals],
             timeOutSolve];
 
-          If[TrueQ[Head @ \[Lambda]ListTop == Symbol] ,
-           Print[
-            "Timeout reached in finding either the TopQuark solution. \
-   Aborting."];
+
+          If[
+           TrueQ[Head @ \[Lambda]ListPsiDark == Symbol] ||
+            TrueQ[Head @ \[Lambda]ListW == Symbol] ||
+            Length[\[Lambda]ListPsiDark] == 0 ||
+            Length[\[Lambda]ListW] == 0 ,
+
+           Print[esc["red"],
+            "Timeout reached in finding either the \[CapitalPsi] Dark \
+ or the W+- solution. Aborting.", esc["reset"]];
            Export[jsonNameOut, return0Masses[]];
-           Quit[];,
+           Quit[];
+           ,
 
 
-           mTopKKTower = k*\[Lambda] /. \[Lambda]ListTop;
-           mTop = mTopKKTower[[1]];
+           printMessage[False, "\[CapitalPsi]Dark & W+-"];
+
+           mWKKTower = k*\[Lambda] /. \[Lambda]ListW;
+           mPsiDark = k*\[Lambda] /. \[Lambda]ListPsiDark[[1]];
+           mW = mWKKTower[[1]];
+           mZ   =  mW/ Sqrt[1 - sin2\[Theta]W];
+           mZprime = mWKKTower[[2]]/Sqrt[1 - sin2\[Theta]W];
+           (*****  The 10^9 is here to give the neutrino in eV *)
+
+            mTauNeutrino = m\[Nu]Type[mTop, M, mB, c0, zL] * 10^9;
 
 
-           If [Not[overWrite || evalConstr["mTop", mTop]  ],
-            Print[
-             "Top quark mass solution doesn't obey lax constraints. \
-   Aborting."];
-            Export[jsonNameOut, return0Masses[]];
-            Quit[];,
-            Print["Finished: Finding Top Solutions"];
-            Print[
-             "---------------------------------------------------------------------------------------------------\
-   "];
-            Print["Started: Finding \[CapitalPsi]D, W+- Solutions"];
-            Print[
-             "---------------------------------------------------------------------------------------------------\
-   "];
+           Print["---------------------------------------------------------------------------------------------------\
+ "];
 
-            \[Lambda]ListPsiDark =
-             TimeConstrained[
-              NSolve[psiDarkQuarkSol == 0 &&
-                2*mKK5/k >= \[Lambda] > 0, \[Lambda] \[Element] Reals],
-              timeOutSolve];
-            \[Lambda]ListW =
-             TimeConstrained[
-              NSolve[WbosonSol == 0 &&
-                2*mKK5/k >= \[Lambda] > 0, \[Lambda] \[Element] Reals],
-              timeOutSolve];
+           Print["Higgs mass of :           ", Abs[mH], " (GeV)"];
 
-            If[
-             TrueQ[Head @ \[Lambda]ListPsiDark == Symbol] ||
-              TrueQ[Head @ \[Lambda]ListW == Symbol] ,
+           Print["Higgs minimum <\[Theta]H> is located at :     ",
+            Abs[\[Theta]Hmin], " (rads)"];
 
-             Print["Timeout reached in finding either the \[CapitalPsi] \
-   Dark or the W+- solution. Aborting."];
-             Export[jsonNameOut, return0Masses[]];
-             Quit[];,
+           Print["---------------------------------------------------------------------------------------------------\
+ "];
 
+           Print["The 1st KK mode for the top quark: ", mTop,
+            " (GeV)"];(*Print["The 2nd KK mode for the top quark: ",
+           mTop2];*)Print["The 1st KK mode for the bottom quark: ",
+            mBottom, " (GeV)"];
+           Print["The 1st KK mode for the tau lepton: ", mTau,
+            " (GeV)"];
+           Print["The 1st KK mode for the dark fermion multiplet: ",
+            mPsiDark, " (GeV)"];
+           Print["The 1st KK mode for the W⁺⁻  bosons: ", mW,
+            " (GeV)"];
+           Print["The 1st KK mode for the Z⁰ bosons: ", mZ, " (GeV)"];
+           Print["The 2nd KK mode for the Z⁰ bosons: ", mZprime,
+            " (GeV)"];
+           Print["The 1st KK mode for \[Nu]_\[Tau] neutrinos: ",
+            mTauNeutrino, " (GeV)"];
+           Print["---------------------------------------------------------------------------------------------------\
+ "];(******************Export To JSON*********************************)
+           Export[jsonNameOut, {"Higgs" -> Abs[mH], "mTop" -> mTop,
+             "mBottom" -> mBottom, "mTau" -> mTau,
+             "mNeutrino" -> mTauNeutrino, "mPsiDark" -> mPsiDark,
+             "ThetaHiggs" -> Abs[\[Theta]Hmin], "mWpm" -> mW,
+             "mZ0" -> mZ,(*"Mu11"\[Rule]\[Mu]11,
+             "Mu11Prime"\[Rule]\[Mu]11Prime,*)"mZprime" -> mZprime,
+             "Triviality" -> 0}];
 
-             Print["Finished: Finding \[CapitalPsi]D, W+- Solutions"];
-
-             Print["---------------------------------------------------------------------------------------------------\
-   "];
-             mWKKTower = k*\[Lambda] /. \[Lambda]ListW;
-             (*mTop2 = mTopKKTower[[2]];*)
-
-             mPsiDark = k*\[Lambda] /. \[Lambda]ListPsiDark[[1]];
-             mW = mWKKTower[[1]];
-             mZ   =  mW/ Sqrt[1 - sin2\[Theta]W];
-             mZprime = mWKKTower[[2]]/Sqrt[1 - sin2\[Theta]W];
-             (*****  The 10^9 is here to give the neutrino in eV *)
-
-                  mTauNeutrino = m\[Nu]Type[mTop, M, mB, c0, zL] * 10^9;
-
-
-             Print["---------------------------------------------------------------------------------------------------\
-   "];
-
-             Print["Higgs mass of :           ", Abs[mH], " (GeV)"];
-
-             Print["Higgs minimum <\[Theta]H> is located at :     ",
-              Abs[\[Theta]Hmin], " (rads)"];
-
-             Print["---------------------------------------------------------------------------------------------------\
-   "];
-
-             Print["The 1st KK mode for the top quark: ", mTop,
-              " (GeV)"];(*Print["The 2nd KK mode for the top quark: ",
-             mTop2];*)Print["The 1st KK mode for the bottom quark: ",
-              mBottom, " (GeV)"];
-             Print["The 1st KK mode for the tau lepton: ", mTau,
-              " (GeV)"];
-             Print["The 1st KK mode for the dark fermion multiplet: ",
-              mPsiDark, " (GeV)"];
-             Print["The 1st KK mode for the W⁺⁻  bosons: ", mW,
-              " (GeV)"];
-             Print["The 1st KK mode for the Z⁰ bosons: ", mZ, " (GeV)"];
-             Print["The 2nd KK mode for the Z⁰ bosons: ", mZprime,
-              " (GeV)"];
-             Print["The 1st KK mode for \[Nu]_\[Tau] neutrinos: ",
-              mTauNeutrino, " (GeV)"];
-             Print["---------------------------------------------------------------------------------------------------\
-   "];(******************Export To JSON*********************************)
-             Export[
-              jsonNameOut, {"Higgs" -> Abs[mH], "mTop" -> mTop,
-               "mBottom" -> mBottom, "mTau" -> mTau,
-               "mNeutrino" -> mTauNeutrino, "mPsiDark" -> mPsiDark,
-               "ThetaHiggs" -> Abs[\[Theta]Hmin], "mWpm" -> mW,
-               "mZ0" -> mZ,(*"Mu11"\[Rule]\[Mu]11,
-               "Mu11Prime"\[Rule]\[Mu]11Prime,*)"mZprime" -> mZprime,
-               "Triviality" -> 0}];
-
-             ]
-            ]
            ]
           ]
          ]
@@ -1128,3 +1143,5 @@ evalConstr[strParticle_, particleMass_] := If[
       ]
      ]
     ]
+   ]
+  ]

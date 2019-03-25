@@ -782,7 +782,6 @@ sin2\[Theta]W = 0.2312;
 M = -10^7;
 mB = 1.145*10^12;
 \[Alpha]EM = 1/127.96;
-fH = fHfunc[k, zL, sin2\[Theta]W, \[Alpha]EM];
 
 (* k = "k" /. dataRule;
 zL = "zL" /. dataRule;
@@ -811,6 +810,7 @@ c0Prime = 0.5224;
 \[Mu]11 = 0.108;
 \[Mu]11Prime = 0.108;
 
+fH = fHfunc[k, zL, sin2\[Theta]W, \[Alpha]EM];
 
 (*\[Mu]11=\[Mu]11Fct[\[Mu]1,zL,c0,c1];
 \[Mu]11Prime=\[Mu]11PrimeFct[\[Mu]2Tilde,zL,c0,c2];

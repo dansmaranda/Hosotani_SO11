@@ -784,7 +784,7 @@ mB = 1.145*10^12;
 \[Alpha]EM = 1/127.96;
 fH = fHfunc[k, zL, sin2\[Theta]W, \[Alpha]EM];
 
-k = "k" /. dataRule;
+(* k = "k" /. dataRule;
 zL = "zL" /. dataRule;
 c0 = "c0" /. dataRule;
 c1 = "c1" /. dataRule;
@@ -795,7 +795,7 @@ c0Prime = "c0Prime" /. dataRule;
 \[Mu]2Tilde = "Mu2Tilde" /. dataRule;
 
 \[Mu]11 = "Mu11" /. dataRule;
-\[Mu]11Prime = "Mu11Prime" /. dataRule;
+\[Mu]11Prime = "Mu11Prime" /. dataRule; *)
 
 
 k = 89130;

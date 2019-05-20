@@ -722,6 +722,677 @@ HiggsDeriv = 0. - (1/zL^4)*(0.20264236728467555*k^4*q^3*
       (E^((4*q)/zL)*(1 + q)*(q - zL) + 2*E^((2*q*(1 + zL))/zL)*zL +
         E^(4*q)*(-1 + q)*(q + zL) - 2*E^((2*q*(1 + zL))/zL)*q^2*Cos[2*\[Theta]H])^2))
 
+
+
+HiggsDeriv3 = -((1/zL^4)*(0.20264236728467555*k^4*q^3*
+     (-((3*zL^2*Cos[\[Theta]H/2]^3*Sin[\[Theta]H/2])/(2*q^4*(BesselI[-(1/2) + c0Prime, q/zL]*
+            BesselK[-(1/2) + c0Prime, q] - BesselI[-(1/2) + c0Prime, q]*BesselK[-(1/2) + c0Prime,
+             q/zL])^2*(BesselI[1/2 + c0Prime, q/zL]*BesselK[1/2 + c0Prime, q] -
+           BesselI[1/2 + c0Prime, q]*BesselK[1/2 + c0Prime, q/zL])^2*
+         (1 + (zL*Cos[\[Theta]H/2]^2)/(q^2*(BesselI[-(1/2) + c0Prime, q/zL]*BesselK[-(1/2) + c0Prime,
+                q] - BesselI[-(1/2) + c0Prime, q]*BesselK[-(1/2) + c0Prime, q/zL])*
+             (BesselI[1/2 + c0Prime, q/zL]*BesselK[1/2 + c0Prime, q] - BesselI[1/2 + c0Prime,
+                q]*BesselK[1/2 + c0Prime, q/zL])))^2)) + (zL*Cos[\[Theta]H/2]*Sin[\[Theta]H/2])/
+       (q^2*(BesselI[-(1/2) + c0Prime, q/zL]*BesselK[-(1/2) + c0Prime, q] -
+         BesselI[-(1/2) + c0Prime, q]*BesselK[-(1/2) + c0Prime, q/zL])*
+        (BesselI[1/2 + c0Prime, q/zL]*BesselK[1/2 + c0Prime, q] - BesselI[1/2 + c0Prime, q]*
+          BesselK[1/2 + c0Prime, q/zL])*(1 + (zL*Cos[\[Theta]H/2]^2)/
+          (q^2*(BesselI[-(1/2) + c0Prime, q/zL]*BesselK[-(1/2) + c0Prime, q] -
+            BesselI[-(1/2) + c0Prime, q]*BesselK[-(1/2) + c0Prime, q/zL])*
+           (BesselI[1/2 + c0Prime, q/zL]*BesselK[1/2 + c0Prime, q] - BesselI[1/2 + c0Prime, q]*
+             BesselK[1/2 + c0Prime, q/zL])))) - (2*zL^3*Cos[\[Theta]H/2]^3*Sin[\[Theta]H/2]^3)/
+       (q^6*(BesselI[-(1/2) + c0Prime, q/zL]*BesselK[-(1/2) + c0Prime, q] -
+          BesselI[-(1/2) + c0Prime, q]*BesselK[-(1/2) + c0Prime, q/zL])^3*
+        (BesselI[1/2 + c0Prime, q/zL]*BesselK[1/2 + c0Prime, q] - BesselI[1/2 + c0Prime, q]*
+           BesselK[1/2 + c0Prime, q/zL])^3*
+        (1 + (zL*Cos[\[Theta]H/2]^2)/(q^2*(BesselI[-(1/2) + c0Prime, q/zL]*BesselK[-(1/2) + c0Prime,
+               q] - BesselI[-(1/2) + c0Prime, q]*BesselK[-(1/2) + c0Prime, q/zL])*
+            (BesselI[1/2 + c0Prime, q/zL]*BesselK[1/2 + c0Prime, q] - BesselI[1/2 + c0Prime, q]*
+              BesselK[1/2 + c0Prime, q/zL])))^3) + (3*zL^2*Cos[\[Theta]H/2]*Sin[\[Theta]H/2]^3)/
+       (2*q^4*(BesselI[-(1/2) + c0Prime, q/zL]*BesselK[-(1/2) + c0Prime, q] -
+          BesselI[-(1/2) + c0Prime, q]*BesselK[-(1/2) + c0Prime, q/zL])^2*
+        (BesselI[1/2 + c0Prime, q/zL]*BesselK[1/2 + c0Prime, q] - BesselI[1/2 + c0Prime, q]*
+           BesselK[1/2 + c0Prime, q/zL])^2*
+        (1 + (zL*Cos[\[Theta]H/2]^2)/(q^2*(BesselI[-(1/2) + c0Prime, q/zL]*BesselK[-(1/2) + c0Prime,
+               q] - BesselI[-(1/2) + c0Prime, q]*BesselK[-(1/2) + c0Prime, q/zL])*
+            (BesselI[1/2 + c0Prime, q/zL]*BesselK[1/2 + c0Prime, q] - BesselI[1/2 + c0Prime, q]*
+              BesselK[1/2 + c0Prime, q/zL])))^2)))) -
+  (1/zL^4)*(0.07599088773175333*k^4*q^3*((2*zL^3*Cos[\[Theta]H/2]^3*Sin[\[Theta]H/2]^3)/
+      (q^6*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+          BesselK[-(1/2) + c0, q/zL])^3*(BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+         BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL])^3*
+       (1 + (zL*Sin[\[Theta]H/2]^2)/(q^2*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] -
+            BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+           (BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] - BesselI[1/2 + c0, q]*
+             BesselK[1/2 + c0, q/zL])))^3) - (3*zL^2*Cos[\[Theta]H/2]^3*Sin[\[Theta]H/2])/
+      (2*q^4*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+          BesselK[-(1/2) + c0, q/zL])^2*(BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+         BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL])^2*
+       (1 + (zL*Sin[\[Theta]H/2]^2)/(q^2*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] -
+            BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+           (BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] - BesselI[1/2 + c0, q]*
+             BesselK[1/2 + c0, q/zL])))^2) + (3*zL^2*Cos[\[Theta]H/2]*Sin[\[Theta]H/2]^3)/
+      (2*q^4*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+          BesselK[-(1/2) + c0, q/zL])^2*(BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+         BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL])^2*
+       (1 + (zL*Sin[\[Theta]H/2]^2)/(q^2*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] -
+            BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+           (BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] - BesselI[1/2 + c0, q]*
+             BesselK[1/2 + c0, q/zL])))^2) - (zL*Cos[\[Theta]H/2]*Sin[\[Theta]H/2])/
+      (q^2*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+         BesselK[-(1/2) + c0, q/zL])*(BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+        BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL])*
+       (1 + (zL*Sin[\[Theta]H/2]^2)/(q^2*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] -
+           BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+          (BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] - BesselI[1/2 + c0, q]*
+            BesselK[1/2 + c0, q/zL])))))) -
+  (1/zL^4)*(0.07599088773175333*k^4*q^3*((2*zL^3*Cos[\[Theta]H/2]^3*Sin[\[Theta]H/2]^3)/
+      (q^6*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+          BesselK[-(1/2) + c0, q/zL])^3*(BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+         BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL] +
+         (\[Mu]1^2*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0, q/zL]*
+             BesselK[1/2 + c0, q])*(BesselI[1/2 + c1, q]*BesselK[-(1/2) + c1, q/zL] +
+            BesselI[-(1/2) + c1, q/zL]*BesselK[1/2 + c1, q])*(BesselI[1/2 + c1, q/zL]*
+             BesselK[1/2 + c1, q] - BesselI[1/2 + c1, q]*BesselK[1/2 + c1, q/zL]))/
+          (\[Mu]11^2*(BesselI[1/2 + c1, q]*BesselK[-(1/2) + c1, q/zL] + BesselI[-(1/2) + c1, q/zL]*
+               BesselK[1/2 + c1, q])^2 + (BesselI[1/2 + c1, q/zL]*BesselK[1/2 + c1, q] -
+             BesselI[1/2 + c1, q]*BesselK[1/2 + c1, q/zL])^2))^3*
+       (1 + (zL*Sin[\[Theta]H/2]^2)/(q^2*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] -
+            BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+           (BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] - BesselI[1/2 + c0, q]*
+             BesselK[1/2 + c0, q/zL] + (\[Mu]1^2*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] +
+               BesselI[-(1/2) + c0, q/zL]*BesselK[1/2 + c0, q])*(BesselI[1/2 + c1, q]*
+                BesselK[-(1/2) + c1, q/zL] + BesselI[-(1/2) + c1, q/zL]*BesselK[1/2 + c1, q])*
+              (BesselI[1/2 + c1, q/zL]*BesselK[1/2 + c1, q] - BesselI[1/2 + c1, q]*
+                BesselK[1/2 + c1, q/zL]))/(\[Mu]11^2*(BesselI[1/2 + c1, q]*BesselK[-(1/2) + c1,
+                   q/zL] + BesselI[-(1/2) + c1, q/zL]*BesselK[1/2 + c1, q])^2 +
+              (BesselI[1/2 + c1, q/zL]*BesselK[1/2 + c1, q] - BesselI[1/2 + c1, q]*
+                 BesselK[1/2 + c1, q/zL])^2))))^3) - (3*zL^2*Cos[\[Theta]H/2]^3*Sin[\[Theta]H/2])/
+      (2*q^4*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+          BesselK[-(1/2) + c0, q/zL])^2*(BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+         BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL] +
+         (\[Mu]1^2*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0, q/zL]*
+             BesselK[1/2 + c0, q])*(BesselI[1/2 + c1, q]*BesselK[-(1/2) + c1, q/zL] +
+            BesselI[-(1/2) + c1, q/zL]*BesselK[1/2 + c1, q])*(BesselI[1/2 + c1, q/zL]*
+             BesselK[1/2 + c1, q] - BesselI[1/2 + c1, q]*BesselK[1/2 + c1, q/zL]))/
+          (\[Mu]11^2*(BesselI[1/2 + c1, q]*BesselK[-(1/2) + c1, q/zL] + BesselI[-(1/2) + c1, q/zL]*
+               BesselK[1/2 + c1, q])^2 + (BesselI[1/2 + c1, q/zL]*BesselK[1/2 + c1, q] -
+             BesselI[1/2 + c1, q]*BesselK[1/2 + c1, q/zL])^2))^2*
+       (1 + (zL*Sin[\[Theta]H/2]^2)/(q^2*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] -
+            BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+           (BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] - BesselI[1/2 + c0, q]*
+             BesselK[1/2 + c0, q/zL] + (\[Mu]1^2*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] +
+               BesselI[-(1/2) + c0, q/zL]*BesselK[1/2 + c0, q])*(BesselI[1/2 + c1, q]*
+                BesselK[-(1/2) + c1, q/zL] + BesselI[-(1/2) + c1, q/zL]*BesselK[1/2 + c1, q])*
+              (BesselI[1/2 + c1, q/zL]*BesselK[1/2 + c1, q] - BesselI[1/2 + c1, q]*
+                BesselK[1/2 + c1, q/zL]))/(\[Mu]11^2*(BesselI[1/2 + c1, q]*BesselK[-(1/2) + c1,
+                   q/zL] + BesselI[-(1/2) + c1, q/zL]*BesselK[1/2 + c1, q])^2 +
+              (BesselI[1/2 + c1, q/zL]*BesselK[1/2 + c1, q] - BesselI[1/2 + c1, q]*
+                 BesselK[1/2 + c1, q/zL])^2))))^2) + (3*zL^2*Cos[\[Theta]H/2]*Sin[\[Theta]H/2]^3)/
+      (2*q^4*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+          BesselK[-(1/2) + c0, q/zL])^2*(BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+         BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL] +
+         (\[Mu]1^2*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0, q/zL]*
+             BesselK[1/2 + c0, q])*(BesselI[1/2 + c1, q]*BesselK[-(1/2) + c1, q/zL] +
+            BesselI[-(1/2) + c1, q/zL]*BesselK[1/2 + c1, q])*(BesselI[1/2 + c1, q/zL]*
+             BesselK[1/2 + c1, q] - BesselI[1/2 + c1, q]*BesselK[1/2 + c1, q/zL]))/
+          (\[Mu]11^2*(BesselI[1/2 + c1, q]*BesselK[-(1/2) + c1, q/zL] + BesselI[-(1/2) + c1, q/zL]*
+               BesselK[1/2 + c1, q])^2 + (BesselI[1/2 + c1, q/zL]*BesselK[1/2 + c1, q] -
+             BesselI[1/2 + c1, q]*BesselK[1/2 + c1, q/zL])^2))^2*
+       (1 + (zL*Sin[\[Theta]H/2]^2)/(q^2*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] -
+            BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+           (BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] - BesselI[1/2 + c0, q]*
+             BesselK[1/2 + c0, q/zL] + (\[Mu]1^2*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] +
+               BesselI[-(1/2) + c0, q/zL]*BesselK[1/2 + c0, q])*(BesselI[1/2 + c1, q]*
+                BesselK[-(1/2) + c1, q/zL] + BesselI[-(1/2) + c1, q/zL]*BesselK[1/2 + c1, q])*
+              (BesselI[1/2 + c1, q/zL]*BesselK[1/2 + c1, q] - BesselI[1/2 + c1, q]*
+                BesselK[1/2 + c1, q/zL]))/(\[Mu]11^2*(BesselI[1/2 + c1, q]*BesselK[-(1/2) + c1,
+                   q/zL] + BesselI[-(1/2) + c1, q/zL]*BesselK[1/2 + c1, q])^2 +
+              (BesselI[1/2 + c1, q/zL]*BesselK[1/2 + c1, q] - BesselI[1/2 + c1, q]*
+                 BesselK[1/2 + c1, q/zL])^2))))^2) - (zL*Cos[\[Theta]H/2]*Sin[\[Theta]H/2])/
+      (q^2*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+         BesselK[-(1/2) + c0, q/zL])*(BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+        BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL] +
+        (\[Mu]1^2*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0, q/zL]*
+            BesselK[1/2 + c0, q])*(BesselI[1/2 + c1, q]*BesselK[-(1/2) + c1, q/zL] +
+           BesselI[-(1/2) + c1, q/zL]*BesselK[1/2 + c1, q])*(BesselI[1/2 + c1, q/zL]*
+            BesselK[1/2 + c1, q] - BesselI[1/2 + c1, q]*BesselK[1/2 + c1, q/zL]))/
+         (\[Mu]11^2*(BesselI[1/2 + c1, q]*BesselK[-(1/2) + c1, q/zL] + BesselI[-(1/2) + c1, q/zL]*
+              BesselK[1/2 + c1, q])^2 + (BesselI[1/2 + c1, q/zL]*BesselK[1/2 + c1, q] -
+            BesselI[1/2 + c1, q]*BesselK[1/2 + c1, q/zL])^2))*
+       (1 + (zL*Sin[\[Theta]H/2]^2)/(q^2*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] -
+           BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+          (BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] - BesselI[1/2 + c0, q]*
+            BesselK[1/2 + c0, q/zL] + (\[Mu]1^2*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] +
+              BesselI[-(1/2) + c0, q/zL]*BesselK[1/2 + c0, q])*(BesselI[1/2 + c1, q]*BesselK[
+                -(1/2) + c1, q/zL] + BesselI[-(1/2) + c1, q/zL]*BesselK[1/2 + c1, q])*
+             (BesselI[1/2 + c1, q/zL]*BesselK[1/2 + c1, q] - BesselI[1/2 + c1, q]*BesselK[
+                1/2 + c1, q/zL]))/(\[Mu]11^2*(BesselI[1/2 + c1, q]*BesselK[-(1/2) + c1, q/zL] +
+                BesselI[-(1/2) + c1, q/zL]*BesselK[1/2 + c1, q])^2 +
+             (BesselI[1/2 + c1, q/zL]*BesselK[1/2 + c1, q] - BesselI[1/2 + c1, q]*
+                BesselK[1/2 + c1, q/zL])^2))))))) -
+  (1/zL^4)*(0.025330295910584444*k^4*q^3*((2*zL^3*Cos[\[Theta]H/2]^3*Sin[\[Theta]H/2]^3)/
+      (q^6*(BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] - BesselI[1/2 + c0, q]*
+          BesselK[1/2 + c0, q/zL])^3*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] -
+         BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL] +
+         (\[Mu]2Tilde^2*(BesselI[1/2 + c0, q/zL]*BesselK[-(1/2) + c0, q] + BesselI[-(1/2) + c0, q]*
+             BesselK[1/2 + c0, q/zL])*(BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+            BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*
+           (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*
+             BesselK[1/2 + c2, q/zL]))/((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+             BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2 +
+           \[Mu]11Prime^2*(BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2,
+                q]*BesselK[1/2 + c2, q/zL])^2))^3*
+       (1 + (zL*Sin[\[Theta]H/2]^2)/(q^2*(BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+            BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL])*(BesselI[-(1/2) + c0, q/zL]*
+             BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL] +
+            (\[Mu]2Tilde^2*(BesselI[1/2 + c0, q/zL]*BesselK[-(1/2) + c0, q] + BesselI[-(1/2) + c0, q]*
+                BesselK[1/2 + c0, q/zL])*(BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+               BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*(BesselI[1/2 + c2, q/zL]*
+                BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*BesselK[1/2 + c2, q/zL]))/
+             ((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*
+                 BesselK[-(1/2) + c2, q/zL])^2 + \[Mu]11Prime^2*(BesselI[1/2 + c2, q/zL]*
+                  BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*BesselK[1/2 + c2, q/zL])^2))))^
+        3) - (3*zL^2*Cos[\[Theta]H/2]^3*Sin[\[Theta]H/2])/
+      (2*q^4*(BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] - BesselI[1/2 + c0, q]*
+          BesselK[1/2 + c0, q/zL])^2*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] -
+         BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL] +
+         (\[Mu]2Tilde^2*(BesselI[1/2 + c0, q/zL]*BesselK[-(1/2) + c0, q] + BesselI[-(1/2) + c0, q]*
+             BesselK[1/2 + c0, q/zL])*(BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+            BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*
+           (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*
+             BesselK[1/2 + c2, q/zL]))/((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+             BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2 +
+           \[Mu]11Prime^2*(BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2,
+                q]*BesselK[1/2 + c2, q/zL])^2))^2*
+       (1 + (zL*Sin[\[Theta]H/2]^2)/(q^2*(BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+            BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL])*(BesselI[-(1/2) + c0, q/zL]*
+             BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL] +
+            (\[Mu]2Tilde^2*(BesselI[1/2 + c0, q/zL]*BesselK[-(1/2) + c0, q] + BesselI[-(1/2) + c0, q]*
+                BesselK[1/2 + c0, q/zL])*(BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+               BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*(BesselI[1/2 + c2, q/zL]*
+                BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*BesselK[1/2 + c2, q/zL]))/
+             ((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*
+                 BesselK[-(1/2) + c2, q/zL])^2 + \[Mu]11Prime^2*(BesselI[1/2 + c2, q/zL]*
+                  BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*BesselK[1/2 + c2, q/zL])^2))))^
+        2) + (3*zL^2*Cos[\[Theta]H/2]*Sin[\[Theta]H/2]^3)/
+      (2*q^4*(BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] - BesselI[1/2 + c0, q]*
+          BesselK[1/2 + c0, q/zL])^2*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] -
+         BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL] +
+         (\[Mu]2Tilde^2*(BesselI[1/2 + c0, q/zL]*BesselK[-(1/2) + c0, q] + BesselI[-(1/2) + c0, q]*
+             BesselK[1/2 + c0, q/zL])*(BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+            BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*
+           (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*
+             BesselK[1/2 + c2, q/zL]))/((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+             BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2 +
+           \[Mu]11Prime^2*(BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2,
+                q]*BesselK[1/2 + c2, q/zL])^2))^2*
+       (1 + (zL*Sin[\[Theta]H/2]^2)/(q^2*(BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+            BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL])*(BesselI[-(1/2) + c0, q/zL]*
+             BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL] +
+            (\[Mu]2Tilde^2*(BesselI[1/2 + c0, q/zL]*BesselK[-(1/2) + c0, q] + BesselI[-(1/2) + c0, q]*
+                BesselK[1/2 + c0, q/zL])*(BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+               BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*(BesselI[1/2 + c2, q/zL]*
+                BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*BesselK[1/2 + c2, q/zL]))/
+             ((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*
+                 BesselK[-(1/2) + c2, q/zL])^2 + \[Mu]11Prime^2*(BesselI[1/2 + c2, q/zL]*
+                  BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*BesselK[1/2 + c2, q/zL])^2))))^
+        2) - (zL*Cos[\[Theta]H/2]*Sin[\[Theta]H/2])/(q^2*(BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+        BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL])*
+       (BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+         BesselK[-(1/2) + c0, q/zL] + (\[Mu]2Tilde^2*(BesselI[1/2 + c0, q/zL]*
+            BesselK[-(1/2) + c0, q] + BesselI[-(1/2) + c0, q]*BesselK[1/2 + c0, q/zL])*
+          (BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*
+            BesselK[-(1/2) + c2, q/zL])*(BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] +
+           BesselI[-(1/2) + c2, q]*BesselK[1/2 + c2, q/zL]))/
+         ((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*
+             BesselK[-(1/2) + c2, q/zL])^2 + \[Mu]11Prime^2*
+           (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*
+              BesselK[1/2 + c2, q/zL])^2))*(1 + (zL*Sin[\[Theta]H/2]^2)/
+         (q^2*(BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] - BesselI[1/2 + c0, q]*
+            BesselK[1/2 + c0, q/zL])*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] -
+           BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL] +
+           (\[Mu]2Tilde^2*(BesselI[1/2 + c0, q/zL]*BesselK[-(1/2) + c0, q] + BesselI[-(1/2) + c0,
+                q]*BesselK[1/2 + c0, q/zL])*(BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+              BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*(BesselI[1/2 + c2, q/zL]*BesselK[
+                -(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*BesselK[1/2 + c2, q/zL]))/
+            ((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*
+                BesselK[-(1/2) + c2, q/zL])^2 + \[Mu]11Prime^2*(BesselI[1/2 + c2, q/zL]*
+                 BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*BesselK[1/2 + c2, q/zL])^
+               2))))))) - (1/zL^4)*(0.012665147955292222*k^4*q^3*
+    ((2*((1/q^2)*(2*zL*((k*((-k)*q + I*M*zL))/((BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0,
+                 q] - BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+              ((mB^2*zL*BesselI[-(1/2) + c0, q/zL] - 2*k*(k*q - I*M*zL)*BesselI[1/2 + c0, q/zL])*
+                BesselK[1/2 + c0, q] + BesselI[1/2 + c0, q]*(mB^2*zL*BesselK[-(1/2) + c0, q/zL] +
+                 2*k*(k*q - I*M*zL)*BesselK[1/2 + c0, q/zL]))) +
+            1/Conjugate[(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] -
+                BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*(2*BesselI[1/2 + c0, q/zL]*
+                 BesselK[1/2 + c0, q] - (mB^2*zL*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0,
+                     q/zL] + BesselI[-(1/2) + c0, q/zL]*BesselK[1/2 + c0, q]))/
+                 (k*(k*q - I*M*zL)) - 2*BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL])])*Cos[\[Theta]H/2]*
+           Sin[\[Theta]H/2]) - (8*k*zL^2*(k*q - I*M*zL)*Cos[\[Theta]H/2]*Sin[\[Theta]H/2]^3)/
+          (q^4*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+             BesselK[-(1/2) + c0, q/zL])*((mB^2*zL*BesselI[-(1/2) + c0, q/zL] -
+              2*k*(k*q - I*M*zL)*BesselI[1/2 + c0, q/zL])*BesselK[1/2 + c0, q] +
+            BesselI[1/2 + c0, q]*(mB^2*zL*BesselK[-(1/2) + c0, q/zL] + 2*k*(k*q - I*M*zL)*BesselK[
+                1/2 + c0, q/zL]))*Conjugate[(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] -
+              BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*(2*BesselI[1/2 + c0, q/zL]*
+               BesselK[1/2 + c0, q] - (mB^2*zL*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] +
+                 BesselI[-(1/2) + c0, q/zL]*BesselK[1/2 + c0, q]))/(k*(k*q - I*M*zL)) -
+              2*BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL])]))^3)/
+      (1 + (1/q^2)*(2*zL*((k*((-k)*q + I*M*zL))/((BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0,
+                q] - BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+             ((mB^2*zL*BesselI[-(1/2) + c0, q/zL] - 2*k*(k*q - I*M*zL)*BesselI[1/2 + c0, q/zL])*
+               BesselK[1/2 + c0, q] + BesselI[1/2 + c0, q]*(mB^2*zL*BesselK[-(1/2) + c0, q/zL] +
+                2*k*(k*q - I*M*zL)*BesselK[1/2 + c0, q/zL]))) +
+           1/Conjugate[(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0,
+                 q]*BesselK[-(1/2) + c0, q/zL])*(2*BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+               (mB^2*zL*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0,
+                    q/zL]*BesselK[1/2 + c0, q]))/(k*(k*q - I*M*zL)) - 2*BesselI[1/2 + c0, q]*
+                BesselK[1/2 + c0, q/zL])])*Sin[\[Theta]H/2]^2) - (4*k*zL^2*(k*q - I*M*zL)*Sin[\[Theta]H/2]^4)/
+         (q^4*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+            BesselK[-(1/2) + c0, q/zL])*((mB^2*zL*BesselI[-(1/2) + c0, q/zL] -
+             2*k*(k*q - I*M*zL)*BesselI[1/2 + c0, q/zL])*BesselK[1/2 + c0, q] +
+           BesselI[1/2 + c0, q]*(mB^2*zL*BesselK[-(1/2) + c0, q/zL] + 2*k*(k*q - I*M*zL)*
+              BesselK[1/2 + c0, q/zL]))*Conjugate[(BesselI[-(1/2) + c0, q/zL]*
+              BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+            (2*BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] - (mB^2*zL*(BesselI[1/2 + c0, q]*
+                 BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0, q/zL]*BesselK[1/2 + c0, q]))/
+              (k*(k*q - I*M*zL)) - 2*BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL])]))^3 +
+     (-((1/q^2)*(2*zL*((k*((-k)*q + I*M*zL))/((BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0,
+                q] - BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+             ((mB^2*zL*BesselI[-(1/2) + c0, q/zL] - 2*k*(k*q - I*M*zL)*BesselI[1/2 + c0, q/zL])*
+               BesselK[1/2 + c0, q] + BesselI[1/2 + c0, q]*(mB^2*zL*BesselK[-(1/2) + c0, q/zL] +
+                2*k*(k*q - I*M*zL)*BesselK[1/2 + c0, q/zL]))) +
+           1/Conjugate[(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0,
+                 q]*BesselK[-(1/2) + c0, q/zL])*(2*BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+               (mB^2*zL*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0,
+                    q/zL]*BesselK[1/2 + c0, q]))/(k*(k*q - I*M*zL)) - 2*BesselI[1/2 + c0, q]*
+                BesselK[1/2 + c0, q/zL])])*Cos[\[Theta]H/2]*Sin[\[Theta]H/2])) -
+       (12*k*zL^2*(k*q - I*M*zL)*Cos[\[Theta]H/2]^3*Sin[\[Theta]H/2])/
+        (q^4*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+           BesselK[-(1/2) + c0, q/zL])*((mB^2*zL*BesselI[-(1/2) + c0, q/zL] -
+            2*k*(k*q - I*M*zL)*BesselI[1/2 + c0, q/zL])*BesselK[1/2 + c0, q] +
+          BesselI[1/2 + c0, q]*(mB^2*zL*BesselK[-(1/2) + c0, q/zL] + 2*k*(k*q - I*M*zL)*
+             BesselK[1/2 + c0, q/zL]))*Conjugate[(BesselI[-(1/2) + c0, q/zL]*
+             BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+           (2*BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+            (mB^2*zL*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0, q/zL]*
+                BesselK[1/2 + c0, q]))/(k*(k*q - I*M*zL)) - 2*BesselI[1/2 + c0, q]*
+             BesselK[1/2 + c0, q/zL])]) + (20*k*zL^2*(k*q - I*M*zL)*Cos[\[Theta]H/2]*Sin[\[Theta]H/2]^3)/
+        (q^4*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+           BesselK[-(1/2) + c0, q/zL])*((mB^2*zL*BesselI[-(1/2) + c0, q/zL] -
+            2*k*(k*q - I*M*zL)*BesselI[1/2 + c0, q/zL])*BesselK[1/2 + c0, q] +
+          BesselI[1/2 + c0, q]*(mB^2*zL*BesselK[-(1/2) + c0, q/zL] + 2*k*(k*q - I*M*zL)*
+             BesselK[1/2 + c0, q/zL]))*Conjugate[(BesselI[-(1/2) + c0, q/zL]*
+             BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+           (2*BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+            (mB^2*zL*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0, q/zL]*
+                BesselK[1/2 + c0, q]))/(k*(k*q - I*M*zL)) - 2*BesselI[1/2 + c0, q]*
+             BesselK[1/2 + c0, q/zL])]))/
+      (1 + (1/q^2)*(2*zL*((k*((-k)*q + I*M*zL))/((BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) +
+                c0, q] - BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+            ((mB^2*zL*BesselI[-(1/2) + c0, q/zL] - 2*k*(k*q - I*M*zL)*BesselI[1/2 + c0, q/zL])*
+              BesselK[1/2 + c0, q] + BesselI[1/2 + c0, q]*(mB^2*zL*BesselK[-(1/2) + c0, q/zL] + 2*
+                k*(k*q - I*M*zL)*BesselK[1/2 + c0, q/zL]))) +
+          1/Conjugate[(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0,
+                q]*BesselK[-(1/2) + c0, q/zL])*(2*BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+              (mB^2*zL*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0,
+                   q/zL]*BesselK[1/2 + c0, q]))/(k*(k*q - I*M*zL)) - 2*BesselI[1/2 + c0, q]*
+               BesselK[1/2 + c0, q/zL])])*Sin[\[Theta]H/2]^2) - (4*k*zL^2*(k*q - I*M*zL)*Sin[\[Theta]H/2]^4)/
+        (q^4*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+           BesselK[-(1/2) + c0, q/zL])*((mB^2*zL*BesselI[-(1/2) + c0, q/zL] -
+            2*k*(k*q - I*M*zL)*BesselI[1/2 + c0, q/zL])*BesselK[1/2 + c0, q] +
+          BesselI[1/2 + c0, q]*(mB^2*zL*BesselK[-(1/2) + c0, q/zL] + 2*k*(k*q - I*M*zL)*
+             BesselK[1/2 + c0, q/zL]))*Conjugate[(BesselI[-(1/2) + c0, q/zL]*
+             BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+           (2*BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+            (mB^2*zL*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0, q/zL]*
+                BesselK[1/2 + c0, q]))/(k*(k*q - I*M*zL)) - 2*BesselI[1/2 + c0, q]*
+             BesselK[1/2 + c0, q/zL])])) -
+     (3*((1/q^2)*(2*zL*((k*((-k)*q + I*M*zL))/((BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0,
+                q] - BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+             ((mB^2*zL*BesselI[-(1/2) + c0, q/zL] - 2*k*(k*q - I*M*zL)*BesselI[1/2 + c0, q/zL])*
+               BesselK[1/2 + c0, q] + BesselI[1/2 + c0, q]*(mB^2*zL*BesselK[-(1/2) + c0, q/zL] +
+                2*k*(k*q - I*M*zL)*BesselK[1/2 + c0, q/zL]))) +
+           1/Conjugate[(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0,
+                 q]*BesselK[-(1/2) + c0, q/zL])*(2*BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+               (mB^2*zL*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0,
+                    q/zL]*BesselK[1/2 + c0, q]))/(k*(k*q - I*M*zL)) - 2*BesselI[1/2 + c0, q]*
+                BesselK[1/2 + c0, q/zL])])*Cos[\[Theta]H/2]*Sin[\[Theta]H/2]) -
+        (8*k*zL^2*(k*q - I*M*zL)*Cos[\[Theta]H/2]*Sin[\[Theta]H/2]^3)/
+         (q^4*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+            BesselK[-(1/2) + c0, q/zL])*((mB^2*zL*BesselI[-(1/2) + c0, q/zL] -
+             2*k*(k*q - I*M*zL)*BesselI[1/2 + c0, q/zL])*BesselK[1/2 + c0, q] +
+           BesselI[1/2 + c0, q]*(mB^2*zL*BesselK[-(1/2) + c0, q/zL] + 2*k*(k*q - I*M*zL)*
+              BesselK[1/2 + c0, q/zL]))*Conjugate[(BesselI[-(1/2) + c0, q/zL]*
+              BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+            (2*BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] - (mB^2*zL*(BesselI[1/2 + c0, q]*
+                 BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0, q/zL]*BesselK[1/2 + c0, q]))/
+              (k*(k*q - I*M*zL)) - 2*BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL])]))*
+       ((1/q^2)*(zL*((k*((-k)*q + I*M*zL))/((BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] -
+              BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+             ((mB^2*zL*BesselI[-(1/2) + c0, q/zL] - 2*k*(k*q - I*M*zL)*BesselI[1/2 + c0, q/zL])*
+               BesselK[1/2 + c0, q] + BesselI[1/2 + c0, q]*(mB^2*zL*BesselK[-(1/2) + c0, q/zL] +
+                2*k*(k*q - I*M*zL)*BesselK[1/2 + c0, q/zL]))) +
+           1/Conjugate[(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0,
+                 q]*BesselK[-(1/2) + c0, q/zL])*(2*BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+               (mB^2*zL*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0,
+                    q/zL]*BesselK[1/2 + c0, q]))/(k*(k*q - I*M*zL)) - 2*BesselI[1/2 + c0, q]*
+                BesselK[1/2 + c0, q/zL])])*Cos[\[Theta]H/2]^2) -
+        (1/q^2)*(zL*((k*((-k)*q + I*M*zL))/((BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] -
+              BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+             ((mB^2*zL*BesselI[-(1/2) + c0, q/zL] - 2*k*(k*q - I*M*zL)*BesselI[1/2 + c0, q/zL])*
+               BesselK[1/2 + c0, q] + BesselI[1/2 + c0, q]*(mB^2*zL*BesselK[-(1/2) + c0, q/zL] +
+                2*k*(k*q - I*M*zL)*BesselK[1/2 + c0, q/zL]))) +
+           1/Conjugate[(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0,
+                 q]*BesselK[-(1/2) + c0, q/zL])*(2*BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+               (mB^2*zL*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0,
+                    q/zL]*BesselK[1/2 + c0, q]))/(k*(k*q - I*M*zL)) - 2*BesselI[1/2 + c0, q]*
+                BesselK[1/2 + c0, q/zL])])*Sin[\[Theta]H/2]^2) - (12*k*zL^2*(k*q - I*M*zL)*Cos[\[Theta]H/2]^2*
+          Sin[\[Theta]H/2]^2)/(q^4*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] -
+           BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+          ((mB^2*zL*BesselI[-(1/2) + c0, q/zL] - 2*k*(k*q - I*M*zL)*BesselI[1/2 + c0, q/zL])*
+            BesselK[1/2 + c0, q] + BesselI[1/2 + c0, q]*(mB^2*zL*BesselK[-(1/2) + c0, q/zL] +
+             2*k*(k*q - I*M*zL)*BesselK[1/2 + c0, q/zL]))*Conjugate[
+           (BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+              BesselK[-(1/2) + c0, q/zL])*(2*BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+             (mB^2*zL*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0,
+                  q/zL]*BesselK[1/2 + c0, q]))/(k*(k*q - I*M*zL)) - 2*BesselI[1/2 + c0, q]*
+              BesselK[1/2 + c0, q/zL])]) + (4*k*zL^2*(k*q - I*M*zL)*Sin[\[Theta]H/2]^4)/
+         (q^4*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+            BesselK[-(1/2) + c0, q/zL])*((mB^2*zL*BesselI[-(1/2) + c0, q/zL] -
+             2*k*(k*q - I*M*zL)*BesselI[1/2 + c0, q/zL])*BesselK[1/2 + c0, q] +
+           BesselI[1/2 + c0, q]*(mB^2*zL*BesselK[-(1/2) + c0, q/zL] + 2*k*(k*q - I*M*zL)*
+              BesselK[1/2 + c0, q/zL]))*Conjugate[(BesselI[-(1/2) + c0, q/zL]*
+              BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+            (2*BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] - (mB^2*zL*(BesselI[1/2 + c0, q]*
+                 BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0, q/zL]*BesselK[1/2 + c0, q]))/
+              (k*(k*q - I*M*zL)) - 2*BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL])])))/
+      (1 + (1/q^2)*(2*zL*((k*((-k)*q + I*M*zL))/((BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0,
+                q] - BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+             ((mB^2*zL*BesselI[-(1/2) + c0, q/zL] - 2*k*(k*q - I*M*zL)*BesselI[1/2 + c0, q/zL])*
+               BesselK[1/2 + c0, q] + BesselI[1/2 + c0, q]*(mB^2*zL*BesselK[-(1/2) + c0, q/zL] +
+                2*k*(k*q - I*M*zL)*BesselK[1/2 + c0, q/zL]))) +
+           1/Conjugate[(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0,
+                 q]*BesselK[-(1/2) + c0, q/zL])*(2*BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] -
+               (mB^2*zL*(BesselI[1/2 + c0, q]*BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0,
+                    q/zL]*BesselK[1/2 + c0, q]))/(k*(k*q - I*M*zL)) - 2*BesselI[1/2 + c0, q]*
+                BesselK[1/2 + c0, q/zL])])*Sin[\[Theta]H/2]^2) - (4*k*zL^2*(k*q - I*M*zL)*Sin[\[Theta]H/2]^4)/
+         (q^4*(BesselI[-(1/2) + c0, q/zL]*BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*
+            BesselK[-(1/2) + c0, q/zL])*((mB^2*zL*BesselI[-(1/2) + c0, q/zL] -
+             2*k*(k*q - I*M*zL)*BesselI[1/2 + c0, q/zL])*BesselK[1/2 + c0, q] +
+           BesselI[1/2 + c0, q]*(mB^2*zL*BesselK[-(1/2) + c0, q/zL] + 2*k*(k*q - I*M*zL)*
+              BesselK[1/2 + c0, q/zL]))*Conjugate[(BesselI[-(1/2) + c0, q/zL]*
+              BesselK[-(1/2) + c0, q] - BesselI[-(1/2) + c0, q]*BesselK[-(1/2) + c0, q/zL])*
+            (2*BesselI[1/2 + c0, q/zL]*BesselK[1/2 + c0, q] - (mB^2*zL*(BesselI[1/2 + c0, q]*
+                 BesselK[-(1/2) + c0, q/zL] + BesselI[-(1/2) + c0, q/zL]*BesselK[1/2 + c0, q]))/
+              (k*(k*q - I*M*zL)) - 2*BesselI[1/2 + c0, q]*BesselK[1/2 + c0, q/zL])]))^2)) -
+  (1/zL^4)*(0.012665147955292222*k^4*q^3*(-3. + \[Xi]Gauge^2)*
+    ((128*E^((6*q*(1 + zL))/zL)*q^6*Cos[\[Theta]H]^3*Sin[\[Theta]H]^3)/((E^(2*q) - E^((2*q)/zL))^3*
+       ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))^3*
+       (1 + (2*E^((2*q*(1 + zL))/zL)*q^2*Sin[\[Theta]H]^2)/((E^(2*q) - E^((2*q)/zL))*
+           ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))))^3) -
+     (48*E^((4*q*(1 + zL))/zL)*q^4*Cos[\[Theta]H]^3*Sin[\[Theta]H])/((E^(2*q) - E^((2*q)/zL))^2*
+       ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))^2*
+       (1 + (2*E^((2*q*(1 + zL))/zL)*q^2*Sin[\[Theta]H]^2)/((E^(2*q) - E^((2*q)/zL))*
+           ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))))^2) +
+     (48*E^((4*q*(1 + zL))/zL)*q^4*Cos[\[Theta]H]*Sin[\[Theta]H]^3)/((E^(2*q) - E^((2*q)/zL))^2*
+       ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))^2*
+       (1 + (2*E^((2*q*(1 + zL))/zL)*q^2*Sin[\[Theta]H]^2)/((E^(2*q) - E^((2*q)/zL))*
+           ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))))^2) -
+     (16*E^((2*q*(1 + zL))/zL)*q^2*Cos[\[Theta]H]*Sin[\[Theta]H])/((E^(2*q) - E^((2*q)/zL))*
+       ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))*
+       (1 + (2*E^((2*q*(1 + zL))/zL)*q^2*Sin[\[Theta]H]^2)/((E^(2*q) - E^((2*q)/zL))*
+          ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))))))) +
+  (1/zL^4)*(0.018997721932938333*k^4*q^3*\[Xi]Gauge^2*
+    ((1024*E^((6*q*(1 + zL))/zL)*q^6*Cos[\[Theta]H]^3*Sin[\[Theta]H]^3)/((E^(2*q) - E^((2*q)/zL))^3*
+       ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))^3*
+       (1 + (4*E^((2*q*(1 + zL))/zL)*q^2*Sin[\[Theta]H]^2)/((E^(2*q) - E^((2*q)/zL))*
+           ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))))^3) -
+     (192*E^((4*q*(1 + zL))/zL)*q^4*Cos[\[Theta]H]^3*Sin[\[Theta]H])/((E^(2*q) - E^((2*q)/zL))^2*
+       ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))^2*
+       (1 + (4*E^((2*q*(1 + zL))/zL)*q^2*Sin[\[Theta]H]^2)/((E^(2*q) - E^((2*q)/zL))*
+           ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))))^2) +
+     (192*E^((4*q*(1 + zL))/zL)*q^4*Cos[\[Theta]H]*Sin[\[Theta]H]^3)/((E^(2*q) - E^((2*q)/zL))^2*
+       ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))^2*
+       (1 + (4*E^((2*q*(1 + zL))/zL)*q^2*Sin[\[Theta]H]^2)/((E^(2*q) - E^((2*q)/zL))*
+           ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))))^2) -
+     (32*E^((2*q*(1 + zL))/zL)*q^2*Cos[\[Theta]H]*Sin[\[Theta]H])/((E^(2*q) - E^((2*q)/zL))*
+       ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))*
+       (1 + (4*E^((2*q*(1 + zL))/zL)*q^2*Sin[\[Theta]H]^2)/((E^(2*q) - E^((2*q)/zL))*
+          ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))))))) -
+  (1/zL^4)*(0.006332573977646111*k^4*q^3*(-3. + \[Xi]Gauge^2)*
+    (-((128*E^((6*q*(1 + zL))/zL)*q^6*Cos[\[Theta]H]^3*Sin[\[Theta]H]^3)/((E^(2*q) - E^((2*q)/zL))^3*
+        (-1 + sin2\[Theta]W)^3*((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))^3*
+        (1 - (2*E^((2*q*(1 + zL))/zL)*q^2*Sin[\[Theta]H]^2)/((E^(2*q) - E^((2*q)/zL))*(-1 + sin2\[Theta]W)*
+            ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))))^3)) -
+     (48*E^((4*q*(1 + zL))/zL)*q^4*Cos[\[Theta]H]^3*Sin[\[Theta]H])/((E^(2*q) - E^((2*q)/zL))^2*
+       (-1 + sin2\[Theta]W)^2*((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))^2*
+       (1 - (2*E^((2*q*(1 + zL))/zL)*q^2*Sin[\[Theta]H]^2)/((E^(2*q) - E^((2*q)/zL))*(-1 + sin2\[Theta]W)*
+           ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))))^2) +
+     (48*E^((4*q*(1 + zL))/zL)*q^4*Cos[\[Theta]H]*Sin[\[Theta]H]^3)/((E^(2*q) - E^((2*q)/zL))^2*
+       (-1 + sin2\[Theta]W)^2*((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))^2*
+       (1 - (2*E^((2*q*(1 + zL))/zL)*q^2*Sin[\[Theta]H]^2)/((E^(2*q) - E^((2*q)/zL))*(-1 + sin2\[Theta]W)*
+           ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))))^2) +
+     (16*E^((2*q*(1 + zL))/zL)*q^2*Cos[\[Theta]H]*Sin[\[Theta]H])/((E^(2*q) - E^((2*q)/zL))*(-1 + sin2\[Theta]W)*
+       ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))*
+       (1 - (2*E^((2*q*(1 + zL))/zL)*q^2*Sin[\[Theta]H]^2)/((E^(2*q) - E^((2*q)/zL))*(-1 + sin2\[Theta]W)*
+          ((-E^((2*q)/zL))*(1 + q)*(q - zL) + E^(2*q)*(-1 + q)*(q + zL))))))) -
+  (1/zL^4)*(0.025330295910584444*k^4*q^3*
+    ((2*(-((2*zL^2*(1 - \[Mu]11Prime^2)*(-1 + \[Mu]11Prime^2)*Cos[\[Theta]H]*Sin[\[Theta]H]^3)/
+           (q^4*((zL^2*\[Mu]11Prime^4)/q^4 + (1/q^2)*(2*zL*\[Mu]11Prime^4*(BesselI[-(1/2) + c2, q/zL]*
+                 BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*(
+                BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*
+                 BesselK[1/2 + c2, q/zL])) + (1 + \[Mu]11Prime^4)*(BesselI[-(1/2) + c2, q/zL]*
+                 BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*
+              (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*
+                 BesselK[1/2 + c2, q/zL])^2 + \[Mu]11Prime^2*((BesselI[-(1/2) + c2, q/zL]*
+                   BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*
+                (BesselI[1/2 + c2, q]*BesselK[-(1/2) + c2, q/zL] + BesselI[-(1/2) + c2, q/zL]*
+                   BesselK[1/2 + c2, q])^2 + (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] +
+                  BesselI[-(1/2) + c2, q]*BesselK[1/2 + c2, q/zL])^2*(BesselI[1/2 + c2, q/zL]*
+                   BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])^2)))) +
+         (2*zL^2*(1 - \[Mu]11Prime^2)*Cos[\[Theta]H]*Sin[\[Theta]H]*(2*\[Mu]11Prime^2 +
+            (1/zL)*(2*q^2*(1 + \[Mu]11Prime^2)*(BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+               BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*(BesselI[1/2 + c2, q/zL]*
+                BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])) -
+            (-1 + \[Mu]11Prime^2)*Sin[\[Theta]H]^2))/(q^4*((zL^2*\[Mu]11Prime^4)/q^4 +
+            (1/q^2)*(2*zL*\[Mu]11Prime^4*(BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+               BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*(BesselI[1/2 + c2, q/zL]*
+                BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])) +
+            (1 + \[Mu]11Prime^4)*(BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+               BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*
+             (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*
+                BesselK[1/2 + c2, q/zL])^2 + \[Mu]11Prime^2*((BesselI[-(1/2) + c2, q/zL]*
+                  BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^
+                2*(BesselI[1/2 + c2, q]*BesselK[-(1/2) + c2, q/zL] + BesselI[-(1/2) + c2, q/zL]*
+                  BesselK[1/2 + c2, q])^2 + (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] +
+                 BesselI[-(1/2) + c2, q]*BesselK[1/2 + c2, q/zL])^2*(BesselI[1/2 + c2, q/zL]*
+                  BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])^2))))^3)/
+      (1 + (zL^2*(1 - \[Mu]11Prime^2)*Sin[\[Theta]H]^2*(2*\[Mu]11Prime^2 + (1/zL)*(2*q^2*(1 + \[Mu]11Prime^2)*
+             (BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[
+                -(1/2) + c2, q/zL])*(BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] -
+              BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])) - (-1 + \[Mu]11Prime^2)*Sin[\[Theta]H]^2))/
+         (q^4*((zL^2*\[Mu]11Prime^4)/q^4 + (1/q^2)*(2*zL*\[Mu]11Prime^4*(BesselI[-(1/2) + c2, q/zL]*
+               BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*
+             (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[
+                1/2 + c2, q/zL])) + (1 + \[Mu]11Prime^4)*(BesselI[-(1/2) + c2, q/zL]*BesselK[
+                -(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*
+            (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[1/2 + c2,
+                q/zL])^2 + \[Mu]11Prime^2*((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+                BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*(BesselI[1/2 + c2, q]*
+                 BesselK[-(1/2) + c2, q/zL] + BesselI[-(1/2) + c2, q/zL]*BesselK[1/2 + c2, q])^2 +
+             (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*
+                 BesselK[1/2 + c2, q/zL])^2*(BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] -
+                BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])^2))))^3 -
+     (3*(-((2*zL^2*(1 - \[Mu]11Prime^2)*(-1 + \[Mu]11Prime^2)*Cos[\[Theta]H]*Sin[\[Theta]H]^3)/
+          (q^4*((zL^2*\[Mu]11Prime^4)/q^4 + (1/q^2)*(2*zL*\[Mu]11Prime^4*(BesselI[-(1/2) + c2, q/zL]*
+                BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*
+              (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*
+                BesselK[1/2 + c2, q/zL])) + (1 + \[Mu]11Prime^4)*(BesselI[-(1/2) + c2, q/zL]*
+                BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*
+             (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*
+                BesselK[1/2 + c2, q/zL])^2 + \[Mu]11Prime^2*((BesselI[-(1/2) + c2, q/zL]*
+                  BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^
+                2*(BesselI[1/2 + c2, q]*BesselK[-(1/2) + c2, q/zL] + BesselI[-(1/2) + c2, q/zL]*
+                  BesselK[1/2 + c2, q])^2 + (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] +
+                 BesselI[-(1/2) + c2, q]*BesselK[1/2 + c2, q/zL])^2*(BesselI[1/2 + c2, q/zL]*
+                  BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])^2)))) +
+        (2*zL^2*(1 - \[Mu]11Prime^2)*Cos[\[Theta]H]*Sin[\[Theta]H]*(2*\[Mu]11Prime^2 +
+           (1/zL)*(2*q^2*(1 + \[Mu]11Prime^2)*(BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+              BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*(BesselI[1/2 + c2, q/zL]*BesselK[
+                1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])) -
+           (-1 + \[Mu]11Prime^2)*Sin[\[Theta]H]^2))/(q^4*((zL^2*\[Mu]11Prime^4)/q^4 +
+           (1/q^2)*(2*zL*\[Mu]11Prime^4*(BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+              BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*(BesselI[1/2 + c2, q/zL]*BesselK[
+                1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])) +
+           (1 + \[Mu]11Prime^4)*(BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+              BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*
+            (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[1/2 + c2,
+                q/zL])^2 + \[Mu]11Prime^2*((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+                BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*(BesselI[1/2 + c2, q]*
+                 BesselK[-(1/2) + c2, q/zL] + BesselI[-(1/2) + c2, q/zL]*BesselK[1/2 + c2, q])^2 +
+             (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*
+                 BesselK[1/2 + c2, q/zL])^2*(BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] -
+                BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])^2))))*
+       (-((10*zL^2*(1 - \[Mu]11Prime^2)*(-1 + \[Mu]11Prime^2)*Cos[\[Theta]H]^2*Sin[\[Theta]H]^2)/
+          (q^4*((zL^2*\[Mu]11Prime^4)/q^4 + (1/q^2)*(2*zL*\[Mu]11Prime^4*(BesselI[-(1/2) + c2, q/zL]*
+                BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*
+              (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*
+                BesselK[1/2 + c2, q/zL])) + (1 + \[Mu]11Prime^4)*(BesselI[-(1/2) + c2, q/zL]*
+                BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*
+             (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*
+                BesselK[1/2 + c2, q/zL])^2 + \[Mu]11Prime^2*((BesselI[-(1/2) + c2, q/zL]*
+                  BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^
+                2*(BesselI[1/2 + c2, q]*BesselK[-(1/2) + c2, q/zL] + BesselI[-(1/2) + c2, q/zL]*
+                  BesselK[1/2 + c2, q])^2 + (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] +
+                 BesselI[-(1/2) + c2, q]*BesselK[1/2 + c2, q/zL])^2*(BesselI[1/2 + c2, q/zL]*
+                  BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])^2)))) +
+        (2*zL^2*(1 - \[Mu]11Prime^2)*(-1 + \[Mu]11Prime^2)*Sin[\[Theta]H]^4)/
+         (q^4*((zL^2*\[Mu]11Prime^4)/q^4 + (1/q^2)*(2*zL*\[Mu]11Prime^4*(BesselI[-(1/2) + c2, q/zL]*
+               BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*
+             (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[
+                1/2 + c2, q/zL])) + (1 + \[Mu]11Prime^4)*(BesselI[-(1/2) + c2, q/zL]*BesselK[
+                -(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*
+            (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[1/2 + c2,
+                q/zL])^2 + \[Mu]11Prime^2*((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+                BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*(BesselI[1/2 + c2, q]*
+                 BesselK[-(1/2) + c2, q/zL] + BesselI[-(1/2) + c2, q/zL]*BesselK[1/2 + c2, q])^2 +
+             (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*
+                 BesselK[1/2 + c2, q/zL])^2*(BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] -
+                BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])^2))) +
+        (2*zL^2*(1 - \[Mu]11Prime^2)*Cos[\[Theta]H]^2*(2*\[Mu]11Prime^2 + (1/zL)*(2*q^2*(1 + \[Mu]11Prime^2)*
+             (BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[
+                -(1/2) + c2, q/zL])*(BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] -
+              BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])) - (-1 + \[Mu]11Prime^2)*Sin[\[Theta]H]^2))/
+         (q^4*((zL^2*\[Mu]11Prime^4)/q^4 + (1/q^2)*(2*zL*\[Mu]11Prime^4*(BesselI[-(1/2) + c2, q/zL]*
+               BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*
+             (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[
+                1/2 + c2, q/zL])) + (1 + \[Mu]11Prime^4)*(BesselI[-(1/2) + c2, q/zL]*BesselK[
+                -(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*
+            (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[1/2 + c2,
+                q/zL])^2 + \[Mu]11Prime^2*((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+                BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*(BesselI[1/2 + c2, q]*
+                 BesselK[-(1/2) + c2, q/zL] + BesselI[-(1/2) + c2, q/zL]*BesselK[1/2 + c2, q])^2 +
+             (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*
+                 BesselK[1/2 + c2, q/zL])^2*(BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] -
+                BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])^2))) -
+        (2*zL^2*(1 - \[Mu]11Prime^2)*Sin[\[Theta]H]^2*(2*\[Mu]11Prime^2 + (1/zL)*(2*q^2*(1 + \[Mu]11Prime^2)*
+             (BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[
+                -(1/2) + c2, q/zL])*(BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] -
+              BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])) - (-1 + \[Mu]11Prime^2)*Sin[\[Theta]H]^2))/
+         (q^4*((zL^2*\[Mu]11Prime^4)/q^4 + (1/q^2)*(2*zL*\[Mu]11Prime^4*(BesselI[-(1/2) + c2, q/zL]*
+               BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*
+             (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[
+                1/2 + c2, q/zL])) + (1 + \[Mu]11Prime^4)*(BesselI[-(1/2) + c2, q/zL]*BesselK[
+                -(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*
+            (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[1/2 + c2,
+                q/zL])^2 + \[Mu]11Prime^2*((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+                BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*(BesselI[1/2 + c2, q]*
+                 BesselK[-(1/2) + c2, q/zL] + BesselI[-(1/2) + c2, q/zL]*BesselK[1/2 + c2, q])^2 +
+             (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*
+                 BesselK[1/2 + c2, q/zL])^2*(BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] -
+                BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])^2)))))/
+      (1 + (zL^2*(1 - \[Mu]11Prime^2)*Sin[\[Theta]H]^2*(2*\[Mu]11Prime^2 + (1/zL)*(2*q^2*(1 + \[Mu]11Prime^2)*
+             (BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[
+                -(1/2) + c2, q/zL])*(BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] -
+              BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])) - (-1 + \[Mu]11Prime^2)*Sin[\[Theta]H]^2))/
+         (q^4*((zL^2*\[Mu]11Prime^4)/q^4 + (1/q^2)*(2*zL*\[Mu]11Prime^4*(BesselI[-(1/2) + c2, q/zL]*
+               BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*
+             (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[
+                1/2 + c2, q/zL])) + (1 + \[Mu]11Prime^4)*(BesselI[-(1/2) + c2, q/zL]*BesselK[
+                -(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*
+            (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[1/2 + c2,
+                q/zL])^2 + \[Mu]11Prime^2*((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+                BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*(BesselI[1/2 + c2, q]*
+                 BesselK[-(1/2) + c2, q/zL] + BesselI[-(1/2) + c2, q/zL]*BesselK[1/2 + c2, q])^2 +
+             (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*
+                 BesselK[1/2 + c2, q/zL])^2*(BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] -
+                BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])^2))))^2 +
+     (-((24*zL^2*(1 - \[Mu]11Prime^2)*(-1 + \[Mu]11Prime^2)*Cos[\[Theta]H]^3*Sin[\[Theta]H])/
+         (q^4*((zL^2*\[Mu]11Prime^4)/q^4 + (1/q^2)*(2*zL*\[Mu]11Prime^4*(BesselI[-(1/2) + c2, q/zL]*
+               BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*
+             (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[
+                1/2 + c2, q/zL])) + (1 + \[Mu]11Prime^4)*(BesselI[-(1/2) + c2, q/zL]*BesselK[
+                -(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*
+            (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*BesselK[1/2 + c2,
+                q/zL])^2 + \[Mu]11Prime^2*((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+                BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])^2*(BesselI[1/2 + c2, q]*
+                 BesselK[-(1/2) + c2, q/zL] + BesselI[-(1/2) + c2, q/zL]*BesselK[1/2 + c2, q])^2 +
+             (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*
+                 BesselK[1/2 + c2, q/zL])^2*(BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] -
+                BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])^2)))) +
+       (32*zL^2*(1 - \[Mu]11Prime^2)*(-1 + \[Mu]11Prime^2)*Cos[\[Theta]H]*Sin[\[Theta]H]^3)/
+        (q^4*((zL^2*\[Mu]11Prime^4)/q^4 + (1/q^2)*(2*zL*\[Mu]11Prime^4*(BesselI[-(1/2) + c2, q/zL]*
+              BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*
+            (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*
+              BesselK[1/2 + c2, q/zL])) + (1 + \[Mu]11Prime^4)*
+           (BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*
+              BesselK[-(1/2) + c2, q/zL])^2*(BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] -
+             BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])^2 + \[Mu]11Prime^2*
+           ((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*
+                BesselK[-(1/2) + c2, q/zL])^2*(BesselI[1/2 + c2, q]*BesselK[-(1/2) + c2, q/zL] +
+               BesselI[-(1/2) + c2, q/zL]*BesselK[1/2 + c2, q])^2 +
+            (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*
+                BesselK[1/2 + c2, q/zL])^2*(BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] -
+               BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])^2))) -
+       (8*zL^2*(1 - \[Mu]11Prime^2)*Cos[\[Theta]H]*Sin[\[Theta]H]*(2*\[Mu]11Prime^2 +
+          (1/zL)*(2*q^2*(1 + \[Mu]11Prime^2)*(BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+             BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*
+            (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*
+              BesselK[1/2 + c2, q/zL])) - (-1 + \[Mu]11Prime^2)*Sin[\[Theta]H]^2))/
+        (q^4*((zL^2*\[Mu]11Prime^4)/q^4 + (1/q^2)*(2*zL*\[Mu]11Prime^4*(BesselI[-(1/2) + c2, q/zL]*
+              BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*
+            (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*
+              BesselK[1/2 + c2, q/zL])) + (1 + \[Mu]11Prime^4)*
+           (BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*
+              BesselK[-(1/2) + c2, q/zL])^2*(BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] -
+             BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])^2 + \[Mu]11Prime^2*
+           ((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*
+                BesselK[-(1/2) + c2, q/zL])^2*(BesselI[1/2 + c2, q]*BesselK[-(1/2) + c2, q/zL] +
+               BesselI[-(1/2) + c2, q/zL]*BesselK[1/2 + c2, q])^2 +
+            (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*
+                BesselK[1/2 + c2, q/zL])^2*(BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] -
+               BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])^2))))/
+      (1 + (zL^2*(1 - \[Mu]11Prime^2)*Sin[\[Theta]H]^2*(2*\[Mu]11Prime^2 +
+          (1/zL)*(2*q^2*(1 + \[Mu]11Prime^2)*(BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] -
+             BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*
+            (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*
+              BesselK[1/2 + c2, q/zL])) - (-1 + \[Mu]11Prime^2)*Sin[\[Theta]H]^2))/
+        (q^4*((zL^2*\[Mu]11Prime^4)/q^4 + (1/q^2)*(2*zL*\[Mu]11Prime^4*(BesselI[-(1/2) + c2, q/zL]*
+              BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*BesselK[-(1/2) + c2, q/zL])*
+            (BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] - BesselI[1/2 + c2, q]*
+              BesselK[1/2 + c2, q/zL])) + (1 + \[Mu]11Prime^4)*
+           (BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*
+              BesselK[-(1/2) + c2, q/zL])^2*(BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] -
+             BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])^2 + \[Mu]11Prime^2*
+           ((BesselI[-(1/2) + c2, q/zL]*BesselK[-(1/2) + c2, q] - BesselI[-(1/2) + c2, q]*
+                BesselK[-(1/2) + c2, q/zL])^2*(BesselI[1/2 + c2, q]*BesselK[-(1/2) + c2, q/zL] +
+               BesselI[-(1/2) + c2, q/zL]*BesselK[1/2 + c2, q])^2 +
+            (BesselI[1/2 + c2, q/zL]*BesselK[-(1/2) + c2, q] + BesselI[-(1/2) + c2, q]*
+                BesselK[1/2 + c2, q/zL])^2*(BesselI[1/2 + c2, q/zL]*BesselK[1/2 + c2, q] -
+               BesselI[1/2 + c2, q]*BesselK[1/2 + c2, q/zL])^2))))))
 (*---------------------------------------------------------------------------------------------------*)
 (*---------------Higgs Mass auxiliaries and \[Mu] setting ------------------------------------*)
 
@@ -762,8 +1433,8 @@ Clear[zL, k, \[Mu]11, \[Mu]1, \[Mu]11Prime, \[Mu]2Tilde, c0Prime, c0,
 
 
 
-timeOut = 25;
-timeOutSolve = 15;
+timeOut = 30;
+timeOutSolve = 30;
 
 
 
@@ -776,6 +1447,7 @@ jsonNameOut="massesOut"<>JsonNb<>".json";
 
 dataRule = Import[jsonName];
 overWrite = False;
+
 (* Constant setting function.*)
 sin2\[Theta]W = 0.2312;
 \[Xi]Gauge = 0;
@@ -783,7 +1455,7 @@ M = -10^7;
 mB = 1.145*10^12;
 \[Alpha]EM = 1/127.96;
 
-(* k = "k" /. dataRule;
+k = "k" /. dataRule;
 zL = "zL" /. dataRule;
 c0 = "c0" /. dataRule;
 c1 = "c1" /. dataRule;
@@ -794,10 +1466,11 @@ c0Prime = "c0Prime" /. dataRule;
 \[Mu]2Tilde = "Mu2Tilde" /. dataRule;
 
 \[Mu]11 = "Mu11" /. dataRule;
-\[Mu]11Prime = "Mu11Prime" /. dataRule; *)
+\[Mu]11Prime = "Mu11Prime" /. dataRule;
 
 
-k = 89130;
+
+(* k = 89130;
 zL = 35;
 c0 = 0.3325;
 c1 = 0.0;
@@ -808,13 +1481,9 @@ c0Prime = 0.5224;
 \[Mu]2Tilde = 0.7091;
 
 \[Mu]11 = 0.108;
-\[Mu]11Prime = 0.108;
+\[Mu]11Prime = 0.108; *)
 
 fH = fHfunc[k, zL, sin2\[Theta]W, \[Alpha]EM];
-
-(*\[Mu]11=\[Mu]11Fct[\[Mu]1,zL,c0,c1];
-\[Mu]11Prime=\[Mu]11PrimeFct[\[Mu]2Tilde,zL,c0,c2];
-*)
 
 mKK5 = \[Pi] k /(zL - 1);
 replacementRules = {z -> 1, c0var -> c0,
@@ -1097,6 +1766,15 @@ Aborting.", esc["reset"]];
            (*****  The 10^9 is here to give the neutrino in eV *)
 
             mTauNeutrino = m\[Nu]Type[mTop, M, mB, c0, zL] * 10^9;
+            \[Tau]Eff =  1/fH^3 NIntegrate [
+                HiggsDeriv3 /. {\[Theta]H -> \[Theta]HLocal /. \[Theta]HRule}, \
+                {q, 0, \[Infinity]}];
+
+
+            yTopSM = Sqrt[2] *  172.44/246;
+            yTopEff =
+              yTopSM * Cos[\[Theta]H] /. {\[Theta]H -> \[Theta]HLocal /. \
+            \[Theta]HRule};
 
 
            Print["---------------------------------------------------------------------------------------------------\
@@ -1106,6 +1784,8 @@ Aborting.", esc["reset"]];
 
            Print["Higgs minimum <\[Theta]H> is located at :     ",
             Abs[\[Theta]Hmin], " (rads)"];
+            Print["Effective trilinear coupling \[Tau]Eff of:     ", \[Tau]Eff];
+            Print["Effective Top Yukawa of:    ", yTopEff];
 
            Print["---------------------------------------------------------------------------------------------------\
  "];
@@ -1131,9 +1811,11 @@ Aborting.", esc["reset"]];
              "mBottom" -> mBottom, "mTau" -> mTau,
              "mNeutrino" -> mTauNeutrino, "mPsiDark" -> mPsiDark,
              "ThetaHiggs" -> Abs[\[Theta]Hmin], "mWpm" -> mW,
-             "mZ0" -> mZ,(*"Mu11"\[Rule]\[Mu]11,
-             "Mu11Prime"\[Rule]\[Mu]11Prime,*)"mZprime" -> mZprime,
-             "Triviality" -> 0}];
+             "mZ0" -> mZ,
+             "mZprime" -> mZprime,
+             "Triviality" -> 0,
+             "HiggsTrilin"->\[Tau]Eff ,
+             "TopYukawa"->yTopEff}];
 
            ]
           ]

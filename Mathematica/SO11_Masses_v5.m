@@ -4,7 +4,9 @@ constrList = <|"Higgs" ->       <|"Max" -> 625.0, "Min" -> 1.0|>,
          			 "mTop" ->        <|"Max" -> 870.0, "Min" -> 1.0|>,
          			 "mTau" ->        <|"Max" -> 100.0, "Min" -> 0.0000001|>,
          			 "mBottom" ->     <|"Max" -> 100.0, "Min" -> 0.0000001|>,
-         			 "ThetaHiggs"->   <|"Max" -> 1.0, "Min" -> 0.0|>
+         			 "ThetaHiggs"->   <|"Max" -> 1.0, "Min" -> 0.0|>,
+               "mPsiDark"->     <|"Max" -> 10^10, "Min" -> 1000.0|>,
+               "mZprime"->      <|"Max" -> 10^10, "Min" -> 1000.0|>
    |>;
 
 
@@ -1717,7 +1719,7 @@ Aborting.", esc["reset"]];
          mTop = mTopKKTower[[1]];
 
 
-         If [Not[overWrite || evalConstr["mTop", mTop]  ],
+         If [  Not[overWrite || evalConstr["mTop", mTop]  ],
           Print[esc["red"],
            "Top quark mass solution doesn't obey lax constraints. \
  Aborting.", esc["reset"]];
@@ -1758,23 +1760,38 @@ Aborting.", esc["reset"]];
 
            printMessage[False, "\[CapitalPsi]Dark & W+-"];
 
-           mWKKTower = k*\[Lambda] /. \[Lambda]ListW;
            mPsiDark = k*\[Lambda] /. \[Lambda]ListPsiDark[[1]];
+           If [  Not[overWrite || evalConstr["mPsiDark", mPsiDark]  ],
+            Print[esc["red"],
+             "Psi Dark  mass solution doesn't obey lax constraints. \
+           Aborting.", esc["reset"]];
+            Export[jsonNameOut, return0Masses[]];
+            Quit[];
+            ,
+
+           mWKKTower = k*\[Lambda] /. \[Lambda]ListW;
            mW = mWKKTower[[1]];
            mZ   =  mW/ Sqrt[1 - sin2\[Theta]W];
-           mZprime = mWKKTower[[2]]/Sqrt[1 - sin2\[Theta]W];
-           (*****  The 10^9 is here to give the neutrino in eV *)
 
+           mZprime = mWKKTower[[2]]/Sqrt[1 - sin2\[Theta]W];
+           If [  Not[overWrite || evalConstr["mZprime", mZprime]  ],
+            Print[esc["red"],
+             "Z'  mass solution doesn't obey lax constraints. \
+           Aborting.", esc["reset"]];
+            Export[jsonNameOut, return0Masses[]];
+            Quit[];
+            ,
+
+           (*****  The 10^9 is here to give the neutrino in eV *)
             mTauNeutrino = m\[Nu]Type[mTop, M, mB, c0, zL] * 10^9;
-            \[Tau]Eff =  1/fH^3 NIntegrate [
+
+            (* \[Tau]Eff =  1/fH^3 NIntegrate [
                 HiggsDeriv3 /. {\[Theta]H -> \[Theta]HLocal /. \[Theta]HRule}, \
                 {q, 0, \[Infinity]}];
-
-
             yTopSM = Sqrt[2] *  172.44/246;
             yTopEff =
               yTopSM * Cos[\[Theta]H] /. {\[Theta]H -> \[Theta]HLocal /. \
-            \[Theta]HRule};
+            \[Theta]HRule}; *)
 
 
            Print["---------------------------------------------------------------------------------------------------\
@@ -1784,8 +1801,8 @@ Aborting.", esc["reset"]];
 
            Print["Higgs minimum <\[Theta]H> is located at :     ",
             Abs[\[Theta]Hmin], " (rads)"];
-            Print["Effective trilinear coupling \[Tau]Eff of:     ", \[Tau]Eff];
-            Print["Effective Top Yukawa of:    ", yTopEff];
+            (* Print["Effective trilinear coupling \[Tau]Eff of:     ", \[Tau]Eff];
+            Print["Effective Top Yukawa of:    ", yTopEff]; *)
 
            Print["---------------------------------------------------------------------------------------------------\
  "];
@@ -1813,17 +1830,9 @@ Aborting.", esc["reset"]];
              "ThetaHiggs" -> Abs[\[Theta]Hmin], "mWpm" -> mW,
              "mZ0" -> mZ,
              "mZprime" -> mZprime,
-             "Triviality" -> 0,
-             "HiggsTrilin"->\[Tau]Eff ,
-             "TopYukawa"->yTopEff}];
-
-           ]
-          ]
-         ]
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
+             "Triviality" -> 0
+             (* ,"HiggsTrilin"->\[Tau]Eff ,
+             "TopYukawa"->yTopEff *)
+           }];
+]]]]]]]]]]]
   ]

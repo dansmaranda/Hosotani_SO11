@@ -6,7 +6,8 @@ constrList = <|"Higgs" ->       <|"Max" -> 625.0, "Min" -> 1.0|>,
          			 "mBottom" ->     <|"Max" -> 100.0, "Min" -> 0.0000001|>,
          			 "ThetaHiggs"->   <|"Max" -> 1.0, "Min" -> 0.0|>,
                "mPsiDark"->     <|"Max" -> 10^10, "Min" -> 1000.0|>,
-               "mZprime"->      <|"Max" -> 10^10, "Min" -> 1000.0|>
+               "mZprime"->      <|"Max" -> 10^10, "Min" -> 1000.0|>,
+               "mWpm"   ->      <|"Max" -> 600, "Min" -> 1.0|>
    |>;
 
 
@@ -1772,6 +1773,14 @@ Aborting.", esc["reset"]];
            mWKKTower = k*\[Lambda] /. \[Lambda]ListW;
            mW = mWKKTower[[1]];
            mZ   =  mW/ Sqrt[1 - sin2\[Theta]W];
+           If [  Not[overWrite || evalConstr["mWpm", mW]  ],
+            Print[esc["red"],
+             "W+-  mass solution doesn't obey lax constraints. \
+           Aborting.", esc["reset"]];
+            Export[jsonNameOut, return0Masses[]];
+            Quit[];
+            ,
+
 
            mZprime = mWKKTower[[2]]/Sqrt[1 - sin2\[Theta]W];
            If [  Not[overWrite || evalConstr["mZprime", mZprime]  ],
@@ -1834,5 +1843,5 @@ Aborting.", esc["reset"]];
              (* ,"HiggsTrilin"->\[Tau]Eff ,
              "TopYukawa"->yTopEff *)
            }];
-]]]]]]]]]]]
+]]]]]]]]]]]]
   ]

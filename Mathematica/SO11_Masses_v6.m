@@ -3,7 +3,7 @@ printStatus = True;
 (*Set to True to find and export the Trilinear and Top Yukawa*)
 addTrilin = False;
 (*Enable to ignore lax constraints*)
-overWriteLAXConstr = True;
+overWriteLAXConstr = False;
 
 Print["Adding trilinear: ", addTrilin];
 Print["Printing Status: ", printStatus];

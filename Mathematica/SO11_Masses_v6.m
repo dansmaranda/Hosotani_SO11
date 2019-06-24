@@ -7,7 +7,7 @@ overWriteLAXConstr = True;
 
 Print["Adding trilinear: ", addTrilin];
 Print["Printing Status: ", printStatus];
-Print["Constraints Enabled: " Not[overWriteLAXConstr] ];
+Print["Constraints Enabled: ", Not[overWriteLAXConstr] ];
 (*---------------------------------------------------------------------------------------------------*)
 (* Initialise the Machine 0 *)(* Set the output to match MachinePrecision*)
 
@@ -15,14 +15,14 @@ machineZero = 10^(-$MachinePrecision);
 SetSystemOptions[ "MachineRealPrintPrecision" -> Round[$MachinePrecision]];
 
 
-constrList = <|"Higgs" ->             <|"Max" -> 625.0, "Min" -> 1.0|>,
-   			 "mTop" ->                    <|"Max" -> 870.0, "Min" -> 1.0|>,
-   			"mTau" ->                     <|"Max" -> 100.0, "Min" -> 0.0000001|>,
-   			"mBottom" ->                  <|"Max" -> 100.0, "Min" -> 0.0000001|>,
-   			"ThetaHiggs" ->               <|"Max" -> 1.0, "Min" -> 0.0|>,
-   			"mPsiDark" ->                 <|"Max" -> 10^10, "Min" -> 1000.0|>,
-   			"mZprime" ->                  <|"Max" -> 10^10, "Min" -> 1000.0|>,
-   			"mWpm" ->                     <|"Max" -> 600, "Min" -> 1.0|>
+constrList = <|"Higgs" ->                   <|"Max" -> 1000.0, "Min" -> 1.0|>,
+         			 "mTop" ->                    <|"Max" -> 1000.0, "Min" -> 1.0|>,
+         			"mTau" ->                     <|"Max" -> 100.0,  "Min" -> 0.0000001|>,
+         			"mBottom" ->                  <|"Max" -> 100.0,  "Min" -> 0.0000001|>,
+         			"ThetaHiggs" ->               <|"Max" -> 3.0,    "Min" -> 0.0|>,
+         			"mPsiDark" ->                 <|"Max" -> 10^10,  "Min" -> 2000.0|>,
+         			"mZprime" ->                  <|"Max" -> 10^10,  "Min" -> 2000.0|>,
+         			"mWpm" ->                     <|"Max" -> 1000.0, "Min" -> 1.0|>
    |>;
 
 (* Mass Approximations for all the Bessel Equations*)
@@ -1766,14 +1766,28 @@ For[partIdx = 1, partIdx <= Length[partListNames], partIdx++,
   ]
 
  ]
-(*Exporting the Higgs, and neutrino masses*)
-toExp[["Higgs"]] = mH;
-If[Not[overWriteLAXConstr || evalConstr["Higgs", mH] ],
- Print[esc["red"], partName,
-  " mass doesn't obey lax constraints. Aborting.", esc["reset"]];
- Export[jsonNameOut, return0Masses[]];
- Quit[];
- ]
+ (*Exporting the Higgs, and neutrino masses*)
+ If[
+  Not[overWriteLAXConstr || evalConstr["Higgs", mH] ],
+  Print[esc["red"],
+   "Higgs mass doesn't obey lax constraints. Aborting.",
+   esc["reset"]];
+  Export[jsonNameOut, return0Masses[]]
+  Quit[],
+  toExp[["Higgs"]] = mH;
+  ]
+
+ If[Not[overWriteLAXConstr ||
+    evalConstr["ThetaHiggs", \[Theta]Hmin] ],
+  Print[esc["red"],
+   " Higgs Minimum doesn't obey lax constraints. Aborting.",
+   esc["reset"]];
+  Export[jsonNameOut, return0Masses[]]
+  Quit[],
+  toExp[["ThetaHiggs"]] = \[Theta]Hmin;
+  ]
+
+(* Neutrino masses *)
 toExp[["mNeutrino"]] =
   m\[Nu]Type[toExp[["mTop"]], M, mB, c0, zL] * 10^9;
 toExp[["Triviality"]] = 0 ;

@@ -15,14 +15,14 @@ machineZero = 10^(-$MachinePrecision);
 SetSystemOptions[ "MachineRealPrintPrecision" -> Round[$MachinePrecision]];
 
 
-constrList = <|"Higgs" ->                   <|"Max" -> 1000.0, "Min" -> 1.0|>,
-         			 "mTop" ->                    <|"Max" -> 1000.0, "Min" -> 1.0|>,
-         			"mTau" ->                     <|"Max" -> 100.0,  "Min" -> 0.0000001|>,
-         			"mBottom" ->                  <|"Max" -> 100.0,  "Min" -> 0.0000001|>,
+constrList = <|"Higgs" ->                   <|"Max" -> 625.0, "Min" -> 1.0|>,
+         			 "mTop" ->                    <|"Max" -> 870.0, "Min" -> 1.0|>,
+         			"mTau" ->                     <|"Max" -> 50.0,  "Min" -> 0.0000001|>,
+         			"mBottom" ->                  <|"Max" -> 60.0,  "Min" -> 0.0000001|>,
          			"ThetaHiggs" ->               <|"Max" -> 3.0,    "Min" -> 0.0|>,
          			"mPsiDark" ->                 <|"Max" -> 10^10,  "Min" -> 2000.0|>,
          			"mZprime" ->                  <|"Max" -> 10^10,  "Min" -> 2000.0|>,
-         			"mWpm" ->                     <|"Max" -> 1000.0, "Min" -> 1.0|>
+         			"mWpm" ->                     <|"Max" -> 500.0, "Min" -> 1.0|>
    |>;
 
 (* Mass Approximations for all the Bessel Equations*)

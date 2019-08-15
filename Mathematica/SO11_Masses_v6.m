@@ -3,7 +3,7 @@ printStatus = True;
 (*Set to True to find and export the Trilinear and Top Yukawa*)
 addTrilin = False;
 (*Enable to ignore lax constraints*)
-overWriteLAXConstr = False;
+overWriteLAXConstr = True;
 
 Print["Adding trilinear: ", addTrilin];
 Print["Printing Status: ", printStatus];
@@ -1485,7 +1485,6 @@ sin2\[Theta]W = 0.2312;
 M = -10^7;
 mB = 1.145*10^12;
 \[Alpha]EM = 1/127.96;
-fH = fHfunc[k, zL, sin2\[Theta]W, \[Alpha]EM];
 
 
 dataRule=Import[jsonName];
@@ -1502,6 +1501,8 @@ c0Prime="c0Prime"/.dataRule;
 \[Mu]11="Mu11"/.dataRule;
 \[Mu]11Prime="Mu11Prime"/.dataRule;
 
+
+fH = fHfunc[k, zL, sin2\[Theta]W, \[Alpha]EM];
 
 (* k = 89130;zL = 35;c0 = 0.3325;c1 = 0.0;c2 = -0.7;c0Prime = 0.5224;\[Mu]1 = 11.18;\[Mu]2Tilde = 0.7091;
 \[Mu]11 = 0.108;\[Mu]11Prime = 0.108; *)

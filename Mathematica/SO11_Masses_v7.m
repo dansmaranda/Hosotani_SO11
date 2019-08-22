@@ -1,3 +1,4 @@
+(* ClearAll["Global`*"] *)
 (*Set to True to enable status printing*)
 printStatus = False;
 (*Set to True to find and export the Trilinear and Top Yukawa*)
@@ -21,7 +22,7 @@ constrList = <|"Higgs" ->                   <|"Max" -> 625.0, "Min" -> 1.0|>,
          			"mTau" ->                     <|"Max" -> 50.0,  "Min" -> 0.0000001|>,
          			"mBottom" ->                  <|"Max" -> 60.0,  "Min" -> 0.0000001|>,
          			"ThetaHiggs" ->               <|"Max" -> 3.0,    "Min" -> 0.0|>,
-         			"mPsiDark" ->                 <|"Max" -> 10^10,  "Min" -> 2000.0|>,
+         			"mPsiDark" ->                 <|"Max" -> 10^10,  "Min" -> 2400.0|>,
          			"mZprime" ->                  <|"Max" -> 10^10,  "Min" -> 2000.0|>,
          			"mWpm" ->                     <|"Max" -> 500.0, "Min" -> 1.0|>
    |>;
@@ -113,10 +114,10 @@ constrList = <|"Higgs" ->                   <|"Max" -> 625.0, "Min" -> 1.0|>,
 
 
     (**   Auxiliaries **)
-    return0Masses[] := {"Higgs" -> 0.0, "mTop" -> 0.0, "mBottom" -> 0.0,
+    return0Masses[] := <|"Higgs" -> 0.0, "mTop" -> 0.0, "mBottom" -> 0.0,
        "mTau" -> 0.0, "mNeutrino" -> 0.0, "mPsiDark" -> 0.0,
        "ThetaHiggs" -> 0.0, "mWpm" -> 0.0, "mZ0" -> 0.0,
-       "mZprime" -> 0.0, "Triviality" -> 1};
+       "mZprime" -> 0.0, "Triviality" -> 1|>;
     evalConstr[strParticle_, particleMass_] := If[
        constrList[strParticle]["Max"] > particleMass >
         constrList[strParticle]["Min"],
@@ -1559,13 +1560,12 @@ constrList = <|"Higgs" ->                   <|"Max" -> 625.0, "Min" -> 1.0|>,
 
 
 
-
    If[\[Theta]Hmin == 0 ||
      Not[overWriteLAXConstr || evalConstr["ThetaHiggs", \[Theta]Hmin]],
     Print[esc["red"],
-     "Trivial \[Theta]H. Aborting and Returning 0 Masses.", esc["reset"]];
+     "Trivial \[Theta]H. Aborting and Returning 0 Masses.", esc["reset"]]
     return0Masses[]
-    Quit[];
+    (*Quit[]*);
     ,
 
 
@@ -1585,7 +1585,7 @@ constrList = <|"Higgs" ->                   <|"Max" -> 625.0, "Min" -> 1.0|>,
       "Higgs mass doesn't satisfy lax constraints. Aborting",
       esc["reset"]];
      return0Masses[]
-     Quit[];
+     (*Quit[]*);
      ,
 
      If[printStatus == True, printMessage[False, "Higgs Mass"];];
@@ -1667,7 +1667,7 @@ constrList = <|"Higgs" ->                   <|"Max" -> 625.0, "Min" -> 1.0|>,
       Print[esc["red"], "Timeout reached in finding ", partName,
        " solution. Aborting.", esc["reset"]];
       return0Masses[]
-      Quit[];
+      (*Quit[]*);
       ,
 
       Return[\[Lambda]List];
@@ -1763,7 +1763,7 @@ constrList = <|"Higgs" ->                   <|"Max" -> 625.0, "Min" -> 1.0|>,
      Print[esc["red"], partName,
       " mass doesn't obey lax constraints. Aborting.", esc["reset"]];
      return0Masses[]
-     Quit[];
+     (*Quit[]*);
      ]
 
     ]
@@ -1774,7 +1774,7 @@ constrList = <|"Higgs" ->                   <|"Max" -> 625.0, "Min" -> 1.0|>,
       "Higgs mass doesn't obey lax constraints. Aborting.",
       esc["reset"]];
      return0Masses[]
-     Quit[],
+     (*Quit[]*),
      toExp[["Higgs"]] = mH;
      ]
 
@@ -1784,7 +1784,7 @@ constrList = <|"Higgs" ->                   <|"Max" -> 625.0, "Min" -> 1.0|>,
       " Higgs Minimum doesn't obey lax constraints. Aborting.",
       esc["reset"]];
      return0Masses[]
-     Quit[],
+     (*Quit[]*),
      toExp[["ThetaHiggs"]] = \[Theta]Hmin;
      ]
 

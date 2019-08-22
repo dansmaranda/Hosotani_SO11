@@ -3,7 +3,7 @@ printStatus = True;
 (*Set to True to find and export the Trilinear and Top Yukawa*)
 addTrilin = False;
 (*Enable to ignore lax constraints*)
-overWriteLAXConstr = True;
+overWriteLAXConstr = False;
 
 Print["Adding trilinear: ", addTrilin];
 Print["Printing Status: ", printStatus];
@@ -15,14 +15,16 @@ machineZero = 10^(-$MachinePrecision);
 SetSystemOptions[ "MachineRealPrintPrecision" -> Round[$MachinePrecision]];
 
 
-constrList = <|"Higgs" ->                   <|"Max" -> 625.0, "Min" -> 1.0|>,
-         			 "mTop" ->                    <|"Max" -> 870.0, "Min" -> 1.0|>,
-         			"mTau" ->                     <|"Max" -> 50.0,  "Min" -> 0.0000001|>,
-         			"mBottom" ->                  <|"Max" -> 60.0,  "Min" -> 0.0000001|>,
+constrList = <|"Higgs" ->                   <|"Max" -> 750.0, "Min" -> 1.0|>,
+         			 "mTop" ->                    <|"Max" -> 1050.0, "Min" -> 1.0|>,
+         			"mTau" ->                     <|"Max" -> 70.0,  "Min" -> 0.0000001|>,
+         			"mBottom" ->                  <|"Max" -> 90.0,  "Min" -> 0.0000001|>,
          			"ThetaHiggs" ->               <|"Max" -> 3.0,    "Min" -> 0.0|>,
-         			"mPsiDark" ->                 <|"Max" -> 10^10,  "Min" -> 2000.0|>,
-         			"mZprime" ->                  <|"Max" -> 10^10,  "Min" -> 2000.0|>,
-         			"mWpm" ->                     <|"Max" -> 500.0, "Min" -> 1.0|>
+         			"mZprime" ->                  <|"Max" -> 10^10,  "Min" -> 2420.0|>,
+         			"mWpm" ->                     <|"Max" -> 600.0,  "Min" -> 1.0|>,
+              "mTauTow" ->                  <|"Max" -> 10^10,  "Min" -> 560.0|>,
+              "mPsiDark" ->                 <|"Max" -> 10^10,  "Min" -> 690.0|>,
+              "mBottomTow" ->               <|"Max" -> 10^10,  "Min" -> 690.0|>
    |>;
 
 (* Mass Approximations for all the Bessel Equations*)
@@ -1502,14 +1504,14 @@ c0Prime="c0Prime"/.dataRule;
 \[Mu]11Prime="Mu11Prime"/.dataRule;
 
 
-fH = fHfunc[k, zL, sin2\[Theta]W, \[Alpha]EM];
 
 (* k = 89130;zL = 35;c0 = 0.3325;c1 = 0.0;c2 = -0.7;c0Prime = 0.5224;\[Mu]1 = 11.18;\[Mu]2Tilde = 0.7091;
 \[Mu]11 = 0.108;\[Mu]11Prime = 0.108; *)
 
-(*k= 266559.06;zL =35;c0 =0.3289;c1 =0.0;c2 =-0.7;c0Prime =0.5960;\[Mu]11=0.1730;\[Mu]11Prime=0.1730;
-\[Mu]2Tilde =1.138;\[Mu]1 =Sqrt[(1+2 c1)/(1 + 2 c0)]*zL^(c0-c1) * (172.44/4.18)*\[Mu]11;*)
+(* k= 266559.06;zL =35;c0 =0.3289;c1 =0.0;c2 =-0.7;c0Prime =0.5960;\[Mu]11=0.1730;\[Mu]11Prime=0.1730;
+\[Mu]2Tilde =1.138;\[Mu]1 =Sqrt[(1+2 c1)/(1 + 2 c0)]*zL^(c0-c1) * (172.44/4.18)*\[Mu]11; *)
 
+fH = fHfunc[k, zL, sin2\[Theta]W, \[Alpha]EM];
 
 mKK5 = \[Pi] k /(zL - 1);
 replacementRules = {z -> 1, c0var -> c0,
@@ -1737,7 +1739,10 @@ exportDict = <|"mWpm" -> <|"Soln" -> "mWpm", "Idx" -> 1|>,
    			"mZprime" -> <|"Soln" -> "mZ0", "Idx" -> 2|>,
    			"mPsiDark" -> <|"Soln" -> "mPsiDark", "Idx" -> 1|>,
    			"mTau" -> <|"Soln" -> "mTau", "Idx" -> 1|>,
-   			"mBottom" -> <|"Soln" -> "mBottom", "Idx" -> 1|>
+   			"mBottom" -> <|"Soln" -> "mBottom", "Idx" -> 1|>,
+        (************ Tau and Bottom 2nd soln ***********)
+        "mTauTow" -> <|"Soln" -> "mTau", "Idx" -> 2|>,
+   			"mBottomTow" -> <|"Soln" -> "mBottom", "Idx" -> 2|>
    |>;
 toExp = <||>;
 
@@ -1759,11 +1764,13 @@ For[partIdx = 1, partIdx <= Length[partListNames], partIdx++,
  partMass = \[Lambda]*k /. solDict[[partSolnName]][[partSolnIdx]];
  toExp[[partName]] = partMass;
 
+ (* Print["Checking ", partName, " mass of ", partMass] *)
  If[Not[overWriteLAXConstr || evalConstr[partName, partMass] ],
   Print[esc["red"], partName,
    " mass doesn't obey lax constraints. Aborting.", esc["reset"]];
   Export[jsonNameOut, return0Masses[]];
-  Quit[];
+  Quit[];,
+  Print[esc["green"], "✔ ", esc["reset"],  partName, " passed constraint ",  constrList[partName], " with a mass of ", partMass, "\n"];
   ]
 
  ]

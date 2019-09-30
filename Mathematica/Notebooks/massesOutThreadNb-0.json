@@ -10,5 +10,7 @@
 	"Higgs":1.2605870077893013e2,
 	"ThetaHiggs":5.05635621484375e-2,
 	"mNeutrino":0.1000604090679378,
-	"Triviality":0
+	"Triviality":0,
+	"HiggsTrilin":2.9353727598570188e1,
+	"TopYukawa":0.9900622314597352
 }

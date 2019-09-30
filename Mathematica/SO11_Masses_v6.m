@@ -1,9 +1,9 @@
 (*Set to True to enable status printing*)
 printStatus = True;
 (*Set to True to find and export the Trilinear and Top Yukawa*)
-addTrilin = False;
+addTrilin = True;
 (*Enable to ignore lax constraints*)
-overWriteLAXConstr = False;
+overWriteLAXConstr = True;
 
 Print["Adding trilinear: ", addTrilin];
 Print["Printing Status: ", printStatus];
@@ -1801,9 +1801,10 @@ toExp[["mNeutrino"]] =
 toExp[["Triviality"]] = 0 ;
 
 (*Adding the trilinear and yukawa couplings*)
+(* Factor of 1/6 included in the Trilinear*)
 If[addTrilin == True,
   \[Tau]Eff =
-   1/fH^3 NIntegrate[
+   0.16667/fH^3 NIntegrate[
      HiggsDeriv3 /. {\[Theta]H -> \[Theta]HLocal /. \[Theta]HRule}, \
 {q, 0, \[Infinity]}];
   yTopSM = Sqrt[2]*172.44/246;

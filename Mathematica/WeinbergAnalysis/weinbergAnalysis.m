@@ -398,7 +398,7 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
                   (* Print["Adding Fermion"]; *)
                   (*All the fremions are chiral*)
 
-                  gammaFactor = 4;
+                  gammaFactor = 8;
                   chargeFactor = U1EMDict[[ "QEM"]];
                   Return[
                    currBetaCoef +
@@ -533,7 +533,7 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
 
                      If[dofToAdd == "Fermion",
                       (*All the fremions are chiral*)
-                      gammaFactor = 4;
+                      gammaFactor = 8;
                       toAdd =
                        colorFactor * gammaFactor *
                         chargeFactor *(isospinFactor -
@@ -851,8 +851,8 @@ For[iGauge = 1, iGauge <= Length[gaugeGroupList], iGauge++,
 (************************ NEED TO CHECK INITIAL \[Beta] FUNCTION \
 VALUES FOR \[Alpha]EM Sin \[Theta]W ***********************)
 
-initBetaEM = 10;
-initBetaSin2ThW = -2;
+initBetaEM = 22;
+initBetaSin2ThW = -1.0864;
 
 
 (************************************** RGE SOLVING **********************************************)
@@ -888,7 +888,7 @@ If[makePlots == True,
                    ];
 
   pltgEM = plotRGEsol[{4 \[Pi] /   solvedRGE\[Alpha]EM^2}, orderedTowerDict, \[Mu], 80 , {"\\frac{4 \
-                    \\pi}{g^2_{EM}}"} , {127, 128}, False, ColorData[97, "ColorList"][[7]]
+                    \\pi}{g^2_{EM}}"} , Automatic, False, ColorData[97, "ColorList"][[7]]
                    ];
 
   plt2L = plotRGEsol[ sin2WSolved * (4 \[Pi] /   solvedRGE\[Alpha]EM^2), orderedTowerDict, \[Mu], 80 , {"\\frac{4 \
@@ -900,7 +900,7 @@ If[makePlots == True,
   pltGSM = plotRGEsol[{3/5 (1 - sin2WSolved) (4 \[Pi] / solvedRGE\[Alpha]EM^2),
                       sin2WSolved * (4 \[Pi] / solvedRGE\[Alpha]EM^2),
                       4 \[Pi] /  solvedRGEdict[["SU3C"]]^2}, orderedTowerDict, \[Mu], 80 , {"\\frac{4 \
-                              \\pi}{g^2_{1Y}}", "\\frac{4 \\pi}{g^2_{2L}}", "\\frac{4 \\pi}{g^2_{3C}}" } , {5, 62}
+                              \\pi}{g^2_{1Y}}", "\\frac{4 \\pi}{g^2_{2L}}", "\\frac{4 \\pi}{g^2_{3C}}" } , Automatic
                    ];
 
 
@@ -1523,5 +1523,5 @@ sin2ThWEvolved = ((\[Alpha]2LWeinb2 \[Alpha]4CWeinb2 +
      CassDiff)/(\[Alpha]2RWeinb2 \[Alpha]4CWeinb2))^(-1);
 Print["@MKK5, have evolved value of sin \[Theta]W :", sin2ThWEvolved];
 Print["-------------------------------------"];
-Print[N[mKK5], "  ", \[CapitalLambda]MaxPlot]
+(* Print[N[mKK5], "  ", \[CapitalLambda]MaxPlot] *)
 Export[jsonNameOut, <|"sin2ThW" -> sin2ThWEvolved|> ];

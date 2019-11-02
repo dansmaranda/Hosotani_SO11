@@ -2,8 +2,15 @@
 << MaTeX`
 (* Set up the machine 0*)
 machineZero = 10^(-$MachinePrecision);
-(*Number of Families*)
+(*Number of Families, and bound where we consider non-perturbative behaviour of the couplings*)
 nbOfFamilies = 1;
+(* nonPertBound = 1; *)
+timeOutSolve = 30;
+
+(*Initial beta coefficients for the QED & the weinberg Angle RGE running*)
+initBetaEM = 22;
+initBetaSin2ThW = -1.0864;
+
 (*plotHandle*)
 makePlots = False;
 
@@ -12,7 +19,6 @@ SetSystemOptions[
 Clear[zL, k, \[Mu]11, \[Mu]1, \[Mu]11Prime, \[Mu]2Tilde, c0Prime, c0,
   c1, c2, \[Theta]HRule, \[Theta]Hmin, sin2\[Theta]W, \[Xi]Gauge, M,
   mB, \[Alpha]EM, fH];
-timeOutSolve = 15;
 
 
 (* Print["-------------------------"] *)
@@ -848,12 +854,6 @@ For[iGauge = 1, iGauge <= Length[gaugeGroupList], iGauge++,
  AppendTo[solvedRGEList, solvedRGE];
 
  ]
-(************************ NEED TO CHECK INITIAL \[Beta] FUNCTION \
-VALUES FOR \[Alpha]EM Sin \[Theta]W ***********************)
-
-initBetaEM = 22;
-initBetaSin2ThW = -1.0864;
-
 
 (************************************** RGE SOLVING **********************************************)
 rgeSystem =  makePiecewiseRGE[classDict, \[Alpha]1EM, initBetaEM, "U1EM",  \[Mu], k];
@@ -1230,7 +1230,7 @@ NFor\[Xi][\[Mu]Var_, \[Xi]Type_, M\[Xi]_, sign1_, sign2_] := Module[
            15, \[CapitalLambda]Cut];
 
         (*Fermion Contributions*)
-        nbOfQuarkGens = 3;
+        nbOfQuarkGens = nbOfFamilies;
 
         SU4FermionCorr =
          nbOfQuarkGens*(makeDeltaForSUNFermion[SUN, +1, +1, \[Mu]Val, c0, 4,
@@ -1289,7 +1289,7 @@ NFor\[Xi][\[Mu]Var_, \[Xi]Type_, M\[Xi]_, sign1_, sign2_] := Module[
             3, \[CapitalLambda]Cut] ;
 
         (*Fermion Contributions*)
-        nbOfQuarkGens = 3;
+        nbOfQuarkGens = nbOfFamilies;
         SU2LFermionCorr =
          nbOfQuarkGens*(makeDeltaForSUNFermion[SUN, +1, +1, \[Mu]Val, c0, 2,
                L5, "FermionL"] +
@@ -1342,7 +1342,7 @@ NFor\[Xi][\[Mu]Var_, \[Xi]Type_, M\[Xi]_, sign1_, sign2_] := Module[
             3, \[CapitalLambda]Cut] ;
 
         (*Fermion Contributions*)
-        nbOfQuarkGens = 3;
+        nbOfQuarkGens = nbOfFamilies;
         SU2RFermionCorr =
          nbOfQuarkGens*(makeDeltaForSUNFermion[SUN, +1, +1, \[Mu]Val, c0, 2,
                L5, "FermionL"] +
@@ -1415,15 +1415,71 @@ FindRoot[1/gSU4^2 -
 
 
 Print["Functional route \[CapitalLambda]Max : ", \
-\[CapitalLambda]MaxFunctional ,
+\[CapitalLambda]MaxFunctional];
+(* ,
 	"\nApproximation route for \[CapitalLambda]Max : ", \
-\[CapitalLambda]MaxApprox];
+\[CapitalLambda]MaxApprox]; *)
 
 
 texStyle = {FontFamily -> "Latin Modern Roman", FontSize -> 13};
-\[CapitalLambda]MaxPlot =
-Min[\[CapitalLambda]MaxFunctional, \[CapitalLambda]MaxFunctional2L, \
-\[CapitalLambda]MaxFunctional2R];
+
+(**** Lambda Max Plot****)
+(* \[CapitalLambda]Sol1 =
+  TimeConstrained[
+   Quiet[FindRoot[
+     4 \[Pi] (CSU4  +
+           SU4Corr[\[CapitalLambda]MaxSol, \
+\[CapitalLambda]MaxFunctional, L5, c0, c0Prime, c1, c2] /. CSU4Sol) - nonPertBound ==
+      0, {\[CapitalLambda]MaxSol, \[CapitalLambda]MaxFunctional}]],
+   timeOutSolve];
+Print["SU4 LambdaMax:", \[CapitalLambda]Sol1];
+
+
+\[CapitalLambda]Sol2 =
+  TimeConstrained[
+   Quiet[FindRoot[
+     4 \[Pi] (CSU2L  +
+           SU2LCorr[\[CapitalLambda]MaxSol, \
+\[CapitalLambda]MaxFunctional2L, L5, c0, c0Prime, c1, c2] /.
+          CSU2LSol) - nonPertBound ==
+      0, {\[CapitalLambda]MaxSol, \[CapitalLambda]MaxFunctional}]],
+   timeOutSolve];
+Print["SU2L LambdaMax:", \[CapitalLambda]Sol2];
+
+\[CapitalLambda]Sol3 = TimeConstrained[
+   Quiet[FindRoot[
+     4 \[Pi] (CSU2R  +
+           SU2RCorr[\[CapitalLambda]MaxSol, \
+\[CapitalLambda]MaxFunctional2R, L5, c0, c0Prime, c1, c2] /.
+          CSU2RSol) - nonPertBound ==
+      0, {\[CapitalLambda]MaxSol, \[CapitalLambda]MaxFunctional}]],
+   timeOutSolve];
+Print["SU2R LambdaMax:", \[CapitalLambda]Sol3];
+
+\[Lambda]sol1 = \[CapitalLambda]MaxSol /. \[CapitalLambda]Sol1;
+\[Lambda]sol2 = \[CapitalLambda]MaxSol /. \[CapitalLambda]Sol2;
+\[Lambda]sol3 = \[CapitalLambda]MaxSol /. \[CapitalLambda]Sol3;
+
+\[Lambda]Sols = {\[Lambda]sol1, \[Lambda]sol2, \[Lambda]sol3};
+\[Lambda]SolsFinal = {};
+For[i = 1, i <= Length[\[Lambda]Sols], i++,
+ If [ TrueQ[Head@\[Lambda]Sols[[i]] == Real],
+  AppendTo[\[Lambda]SolsFinal, \[Lambda]Sols[[i]]];
+  ]
+ ]
+
+If[TrueQ[Length[\[Lambda]SolsFinal] > 0],
+ \[CapitalLambda]MaxPlot = Min[\[Lambda]SolsFinal];,
+ \[CapitalLambda]MaxPlot =
+   Min[\[CapitalLambda]MaxFunctional, \
+\[CapitalLambda]MaxFunctional2L, \[CapitalLambda]MaxFunctional2R];
+ ] *)
+
+
+ \[CapitalLambda]MaxPlot =
+   Min[\[CapitalLambda]MaxFunctional, \[CapitalLambda]MaxFunctional2L, \
+ \[CapitalLambda]MaxFunctional2R];
+ (************** Lambda Max ends here.***************)
 
 If [ makePlots == True,
 Print["--> Plotting 5D  RGES"];
@@ -1490,10 +1546,11 @@ sin2ThWEvolved = ((\[Alpha]2LWeinb \[Alpha]4CWeinb +
 \[Alpha]4CWeinb -
     5/3 \[Alpha]2LWeinb \[Alpha]2RWeinb \[Alpha]4CWeinb*
      CassDiff)/(\[Alpha]2RWeinb \[Alpha]4CWeinb))^(-1);
-Print["@\[CapitalLambda]Max, have evolved value of sin \[Theta]W :", sin2ThWEvolved];
+Print["@\[CapitalLambda]Max:",\[CapitalLambda]MaxPlot ,",  have evolved value of sin \[Theta]W :", sin2ThWEvolved];
 Print["-------------------------------------"];
 
-Export[jsonNameOut, <|"sin2ThW" -> sin2ThWEvolved|>];
+(* EXPORT HERE!!**)
+Export[jsonNameOut, <|"sin2ThW" -> sin2ThWEvolved, "LambdaMax" -> \[CapitalLambda]MaxPlot |>];
 
 
 
@@ -1516,12 +1573,12 @@ Print["-------------------------------------"]; *)
 \[Alpha]4CWeinb2 = 1/ \[Alpha]4CinvatMkk5;
 CassDiff = 1/(12 \[Pi]) (3/5*2 + 2/5* 4);
 
-sin2ThWEvolved = ((\[Alpha]2LWeinb2 \[Alpha]4CWeinb2 +
+sin2ThWEvolved2 = ((\[Alpha]2LWeinb2 \[Alpha]4CWeinb2 +
     2/3 \[Alpha]2LWeinb2 \[Alpha]2RWeinb2 + \[Alpha]2RWeinb2 \
 \[Alpha]4CWeinb2 -
     5/3 \[Alpha]2LWeinb2 \[Alpha]2RWeinb2 \[Alpha]4CWeinb2 *
      CassDiff)/(\[Alpha]2RWeinb2 \[Alpha]4CWeinb2))^(-1);
-Print["@MKK5, have evolved value of sin \[Theta]W :", sin2ThWEvolved];
+Print["@MKK5, have evolved value of sin \[Theta]W :", sin2ThWEvolved2];
 Print["-------------------------------------"];
 (* Print[N[mKK5], "  ", \[CapitalLambda]MaxPlot] *)
-Export[jsonNameOut, <|"sin2ThW" -> sin2ThWEvolved|> ];
+(* Export[jsonNameOut, <|"sin2ThW" -> sin2ThWEvolved|> ]; *)

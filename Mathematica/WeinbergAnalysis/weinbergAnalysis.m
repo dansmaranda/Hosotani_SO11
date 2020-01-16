@@ -3,7 +3,7 @@
 (* Set up the machine 0*)
 machineZero = 10^(-$MachinePrecision);
 (*Number of Families, and bound where we consider non-perturbative behaviour of the couplings*)
-nbOfFamilies = 1;
+nbOfFamilies = 3;
 (* nonPertBound = 1; *)
 timeOutSolve = 30;
 
@@ -872,6 +872,11 @@ sin2WSolved =  getWeinbergSolvedRGE[solvedRGE\[Alpha]EM, classDict, sin2\[Theta]
 
 (* Print["Found the boundary conditions."] *)
 Print["-------------------------------------"];
+Print["At MKK5, (\[Alpha]1Y)^-1 :" ,\[Alpha]1YatMKK5inv];
+Print["At MKK5, (\[Alpha]2L)^-1 :" ,\[Alpha]2LatMKK5inv];
+Print["At MKK5, (\[Alpha]3C)^-1 :" ,\[Alpha]3CatMKK5inv];
+Print["-------------------------------------"];
+Print["-------------------------------------"];
 Print["At MKK5, (\[Alpha]4C)^-1 :" ,\[Alpha]4inv];
 Print["At MKK5, (\[Alpha]2L)^-1 :" ,\[Alpha]2Linv];
 Print["At MKK5, (\[Alpha]2R)^-1 :" ,\[Alpha]2Rinv];
@@ -1549,8 +1554,6 @@ sin2ThWEvolved = ((\[Alpha]2LWeinb \[Alpha]4CWeinb +
 Print["@\[CapitalLambda]Max:",\[CapitalLambda]MaxPlot ,",  have evolved value of sin \[Theta]W :", sin2ThWEvolved];
 Print["-------------------------------------"];
 
-(* EXPORT HERE!!**)
-Export[jsonNameOut, <|"sin2ThW" -> sin2ThWEvolved, "LambdaMax" -> \[CapitalLambda]MaxPlot |>];
 
 
 
@@ -1580,5 +1583,21 @@ sin2ThWEvolved2 = ((\[Alpha]2LWeinb2 \[Alpha]4CWeinb2 +
      CassDiff)/(\[Alpha]2RWeinb2 \[Alpha]4CWeinb2))^(-1);
 Print["@MKK5, have evolved value of sin \[Theta]W :", sin2ThWEvolved2];
 Print["-------------------------------------"];
+
+
+
+(* EXPORT HERE!!**)
+(* Print["At MKK5, (\[Alpha]1Y)^-1 :" ,\[Alpha]1YatMKK5inv];
+Print["At MKK5, (\[Alpha]2L)^-1 :" ,\[Alpha]2LatMKK5inv];
+Print["At MKK5, (\[Alpha]3C)^-1 :" ,\[Alpha]3CatMKK5inv];
+Print["At \[CapitalLambda]Max (\[Alpha]4C)^-1 : ", \[Alpha]4CinvatLambda ];
+Print["At \[CapitalLambda]Max (\[Alpha]2L)^-1 : ", \[Alpha]2LinvatLambda ];
+Print["At \[CapitalLambda]Max (\[Alpha]2R)^-1 : ", \[Alpha]2RinvatLambda ];
+Print["@MKK5, have evolved value of sin \[Theta]W :", sin2ThWEvolved2];
+ *)
+Export[jsonNameOut, <|"sin2ThW-Lambda" -> sin2ThWEvolved, "LambdaMax" -> \[CapitalLambda]MaxPlot,
+                      "sin2ThW-MKK5" -> sin2ThWEvolved2, "a1Yinv-MKK5" -> \[Alpha]1YatMKK5inv, "a2Linv-MKK5" -> \[Alpha]2LatMKK5inv, "a3Cinv-MKK5" -> \[Alpha]3CatMKK5inv, "a4Cinv-Lambda" -> \[Alpha]4CinvatLambda, "a2Linv-Lambda" -> \[Alpha]2LinvatLambda, "a2Rinv-Lambda" -> \[Alpha]2RinvatLambda |>];
+
+
 (* Print[N[mKK5], "  ", \[CapitalLambda]MaxPlot] *)
 (* Export[jsonNameOut, <|"sin2ThW" -> sin2ThWEvolved|> ]; *)

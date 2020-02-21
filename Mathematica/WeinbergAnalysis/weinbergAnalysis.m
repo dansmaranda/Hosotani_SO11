@@ -1,5 +1,5 @@
 (* Use MaTeX to generate TeX axis for the plots *)
-<< MaTeX`
+(* << MaTeX` *)
 (* Set up the machine 0*)
 machineZero = 10^(-$MachinePrecision);
 (*Number of Families, and bound where we consider non-perturbative behaviour of the couplings*)
@@ -37,7 +37,7 @@ mB = 1.145*10^12;
 \[Alpha]EM = 1/127.96;
 
 dataRule = Import[jsonName];
-k = "k" /. dataRule;
+(* k = "k" /. dataRule;
 zL = "zL" /. dataRule;
 c0 = "c0" /. dataRule;
 c1 = "c1" /. dataRule;
@@ -47,10 +47,10 @@ c0Prime = "c0Prime" /. dataRule;
 \[Mu]2Tilde = "Mu2Tilde" /. dataRule;
 \[Mu]11 = "Mu11" /. dataRule;
 \[Mu]11Prime = "Mu11Prime" /. dataRule;
-\[Theta]Hmin = "ThetaHiggs"/. dataRule;
+\[Theta]Hmin = "ThetaHiggs"/. dataRule; *)
 
 
-(* k = 89130;
+k = 89130;
 zL = 35;
 c0 = 0.3325;
 c1 = 0.0;
@@ -61,7 +61,7 @@ c0Prime = 0.5224;
 \[Mu]1 = 11.18;
 \[Mu]2Tilde = 0.7091;
 \[Mu]11 = 0.108;
-\[Mu]11Prime = 0.108; *)
+\[Mu]11Prime = 0.108;
 
 mKK5 = \[Pi] k /(zL - 1);
 L5 = N[Log[zL]/(k)];
@@ -293,7 +293,7 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
 
 
              dRDict = <|
-               "1" -> <|casKey -> 0 ,  dynKey -> 1/2,
+               "1" -> <|casKey -> 0 ,  dynKey -> 0,
                  descKey -> "Scalar Irrep (0000...0000)"|> |>;
 
              If[n >= 2,
@@ -361,6 +361,8 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
              addToBetaCoeff[currBetaCoef_,  dofToAdd_, SUN_, SUNcharge_] := Block[
                 {DynkinIndex , toAddBetaCoeff, QuadraticCasimir, irrepDictSUN,
                  Ta\[Psi], strippedSUN, C2SUN},
+                 (* Printing here. *)
+                 Print["SU3C, adding ", dofToAdd];
 
                 If [SUN != "U1EM",
                  strippedSUN =
@@ -382,11 +384,15 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
 
                  If[dofToAdd == "Fermion",
                   toAddBetaCoeff = 4/3 * 1/2*DynkinIndex*nbOfFamilies;
+                  (* Printing here. *)
+                  Print["SU3C:", currBetaCoef + toAddBetaCoeff];
                   Return[currBetaCoef + toAddBetaCoeff],
 
 
                   If[ dofToAdd == "Boson",
                     toAddBetaCoeff = -(11/3) * QuadraticCasimir ;
+                    (* Printing here. *)
+                    Print["SU3C:", currBetaCoef + toAddBetaCoeff];
                     Return[currBetaCoef + toAddBetaCoeff]];]
 
 
@@ -406,6 +412,11 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
 
                   gammaFactor = 8;
                   chargeFactor = U1EMDict[[ "QEM"]];
+
+                  (* Printing here. *)
+                  Print["U1EM:",
+                   currBetaCoef +
+                    colorFactor * gammaFactor * chargeFactor*nbOfFamilies];
                   Return[
                    currBetaCoef +
                     colorFactor * gammaFactor * chargeFactor*nbOfFamilies];
@@ -418,6 +429,9 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
 
                     gammaFactor = -22;
                     chargeFactor = U1EMDict[[ "QEM"]];
+                    (* Printing here. *)
+                    Print["U1EM:", currBetaCoef +
+                      colorFactor * gammaFactor * chargeFactor];
                     Return[
                      currBetaCoef + colorFactor * gammaFactor * chargeFactor]
                     ];
@@ -495,7 +509,8 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
                       addToBetaCoeffU1EM[startBetaCoeffTemp, matterType, U1EMDict,
                        partName , classDict[[partName]][["GSMCharges"]][["SU3C"]] ];
                      ,
-
+                     (*Printing here*)
+                     Print[partName, "  ", SUNcharge, "  ",SUN];
                      newBetaCoeff =
                        addToBetaCoeff[startBetaCoeffTemp, matterType , SUN,
                         SUNcharge];
@@ -557,8 +572,8 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
                       ];
 
 
-
-
+                     (* Printing here. *)
+                     Print["sin2ThW:",currBetaCoef + toAdd];
                      Return[currBetaCoef + toAdd];
 
                      ];
@@ -860,7 +875,20 @@ rgeSystem =  makePiecewiseRGE[classDict, \[Alpha]1EM, initBetaEM, "U1EM",  \[Mu]
 solvedRGE\[Alpha]EM =  solvePieceWiseRGE[rgeSystem,   Sqrt[4 \[Pi] /127.91] , \[Alpha]1EM, \[Mu]];
 sin2WSolved =  getWeinbergSolvedRGE[solvedRGE\[Alpha]EM, classDict, sin2\[Theta]W, initBetaSin2ThW, \[Mu]];
 
+(************************************************************************************)
 
+\[Alpha]1YatMZinv = 3/5 (1 - sin2WSolved) (4 \[Pi] / solvedRGE\[Alpha]EM^2) /. {\[Mu] ->     MZ};
+\[Alpha]2LatMZinv = sin2WSolved * (4 \[Pi] / solvedRGE\[Alpha]EM^2) /. {\[Mu] -> MZ};
+\[Alpha]3CatMZinv = 4 \[Pi] / solvedRGEdict[["SU3C"]]^2 /. {\[Mu] -> MZ};
+
+Print["-------------------------------------"];
+Print["At MZ, (\[Alpha]1Y)^-1 :" ,\[Alpha]1YatMZinv];
+Print["At MZ, (\[Alpha]2L)^-1 :" ,\[Alpha]2LatMZinv];
+Print["At MZ, (\[Alpha]3C)^-1 :" ,\[Alpha]3CatMZinv];
+Print["-------------------------------------"];
+
+
+(**************************************1**********************************************)
 
 \[Alpha]1YatMKK5inv = 3/5 (1 - sin2WSolved) (4 \[Pi] / solvedRGE\[Alpha]EM^2) /. {\[Mu] ->     mKK5};
 \[Alpha]2LatMKK5inv = sin2WSolved * (4 \[Pi] / solvedRGE\[Alpha]EM^2) /. {\[Mu] -> mKK5};

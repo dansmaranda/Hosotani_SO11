@@ -3,7 +3,7 @@
 (* Set up the machine 0*)
 machineZero = 10^(-$MachinePrecision);
 (*Number of Families, and bound where we consider non-perturbative behaviour of the couplings*)
-nbOfFamilies = 3;
+nbOfFamilies = 1;
 (* nonPertBound = 1; *)
 timeOutSolve = 30;
 
@@ -37,7 +37,7 @@ mB = 1.145*10^12;
 \[Alpha]EM = 1/127.96;
 
 dataRule = Import[jsonName];
-(* k = "k" /. dataRule;
+k = "k" /. dataRule;
 zL = "zL" /. dataRule;
 c0 = "c0" /. dataRule;
 c1 = "c1" /. dataRule;
@@ -47,10 +47,10 @@ c0Prime = "c0Prime" /. dataRule;
 \[Mu]2Tilde = "Mu2Tilde" /. dataRule;
 \[Mu]11 = "Mu11" /. dataRule;
 \[Mu]11Prime = "Mu11Prime" /. dataRule;
-\[Theta]Hmin = "ThetaHiggs"/. dataRule; *)
+\[Theta]Hmin = "ThetaHiggs"/. dataRule;
 
 
-k = 89130;
+(* k = 89130;
 zL = 35;
 c0 = 0.3325;
 c1 = 0.0;
@@ -64,7 +64,7 @@ c0Prime = 0.5224;
 \[Mu]11Prime = 0.108;
 
 mKK5 = \[Pi] k /(zL - 1);
-L5 = N[Log[zL]/(k)];
+L5 = N[Log[zL]/(k)]; *)
 
 (* Print["Loaded in parameters, starting analysis."] *)
 Print["------------ Loaded Params; Starting 4D Analysis ---------------"]
@@ -411,15 +411,15 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
                   (*All the fremions are chiral*)
 
                   gammaFactor = 8;
-                  chargeFactor = U1EMDict[[ "QEM"]];
+                  chargeFactor = U1EMDict[["QEM"]]^2;
 
                   (* Printing here. *)
-                  (* Print["U1EM:",
+                  (* Print[chargeFactor, "U1EM: ", dofName, "  ",
                    currBetaCoef +
-                    colorFactor * gammaFactor * chargeFactor*nbOfFamilies]; *)
+                    colorFactor * gammaFactor * chargeFactor * nbOfFamilies]; *)
                   Return[
                    currBetaCoef +
-                    colorFactor * gammaFactor * chargeFactor*nbOfFamilies];
+                    colorFactor * gammaFactor * chargeFactor * nbOfFamilies];
 
                   ,
 
@@ -428,9 +428,9 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
                     (* Print["Adding Boson"]; *)
 
                     gammaFactor = -22;
-                    chargeFactor = U1EMDict[[ "QEM"]];
+                    chargeFactor = U1EMDict[[ "QEM"]]^2;
                     (* Printing here. *)
-                    (* Print["U1EM:", currBetaCoef +
+                    (* Print["U1EM:", dofName, "  ",currBetaCoef +
                       colorFactor * gammaFactor * chargeFactor]; *)
                     Return[
                      currBetaCoef + colorFactor * gammaFactor * chargeFactor]

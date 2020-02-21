@@ -362,7 +362,7 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
                 {DynkinIndex , toAddBetaCoeff, QuadraticCasimir, irrepDictSUN,
                  Ta\[Psi], strippedSUN, C2SUN},
                  (* Printing here. *)
-                 Print["SU3C, adding ", dofToAdd];
+                 (* Print["SU3C, adding ", dofToAdd]; *)
 
                 If [SUN != "U1EM",
                  strippedSUN =
@@ -385,14 +385,14 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
                  If[dofToAdd == "Fermion",
                   toAddBetaCoeff = 4/3 * 1/2*DynkinIndex*nbOfFamilies;
                   (* Printing here. *)
-                  Print["SU3C:", currBetaCoef + toAddBetaCoeff];
+                  (* Print["SU3C:", currBetaCoef + toAddBetaCoeff]; *)
                   Return[currBetaCoef + toAddBetaCoeff],
 
 
                   If[ dofToAdd == "Boson",
                     toAddBetaCoeff = -(11/3) * QuadraticCasimir ;
                     (* Printing here. *)
-                    Print["SU3C:", currBetaCoef + toAddBetaCoeff];
+                    (* Print["SU3C:", currBetaCoef + toAddBetaCoeff]; *)
                     Return[currBetaCoef + toAddBetaCoeff]];]
 
 
@@ -414,9 +414,9 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
                   chargeFactor = U1EMDict[[ "QEM"]];
 
                   (* Printing here. *)
-                  Print["U1EM:",
+                  (* Print["U1EM:",
                    currBetaCoef +
-                    colorFactor * gammaFactor * chargeFactor*nbOfFamilies];
+                    colorFactor * gammaFactor * chargeFactor*nbOfFamilies]; *)
                   Return[
                    currBetaCoef +
                     colorFactor * gammaFactor * chargeFactor*nbOfFamilies];
@@ -430,8 +430,8 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
                     gammaFactor = -22;
                     chargeFactor = U1EMDict[[ "QEM"]];
                     (* Printing here. *)
-                    Print["U1EM:", currBetaCoef +
-                      colorFactor * gammaFactor * chargeFactor];
+                    (* Print["U1EM:", currBetaCoef +
+                      colorFactor * gammaFactor * chargeFactor]; *)
                     Return[
                      currBetaCoef + colorFactor * gammaFactor * chargeFactor]
                     ];
@@ -510,7 +510,7 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
                        partName , classDict[[partName]][["GSMCharges"]][["SU3C"]] ];
                      ,
                      (*Printing here*)
-                     Print[partName, "  ", SUNcharge, "  ",SUN];
+                     (* Print[partName, "  ", SUNcharge, "  ",SUN]; *)
                      newBetaCoeff =
                        addToBetaCoeff[startBetaCoeffTemp, matterType , SUN,
                         SUNcharge];
@@ -573,7 +573,7 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
 
 
                      (* Printing here. *)
-                     Print["sin2ThW:",currBetaCoef + toAdd];
+                     (* Print["sin2ThW:",currBetaCoef + toAdd]; *)
                      Return[currBetaCoef + toAdd];
 
                      ];

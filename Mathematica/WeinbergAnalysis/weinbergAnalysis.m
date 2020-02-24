@@ -61,14 +61,13 @@ c0Prime = 0.5224;
 \[Mu]1 = 11.18;
 \[Mu]2Tilde = 0.7091;
 \[Mu]11 = 0.108;
-\[Mu]11Prime = 0.108;
+\[Mu]11Prime = 0.108; *)
 
-mKK5 = \[Pi] k /(zL - 1);
-L5 = N[Log[zL]/(k)]; *)
 
 (* Print["Loaded in parameters, starting analysis."] *)
 Print["------------ Loaded Params; Starting 4D Analysis ---------------"]
-
+mKK5 = \[Pi] k /(zL - 1);
+L5 = N[Log[zL]/(k)];
 (*------------------- DEFINITIONS --------------------*)
 (*Bessel basis functions Subscript[FHat, \
 \[Alpha]\[Beta]],Subscript[F, \[Alpha]\[Beta]] *)
@@ -383,7 +382,7 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
 
 
                  If[dofToAdd == "Fermion",
-                  toAddBetaCoeff = 4/3 * 1/2*DynkinIndex*nbOfFamilies;
+                  toAddBetaCoeff = 4/3 * 1/2 * DynkinIndex * nbOfFamilies;
                   (* Printing here. *)
                   (* Print["SU3C:", currBetaCoef + toAddBetaCoeff]; *)
                   Return[currBetaCoef + toAddBetaCoeff],
@@ -1623,8 +1622,8 @@ Print["At \[CapitalLambda]Max (\[Alpha]2L)^-1 : ", \[Alpha]2LinvatLambda ];
 Print["At \[CapitalLambda]Max (\[Alpha]2R)^-1 : ", \[Alpha]2RinvatLambda ];
 Print["@MKK5, have evolved value of sin \[Theta]W :", sin2ThWEvolved2];
  *)
-Export[jsonNameOut, <|"sin2ThW-Lambda" -> sin2ThWEvolved, "LambdaMax" -> \[CapitalLambda]MaxPlot,
-                      "sin2ThW-MKK5" -> sin2ThWEvolved2, "a1Yinv-MKK5" -> \[Alpha]1YatMKK5inv, "a2Linv-MKK5" -> \[Alpha]2LatMKK5inv, "a3Cinv-MKK5" -> \[Alpha]3CatMKK5inv, "a4Cinv-Lambda" -> \[Alpha]4CinvatLambda, "a2Linv-Lambda" -> \[Alpha]2LinvatLambda, "a2Rinv-Lambda" -> \[Alpha]2RinvatLambda |>];
+Export[jsonNameOut, <|"sin2ThWLambda" -> sin2ThWEvolved, "LambdaMax" -> \[CapitalLambda]MaxPlot,
+                      "sin2ThWMKK5" -> sin2ThWEvolved2, "a1YinvMKK5" -> \[Alpha]1YatMKK5inv, "a2LinvMKK5" -> \[Alpha]2LatMKK5inv, "a3CinvMKK5" -> \[Alpha]3CatMKK5inv, "a4CinvLambda" -> \[Alpha]4CinvatLambda, "a2LinvLambda" -> \[Alpha]2LinvatLambda, "a2RinvLambda" -> \[Alpha]2RinvatLambda |>];
 
 
 (* Print[N[mKK5], "  ", \[CapitalLambda]MaxPlot] *)

@@ -5,11 +5,12 @@ machineZero = 10^(-$MachinePrecision);
 (*Number of Families, and bound where we consider non-perturbative behaviour of the couplings*)
 nbOfFamilies = 1;
 (* nonPertBound = 1; *)
-timeOutSolve = 30;
+timeOutSolve = 10;
 
 (*Initial beta coefficients for the QED & the weinberg Angle RGE running*)
 initBetaEM = 22;
-initBetaSin2ThW = -1.0864;
+initBetaSin2ThW = 4 - 22 sin2\[Theta]WFct[\[Mu]];
+(* initBetaSin2ThW = -1.0864; *)
 
 (*plotHandle*)
 makePlots = False;
@@ -30,14 +31,22 @@ jsonNameOut="weinbergAngleOut"<>JsonNb<>".json";
 
 (* Model parameters *)
 MZ = 91.1876
-sin2\[Theta]W = 0.2312;
+
+(* sin2\[Theta]W = 0.2312; *)
+(* ± 0.01156 values for sin²θw within 5%  *)
+sin2\[Theta]W = 0.2312 ;
+
+(* aStrong = 0.11822;*)
+(* ± 0.00074 values for aStrong*)
+aStrong = 0.11822;
+
 \[Xi]Gauge = 0;
 M = -10^7;
 mB = 1.145*10^12;
 \[Alpha]EM = 1/127.96;
 
 dataRule = Import[jsonName];
-k = "k" /. dataRule;
+(* k = "k" /. dataRule;
 zL = "zL" /. dataRule;
 c0 = "c0" /. dataRule;
 c1 = "c1" /. dataRule;
@@ -47,10 +56,10 @@ c0Prime = "c0Prime" /. dataRule;
 \[Mu]2Tilde = "Mu2Tilde" /. dataRule;
 \[Mu]11 = "Mu11" /. dataRule;
 \[Mu]11Prime = "Mu11Prime" /. dataRule;
-\[Theta]Hmin = "ThetaHiggs"/. dataRule;
+\[Theta]Hmin = "ThetaHiggs"/. dataRule; *)
 
 
-(* k = 89130;
+k = 89130;
 zL = 35;
 c0 = 0.3325;
 c1 = 0.0;
@@ -61,10 +70,11 @@ c0Prime = 0.5224;
 \[Mu]1 = 11.18;
 \[Mu]2Tilde = 0.7091;
 \[Mu]11 = 0.108;
-\[Mu]11Prime = 0.108; *)
+\[Mu]11Prime = 0.108;
 
 
 (* Print["Loaded in parameters, starting analysis."] *)
+Print["------------ Number of Gens: ", nbOfFamilies, " ---------------"]
 Print["------------ Loaded Params; Starting 4D Analysis ---------------"]
 mKK5 = \[Pi] k /(zL - 1);
 L5 = N[Log[zL]/(k)];
@@ -372,8 +382,8 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
                  DynkinIndex = irrepDictSUN[[ ToString[SUNcharge] ]][["DynkinIdx"]];
                  QuadraticCasimir =
                   irrepDictSUN[[ ToString[SUNcharge] ]][["QuadCasimir"]];
-                 (*Print[dofToAdd, " has a Dynkin index of ", Ta\[Psi],
-                 " and a Quadratic Casimir ",C2SUN , " under ", SUN];*)
+                 (* Print[dofToAdd, " has a Dynkin index of ", Ta\[Psi],
+                 " and a Quadratic Casimir ",C2SUN , " under ", SUN]; *)
 
 
                  (*CASIMIR HERE !!!*)
@@ -384,14 +394,14 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
                  If[dofToAdd == "Fermion",
                   toAddBetaCoeff = 4/3 * 1/2 * DynkinIndex * nbOfFamilies;
                   (* Printing here. *)
-                  (* Print["SU3C:", currBetaCoef + toAddBetaCoeff]; *)
+                  (* Print[currBetaCoef + toAddBetaCoeff]; *)
                   Return[currBetaCoef + toAddBetaCoeff],
 
 
                   If[ dofToAdd == "Boson",
                     toAddBetaCoeff = -(11/3) * QuadraticCasimir ;
                     (* Printing here. *)
-                    (* Print["SU3C:", currBetaCoef + toAddBetaCoeff]; *)
+                    (* Print[currBetaCoef + toAddBetaCoeff]; *)
                     Return[currBetaCoef + toAddBetaCoeff]];]
 
 
@@ -630,23 +640,23 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
 
                      \[Mu]0 = startReg * k;
                      branchBeta = betaCoeff /. {\[Mu]Renorm -> \[Mu]0};
-                     (*Print[branchBeta];*)
+                     (* Print[branchBeta]; *)
                      sin2Val = sinThWList[[branchNb]];
                      newBranch =
                       sin2\[Theta]WFct[\[Mu]0]*(1 +
                           1/(24 \[Pi]) solved\[Alpha]EM[[1, branchNb, 1]] * 1 /
-                           sin2\[Theta]WFct[\[Mu]0] * Log[\[Mu]0 / \[Mu]Renorm]*
+                           sin2\[Theta]WFct[\[Mu]0] * Log[\[Mu]0^2 / \[Mu]Renorm^2]*
                            branchBeta ) /. {sin2\[Theta]WFct[\[Mu]0] -> sin2Val};
 
                      AppendTo[
                       pieceList, {newBranch, startReg*k <= \[Mu]Renorm <= endReg*k}];
                      sin2Piece = Piecewise[pieceList];
 
-                     (*Print[sin2Piece];*)
-                     (*Print[startReg*k,"  ", endReg*k];
-                     Print[newBranch];*)
-                     (*Print[newBranch/.{\[Mu]\[Rule] endReg*
-                     k}];*)
+                     (* Print[sin2Piece]; *)
+                     (* Print[startReg*k,"  ", endReg*k];
+                     Print[newBranch];
+                     Print[newBranch/.{\[Mu]\[Rule] endReg*
+                     k}]; *)
                      AppendTo[sinThWList, newBranch /. {\[Mu] -> endReg*k}];
 
                      ];
@@ -710,8 +720,8 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
 
                       If[sin2WEnable == True,
                        frameLabel =
-                         MaTeX[{"\\mu (GeV)", " \\sin \\theta_W"}, FontSize -> 24];,
-                       frameLabel = MaTeX[{"\\mu (GeV)", " \\alpha^{-1}"}, FontSize -> 24];
+                         MaTeX[{"\\mu (\\mathrm{GeV})", " \\sin \\theta_W"}, FontSize -> 24];,
+                       frameLabel = MaTeX[{"\\mu (\\mathrm{GeV})", " \\alpha^{-1}"}, FontSize -> 24];
                        ];
 
                       texStyle = {FontFamily -> "Latin Modern Roman", FontSize -> 13};
@@ -719,7 +729,7 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
 
                        PlotRange -> plotRange,
                        Epilog -> {Dashed, Thickness[0.001], epilogList},
-                       (*AxesLabel\[Rule]{"\[Mu] (GeV)", "(4\[Pi])/\[Alpha]"},*)
+                       (*AxesLabel\[Rule]{"\[Mu] (\mathrm{GeV})", "(4\[Pi])/\[Alpha]"},*)
 
                        Frame -> True, FrameStyle -> BlackFrame,
                        FrameLabel -> frameLabel,
@@ -842,10 +852,10 @@ orderedTowerDict = SortBy[dictMerged, # &];
 
 
 couplingDict = <|
-   "SU2L" -> <|"Coupling" -> g2L, "InitBeta" -> -19/16,
+   "SU2L" -> <|"Coupling" -> g2L, "InitBeta" -> -19/6,
      "InitBC" -> Sqrt[4 \[Pi] /127.91]/Sqrt[sin2\[Theta]W]|>,
    			   "SU3C" -> <|"Coupling" -> g3C, "InitBeta" -> -7,
-     "InitBC" -> Sqrt[4 \[Pi] 0.11822]|>
+     "InitBC" -> Sqrt[4 \[Pi] aStrong]|>
    |>;
 
 solvedRGEdict = <||>;
@@ -920,7 +930,7 @@ If[makePlots == True,
                    ];
 
   pltgEM = plotRGEsol[{4 \[Pi] /   solvedRGE\[Alpha]EM^2}, orderedTowerDict, \[Mu], 80 , {"\\frac{4 \
-                    \\pi}{g^2_{EM}}"} , Automatic, False, ColorData[97, "ColorList"][[7]]
+                    \\pi}{g^2_{ \\mathrm{EM}}}"} , Automatic, False, ColorData[97, "ColorList"][[7]]
                    ];
 
   plt2L = plotRGEsol[ sin2WSolved * (4 \[Pi] /   solvedRGE\[Alpha]EM^2), orderedTowerDict, \[Mu], 80 , {"\\frac{4 \
@@ -1507,7 +1517,9 @@ If[TrueQ[Length[\[Lambda]SolsFinal] > 0],
 \[CapitalLambda]MaxFunctional2L, \[CapitalLambda]MaxFunctional2R];
  ] *)
 
-
+Print[\[CapitalLambda]MaxFunctional, \[CapitalLambda]MaxFunctional2L, \
+\[CapitalLambda]MaxFunctional2R];
+Quit[];
  \[CapitalLambda]MaxPlot =
    Min[\[CapitalLambda]MaxFunctional, \[CapitalLambda]MaxFunctional2L, \
  \[CapitalLambda]MaxFunctional2R];
@@ -1531,7 +1543,7 @@ Print["--> Plotting 5D  RGES"];
  	{\[Mu]Plot, mKK5, \[CapitalLambda]MaxPlot},
 
  	Frame -> True, FrameStyle -> BlackFrame,
- 	FrameLabel -> MaTeX[{"\\mu (GeV)", " \\alpha^{-1}"}, FontSize -> 24],
+ 	FrameLabel -> MaTeX[{"\\mu (\\mathrm{GeV})", " \\alpha^{-1}"}, FontSize -> 24],
  	BaseStyle -> texStyle,
  	ImageSize -> Large,
  	Epilog -> {Dashed,

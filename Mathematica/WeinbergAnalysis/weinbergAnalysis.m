@@ -5,7 +5,7 @@ machineZero = 10^(-$MachinePrecision);
 (*Number of Families, and bound where we consider non-perturbative behaviour of the couplings*)
 nbOfFamilies = 1;
 (* nonPertBound = 1; *)
-timeOutSolve = 10;
+timeOutSolve = 30;
 
 (*Initial beta coefficients for the QED & the weinberg Angle RGE running*)
 initBetaEM = 22;
@@ -46,7 +46,7 @@ mB = 1.145*10^12;
 \[Alpha]EM = 1/127.96;
 
 dataRule = Import[jsonName];
-(* k = "k" /. dataRule;
+k = "k" /. dataRule;
 zL = "zL" /. dataRule;
 c0 = "c0" /. dataRule;
 c1 = "c1" /. dataRule;
@@ -56,10 +56,10 @@ c0Prime = "c0Prime" /. dataRule;
 \[Mu]2Tilde = "Mu2Tilde" /. dataRule;
 \[Mu]11 = "Mu11" /. dataRule;
 \[Mu]11Prime = "Mu11Prime" /. dataRule;
-\[Theta]Hmin = "ThetaHiggs"/. dataRule; *)
+\[Theta]Hmin = "ThetaHiggs"/. dataRule;
 
 
-k = 89130;
+(* k = 89130;
 zL = 35;
 c0 = 0.3325;
 c1 = 0.0;
@@ -70,7 +70,7 @@ c0Prime = 0.5224;
 \[Mu]1 = 11.18;
 \[Mu]2Tilde = 0.7091;
 \[Mu]11 = 0.108;
-\[Mu]11Prime = 0.108;
+\[Mu]11Prime = 0.108; *)
 
 
 (* Print["Loaded in parameters, starting analysis."] *)
@@ -1517,9 +1517,7 @@ If[TrueQ[Length[\[Lambda]SolsFinal] > 0],
 \[CapitalLambda]MaxFunctional2L, \[CapitalLambda]MaxFunctional2R];
  ] *)
 
-Print[\[CapitalLambda]MaxFunctional, \[CapitalLambda]MaxFunctional2L, \
-\[CapitalLambda]MaxFunctional2R];
-Quit[];
+
  \[CapitalLambda]MaxPlot =
    Min[\[CapitalLambda]MaxFunctional, \[CapitalLambda]MaxFunctional2L, \
  \[CapitalLambda]MaxFunctional2R];

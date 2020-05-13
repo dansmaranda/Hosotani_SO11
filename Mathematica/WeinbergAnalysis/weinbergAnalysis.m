@@ -1,5 +1,5 @@
 (* Use MaTeX to generate TeX axis for the plots *)
-(* << MaTeX` *)
+
 (* Set up the machine 0*)
 machineZero = 10^(-$MachinePrecision);
 (*Number of Families, and bound where we consider non-perturbative behaviour of the couplings*)
@@ -9,11 +9,17 @@ timeOutSolve = 30;
 
 (*Initial beta coefficients for the QED & the weinberg Angle RGE running*)
 initBetaEM = 22;
-initBetaSin2ThW = 4 - 22 sin2\[Theta]WFct[\[Mu]];
+initBetaSin2ThW = -19
+(* initBetaSin2ThW = 4 - 22 sin2\[Theta]WFct[\[Mu]]; *)
 (* initBetaSin2ThW = -1.0864; *)
 
 (*plotHandle*)
 makePlots = False;
+testMode = False;
+
+
+If[makePlots == True,
+  << MaTeX`];
 
 SetSystemOptions[
   "MachineRealPrintPrecision" -> Round[$MachinePrecision]];
@@ -24,6 +30,8 @@ Clear[zL, k, \[Mu]11, \[Mu]1, \[Mu]11Prime, \[Mu]2Tilde, c0Prime, c0,
 
 (* Print["-------------------------"] *)
 JsonNb=$ScriptCommandLine[[2]];
+
+
 (* JsonNb = "ThreadNb-0" *)
 jsonName="dataIn"<>JsonNb<>".json";
 jsonNameOut="weinbergAngleOut"<>JsonNb<>".json";
@@ -43,35 +51,41 @@ aStrong = 0.11822;
 \[Xi]Gauge = 0;
 M = -10^7;
 mB = 1.145*10^12;
-\[Alpha]EM = 1/127.96;
-
-dataRule = Import[jsonName];
-k = "k" /. dataRule;
-zL = "zL" /. dataRule;
-c0 = "c0" /. dataRule;
-c1 = "c1" /. dataRule;
-c2 = "c2" /. dataRule;
-c0Prime = "c0Prime" /. dataRule;
-\[Mu]1 = "Mu1" /. dataRule;
-\[Mu]2Tilde = "Mu2Tilde" /. dataRule;
-\[Mu]11 = "Mu11" /. dataRule;
-\[Mu]11Prime = "Mu11Prime" /. dataRule;
-\[Theta]Hmin = "ThetaHiggs"/. dataRule;
+\[Alpha]EM = 1/127.940;
+\[Alpha]EMinvMZ = (\[Alpha]EM)^(-1);
 
 
-(* k = 89130;
-zL = 35;
-c0 = 0.3325;
-c1 = 0.0;
-c2 = -0.7;
-c0Prime = 0.5224;
-\[Theta]Hmin = 0.149481;
+If[testMode ==  False,
+  (*If clause*)
+  Print["††🔥 Loading Data from ", jsonName];
+  dataRule = Import[jsonName];
+  k = "k" /. dataRule;
+  zL = "zL" /. dataRule;
+  c0 = "c0" /. dataRule;
+  c1 = "c1" /. dataRule;
+  c2 = "c2" /. dataRule;
+  c0Prime = "c0Prime" /. dataRule;
+  \[Mu]1 = "Mu1" /. dataRule;
+  \[Mu]2Tilde = "Mu2Tilde" /. dataRule;
+  \[Mu]11 = "Mu11" /. dataRule;
+  \[Mu]11Prime = "Mu11Prime" /. dataRule;
+  \[Theta]Hmin = "ThetaHiggs"/. dataRule;
 
-\[Mu]1 = 11.18;
-\[Mu]2Tilde = 0.7091;
-\[Mu]11 = 0.108;
-\[Mu]11Prime = 0.108; *)
+,(*Else clause*)
+  Print["⭐ Using Test mode data."];
+  k = 89130;
+  zL = 35;
+  c0 = 0.3325;
+  c1 = 0.0;
+  c2 = -0.7;
+  c0Prime = 0.5224;
+  \[Theta]Hmin = 0.149481;
 
+  \[Mu]1 = 11.18;
+  \[Mu]2Tilde = 0.7091;
+  \[Mu]11 = 0.108;
+  \[Mu]11Prime = 0.108;
+];
 
 (* Print["Loaded in parameters, starting analysis."] *)
 Print["------------ Number of Gens: ", nbOfFamilies, " ---------------"]
@@ -549,8 +563,8 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
                       regList[[regIdx]] <= \[Mu]Renorm <= regList[[regIdx + 1]] }
                      		];
                    ];
-
-                  Return[Piecewise[pieceWiseList]];
+                   Return[<|"RGEs" -> Piecewise[pieceWiseList],"BetaCoeff" -> \[Beta]CoeffList|>];
+                  (* Return[Piecewise[pieceWiseList]]; *)
                   ];
 
 
@@ -563,19 +577,21 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
 
                      If[dofToAdd == "Fermion",
                       (*All the fremions are chiral*)
-                      gammaFactor = 8;
-                      toAdd =
+                      gammaFactor = 4;
+                      toAdd = colorFactor * gammaFactor * chargeFactor *(isospinFactor)* nbOfFamilies;
+                      (* toAdd =
                        colorFactor * gammaFactor *
                         chargeFactor *(isospinFactor -
-                          chargeFactor*sin2\[Theta]WFct[\[Mu]Fake])*nbOfFamilies;
+                          chargeFactor*sin2\[Theta]WFct[\[Mu]Fake])*nbOfFamilies; *)
                       ,
 
                       If[ dofToAdd == "Boson",
                         gammaFactor = -22;
-                        toAdd =
+                        toAdd = colorFactor * gammaFactor * chargeFactor *(isospinFactor);
+                        (* toAdd =
                          colorFactor * gammaFactor *
                           chargeFactor *(isospinFactor -
-                            chargeFactor*sin2\[Theta]WFct[\[Mu]Fake]);
+                            chargeFactor*sin2\[Theta]WFct[\[Mu]Fake]); *)
 
                         ];
                       ];
@@ -589,7 +605,7 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
 
 
                   getWeinbergSolvedRGE[solved\[Alpha]EM_, classDict_ , initSinThW_,
-                    initBetaCoeff_, \[Mu]Renorm_] := Block[
+                    initBetaCoeff_, \[Mu]Renorm_, betaCoeffList_] := Block[
                     {orderedDict, dictKeys, i, branchNb, startReg, endReg, KKNumber,
                      KKName, KKNameStripped, KKMass, \[Mu]0},
                     orderedDict = makeOrderedTowerDict[classDict];
@@ -642,11 +658,28 @@ m\[Nu]Type [mu_, M_, mB_, c0_, zL_] := -((
                      branchBeta = betaCoeff /. {\[Mu]Renorm -> \[Mu]0};
                      (* Print[branchBeta]; *)
                      sin2Val = sinThWList[[branchNb]];
-                     newBranch =
+                     \[Alpha]EMFct = ((solved\[Alpha]EM[[1, branchNb, 1]])^(2)/(4 \[Pi] )) ;
+                     \[Alpha]EMatMu0 =  ((solved\[Alpha]EM[[1, branchNb, 1]])^(2)/(
+                         4 \[Pi] )) /. {\[Mu] -> \[Mu]0};
+
+                     (*QEDbranchBeta = Simplify[rgeSystem*(6 *16 \[Pi]^2 /(\[Alpha]1EM[\
+                     \[Mu]]^3))][[1, branchNb,1]];*)
+
+                     QEDbranchBeta = betaCoeffList[[branchNb]];
+                     (* Print[QEDbranchBeta, "***********", branchBeta]; *)
+
+                     (*branchBeta/QEDbranchBeta*)
+
+                     newBranch =  \[Alpha]EMFct/\[Alpha]EMatMu0 sin2\[Theta]WFct[\[Mu]0] + \
+                      branchBeta/
+                          QEDbranchBeta*(1 - \[Alpha]EMFct/\[Alpha]EMatMu0) /. {sin2\
+                     \[Theta]WFct[\[Mu]0] -> sin2Val};
+
+                     (* newBranch =
                       sin2\[Theta]WFct[\[Mu]0]*(1 +
                           1/(24 \[Pi]) solved\[Alpha]EM[[1, branchNb, 1]] * 1 /
                            sin2\[Theta]WFct[\[Mu]0] * Log[\[Mu]0^2 / \[Mu]Renorm^2]*
-                           branchBeta ) /. {sin2\[Theta]WFct[\[Mu]0] -> sin2Val};
+                           branchBeta ) /. {sin2\[Theta]WFct[\[Mu]0] -> sin2Val}; *)
 
                      AppendTo[
                       pieceList, {newBranch, startReg*k <= \[Mu]Renorm <= endReg*k}];
@@ -852,8 +885,8 @@ orderedTowerDict = SortBy[dictMerged, # &];
 
 
 couplingDict = <|
-   "SU2L" -> <|"Coupling" -> g2L, "InitBeta" -> -19/6,
-     "InitBC" -> Sqrt[4 \[Pi] /127.91]/Sqrt[sin2\[Theta]W]|>,
+   (* "SU2L" -> <|"Coupling" -> g2L, "InitBeta" -> -19/6,
+     "InitBC" -> Sqrt[4 \[Pi] /127.91]/Sqrt[sin2\[Theta]W]|>, *)
    			   "SU3C" -> <|"Coupling" -> g3C, "InitBeta" -> -7,
      "InitBC" -> Sqrt[4 \[Pi] aStrong]|>
    |>;
@@ -872,7 +905,7 @@ For[iGauge = 1, iGauge <= Length[gaugeGroupList], iGauge++,
   makePiecewiseRGE[classDict, gaugeCoupling, gaugeInitBeta,
    gaugeGroup,  \[Mu], k];
  solvedRGE =
-  solvePieceWiseRGE[rgeSystem, gaugeInitBC, gaugeCoupling, \[Mu]];
+  solvePieceWiseRGE[rgeSystem[["RGEs"]], gaugeInitBC, gaugeCoupling, \[Mu]];
 
  solvedRGEdict[[ gaugeGroup]] = solvedRGE;
  AppendTo[solvedRGEList, solvedRGE];
@@ -881,8 +914,8 @@ For[iGauge = 1, iGauge <= Length[gaugeGroupList], iGauge++,
 
 (************************************** RGE SOLVING **********************************************)
 rgeSystem =  makePiecewiseRGE[classDict, \[Alpha]1EM, initBetaEM, "U1EM",  \[Mu], k];
-solvedRGE\[Alpha]EM =  solvePieceWiseRGE[rgeSystem,   Sqrt[4 \[Pi] /127.91] , \[Alpha]1EM, \[Mu]];
-sin2WSolved =  getWeinbergSolvedRGE[solvedRGE\[Alpha]EM, classDict, sin2\[Theta]W, initBetaSin2ThW, \[Mu]];
+solvedRGE\[Alpha]EM =  solvePieceWiseRGE[rgeSystem[["RGEs"]],   Sqrt[4 \[Pi] / \[Alpha]EMinvMZ] , \[Alpha]1EM, \[Mu]];
+sin2WSolved =  getWeinbergSolvedRGE[solvedRGE\[Alpha]EM, classDict, sin2\[Theta]W, initBetaSin2ThW, \[Mu], rgeSystem[["BetaCoeff"]] ];
 
 (************************************************************************************)
 
@@ -954,13 +987,19 @@ If[makePlots == True,
   Export["WeinbergPlots/gGSM_4D.pdf", pltGSM];
 
 ]
-
 Print["------------ Starting 5D Analysis ---------------"]
 (*************============================================================================================*******)
 (*************============================================================================================*******)
 (*************-------------------------5D ANALYSIS--------------------------------------------------------*******)
 (*************============================================================================================*******)
 (*************============================================================================================*******)
+
+If[ (\[Alpha]4inv<=0 || \[Alpha]2Linv<=0  || \[Alpha]2Rinv<=0 ),
+  Print["NonPertubative couplings at mKK5!"];
+  Export[jsonNameOut, <|"sin2ThWLambda" -> Null, "LambdaMax" -> Null,
+                        "sin2ThWMKK5" -> Null, "a1YinvMKK5" -> Null, "a2LinvMKK5" -> Null, "a3CinvMKK5" -> Null, "a4CinvLambda" -> Null, "a2LinvLambda" -> Null, "a2RinvLambda" -> Null |>];
+  Quit[];
+];
 
 (* Subscript[N, ++] *)
 

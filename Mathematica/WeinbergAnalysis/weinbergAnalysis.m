@@ -3,7 +3,7 @@
 (* Set up the machine 0*)
 machineZero = 10^(-$MachinePrecision);
 (*Number of Families, and bound where we consider non-perturbative behaviour of the couplings*)
-nbOfFamilies = 1;
+nbOfFamilies = 3;
 (* nonPertBound = 1; *)
 timeOutSolve = 30;
 
@@ -15,7 +15,7 @@ initBetaSin2ThW = -19
 
 (*plotHandle*)
 makePlots = False;
-testMode = False;
+testMode = True;
 
 
 If[makePlots == True,
@@ -42,11 +42,11 @@ MZ = 91.1876
 
 (* sin2\[Theta]W = 0.2312; *)
 (* ± 0.01156 values for sin²θw within 5%  *)
-sin2\[Theta]W = 0.2312 ;
+sin2\[Theta]W = 0.2312;
 
 (* aStrong = 0.11822;*)
 (* ± 0.00074 values for aStrong*)
-aStrong = 0.11822;
+aStrong = 0.11822 + 0.00074;
 
 \[Xi]Gauge = 0;
 M = -10^7;
